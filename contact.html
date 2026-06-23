@@ -1681,6 +1681,21 @@ a { color: inherit; text-decoration: none; }
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ── PRE-SELECT TOPIC FROM URL PARAMETER ──
+  const params = new URLSearchParams(window.location.search);
+  const topicParam = params.get('topic');
+  if (topicParam) {
+    const topicSelect = document.getElementById('topic');
+    if (topicSelect) {
+      for (let option of topicSelect.options) {
+        if (option.value === topicParam) {
+          option.selected = true;
+          break;
+        }
+      }
+    }
+  }
+
   // ── NAV SCROLL ──
   const nav = document.querySelector('.nav');
   window.addEventListener('scroll', () => {
