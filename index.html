@@ -3,13 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The Elder IT — Digital safety, awareness, and education for every generation. Serving Brantford, the GTA, Waterloo, and Niagara." />
+  <meta name="description" content="Digital Safety for Every Generation | The Elder IT" />
   <meta name="theme-color" content="#0D1F3C" />
-  <title>The Elder IT — Digital Safety for Every Generation</title>
-
-  <!-- Favicon placeholder -->
+  <title>Digital Safety for Every Generation — The Elder IT</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D1F3C' rx='6'/><text x='16' y='22' text-anchor='middle' font-size='16' fill='%23C9973A' font-family='serif' font-weight='bold'>E</text></svg>" />
-
   <style>
 /* ============================================
    THE ELDER IT — Main Stylesheet
@@ -1383,50 +1380,163 @@ a { color: inherit; text-decoration: none; }
   * { transition-duration: 0.01ms !important; }
 }
 
-</style>
 
-  <!-- PWA support -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+/* ── HOMEPAGE SECTION CARDS ── */
+.home-sections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+
+.home-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+  transform-origin: left;
+}
+
+.home-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px var(--shadow);
+  transform: translateY(-4px);
+}
+
+.home-card:hover::after {
+  transform: scaleX(1);
+}
+
+.home-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.home-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.home-card__body {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.home-card__arrow {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: var(--navy);
+  padding: 120px 0 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201,151,58,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-header__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.page-header__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.page-header__body {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  max-width: 560px;
+}
+
+/* ── ACTIVE NAV ── */
+.nav__links a.active {
+  color: var(--gold);
+}
+
+@media (max-width: 900px) {
+  .home-sections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-sections {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 <body>
-
-<!-- ════════════════════════════════════════
-     NAVIGATION
-════════════════════════════════════════ -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
   <div class="nav__inner">
-    <a href="#home" class="nav__logo" aria-label="The Elder IT — Home">
+    <a href="index.html" class="nav__logo" aria-label="The Elder IT — Home">
       <span class="nav__logo-name">The Elder <span>IT</span></span>
       <span class="nav__logo-tagline">Digital Safety for Every Generation</span>
     </a>
-
     <ul class="nav__links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#threats">Awareness</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#plans">Plans</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact" class="nav__cta">Book a Consultation</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="awareness.html">Awareness</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="plans.html">Plans</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html" class="nav__cta">Book a Consultation</a></li>
     </ul>
-
     <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-
-<!-- ════════════════════════════════════════
-     HERO
-════════════════════════════════════════ -->
 <section class="hero" id="home">
   <div class="hero__inner">
-
-    <!-- Left: copy -->
     <div class="hero__content">
       <span class="hero__scroll-line" aria-hidden="true"></span>
       <span class="hero__eyebrow">Brantford · GTA · Waterloo · Niagara</span>
@@ -1438,12 +1548,10 @@ a { color: inherit; text-decoration: none; }
         The Elder IT brings practical, plain-language digital safety education directly to individuals, families, and communities. No jargon. No judgment. Just knowledge that protects you.
       </p>
       <div class="hero__actions">
-        <a href="#contact" class="btn btn--primary">Book a Free Consultation</a>
-        <a href="#threats" class="btn btn--outline">See the Threats</a>
+        <a href="contact.html" class="btn btn--primary">Book a Free Consultation</a>
+        <a href="awareness.html" class="btn btn--outline">See the Threats</a>
       </div>
     </div>
-
-    <!-- Right: stat cards -->
     <div class="hero__stats" aria-label="Key statistics">
       <div class="hero__stat fade-up">
         <div class="hero__stat-number">$2.7B+</div>
@@ -1466,728 +1574,96 @@ a { color: inherit; text-decoration: none; }
         <div class="hero__stat-source">Statistics Canada 2023</div>
       </div>
     </div>
-
   </div>
 </section>
 
-
-<!-- ════════════════════════════════════════
-     MISSION BANNER
-════════════════════════════════════════ -->
 <div class="mission-banner">
   <div class="container">
     <p class="mission-banner__quote fade-up">
-      "We don't do it for you.<br />
-      We do it <em>with</em> you."
+      "We don't do it for you.<br />We do it <em>with</em> you."
     </p>
     <span class="mission-banner__attr">The Elder IT — Core Principle</span>
   </div>
 </div>
 
-
-<!-- ════════════════════════════════════════
-     WHO WE SERVE
-════════════════════════════════════════ -->
-<section class="section" id="who-we-serve">
+<section class="section">
   <div class="container">
-    <span class="section__eyebrow">Who We Serve</span>
-    <h2 class="section__heading">Protection for everyone<br />in your household.</h2>
-    <p class="section__subheading">From a 12-year-old on social media to a 75-year-old managing their bank account online — digital threats don't discriminate by age.</p>
+    <span class="section__eyebrow">Everything You Need</span>
+    <h2 class="section__heading">Where would you like to start?</h2>
+    <p class="section__subheading">Whether you're here to learn, to get protected, or to book a session — you're in the right place.</p>
 
-    <div class="audience-grid">
-
-      <div class="audience-card fade-up">
-        <span class="audience-card__icon">🎮</span>
-        <div class="audience-card__title">Youth</div>
-        <p class="audience-card__body">Online gaming, social media, and messaging apps create real risks that go far beyond a screen. We help young people recognize manipulation and protect their digital identity.</p>
-        <div class="audience-card__tags">
-          <span class="tag">Cyberbullying</span>
-          <span class="tag">Gaming safety</span>
-          <span class="tag">Sextortion</span>
-          <span class="tag">Digital footprint</span>
-        </div>
-      </div>
-
-      <div class="audience-card fade-up">
-        <span class="audience-card__icon">🏠</span>
-        <div class="audience-card__title">Families</div>
-        <p class="audience-card__body">Parental controls, device security, and scam awareness — we help families have informed conversations and set up protections that actually work for your household.</p>
-        <div class="audience-card__tags">
-          <span class="tag">Parental controls</span>
-          <span class="tag">Device security</span>
-          <span class="tag">Scam awareness</span>
-          <span class="tag">Privacy</span>
-        </div>
-      </div>
-
-      <div class="audience-card fade-up">
-        <span class="audience-card__icon">🛡️</span>
-        <div class="audience-card__title">Older Adults</div>
-        <p class="audience-card__body">Phone scams, CRA fraud, AI voice cloning, and romance fraud target older Canadians at a disproportionate rate. We build awareness that is the best defence available.</p>
-        <div class="audience-card__tags">
-          <span class="tag">Phone scams</span>
-          <span class="tag">AI fraud</span>
-          <span class="tag">Account protection</span>
-          <span class="tag">CRA fraud</span>
-        </div>
-      </div>
-
+    <div class="home-sections">
+      <a href="about.html" class="home-card fade-up">
+        <span class="home-card__icon">📖</span>
+        <div class="home-card__title">About The Elder IT</div>
+        <p class="home-card__body">Who we are, what drives us, and why we built this service around education — not dependency.</p>
+        <span class="home-card__arrow">Learn more →</span>
+      </a>
+      <a href="awareness.html" class="home-card fade-up">
+        <span class="home-card__icon">🔍</span>
+        <div class="home-card__title">Threat Awareness</div>
+        <p class="home-card__body">The scams, frauds, and online dangers targeting your family right now — and the warning signs to watch for.</p>
+        <span class="home-card__arrow">See the threats →</span>
+      </a>
+      <a href="services.html" class="home-card fade-up">
+        <span class="home-card__icon">🛡️</span>
+        <div class="home-card__title">Our Services</div>
+        <p class="home-card__body">From community workshops to device setup to incident guidance — here's everything we offer.</p>
+        <span class="home-card__arrow">View services →</span>
+      </a>
+      <a href="plans.html" class="home-card fade-up">
+        <span class="home-card__icon">📋</span>
+        <div class="home-card__title">Plans & Pricing</div>
+        <p class="home-card__body">Monthly memberships for individuals, families, and professionals. Transparent pricing, no surprises.</p>
+        <span class="home-card__arrow">See plans →</span>
+      </a>
+      <a href="faq.html" class="home-card fade-up">
+        <span class="home-card__icon">💬</span>
+        <div class="home-card__title">FAQ</div>
+        <p class="home-card__body">Honest answers to the questions we hear most — no sales language, no runaround.</p>
+        <span class="home-card__arrow">Read the FAQ →</span>
+      </a>
+      <a href="contact.html" class="home-card fade-up">
+        <span class="home-card__icon">📅</span>
+        <div class="home-card__title">Book a Consultation</div>
+        <p class="home-card__body">Free, 30-minute session — in person or by phone. No obligation. We'll figure out if we can help.</p>
+        <span class="home-card__arrow">Get in touch →</span>
+      </a>
     </div>
   </div>
 </section>
 
-
-<!-- ════════════════════════════════════════
-     THREAT AWARENESS
-════════════════════════════════════════ -->
-<section class="section section--dark" id="threats">
-  <div class="container">
-    <span class="section__eyebrow">Threat Awareness</span>
-    <h2 class="section__heading" style="color:white;">The threats are real.<br />And they affect everyone.</h2>
-    <p class="section__subheading">These are not hypothetical scenarios — they happen every day in communities like yours.</p>
-
-    <!-- Tabs -->
-    <div class="threat-tabs" role="tablist">
-      <button class="threat-tab active" data-panel="threats-adults" role="tab" aria-selected="true">Older Adults</button>
-      <button class="threat-tab" data-panel="threats-youth" role="tab" aria-selected="false">Youth</button>
-    </div>
-
-    <!-- Adults Panel -->
-    <div class="threat-panel active" id="threats-adults" role="tabpanel">
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">📞</span>
-        <div class="threat-card__title">Phone & Impersonation Scams</div>
-        <p class="threat-card__body">Callers pose as CRA, banks, or police — using urgency and fear to bypass your judgment and demand immediate payment.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">📧</span>
-        <div class="threat-card__title">Phishing Emails & Fake Messages</div>
-        <p class="threat-card__body">Fraudulent emails mimicking your bank, Amazon, or government agencies — designed to steal login credentials or personal information.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">🤖</span>
-        <div class="threat-card__title">AI Voice & Deepfake Scams</div>
-        <p class="threat-card__body">AI can clone a voice from seconds of audio. Fraudsters use this to impersonate family members claiming to be in an emergency.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">💔</span>
-        <div class="threat-card__title">Romance & Relationship Fraud</div>
-        <p class="threat-card__body">Fake relationships built over weeks or months, ending in financial requests. The CAFC reports this as one of the highest-loss fraud types.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">🔐</span>
-        <div class="threat-card__title">Account Takeover</div>
-        <p class="threat-card__body">Weak or reused passwords allow criminals into banking, email, and health portals. Password reuse is one of the most exploited vulnerabilities.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">📰</span>
-        <div class="threat-card__title">Misinformation & Fake News</div>
-        <p class="threat-card__body">AI-generated articles, photos, and videos spread false health, financial, or political claims that appear completely legitimate.</p>
-      </div>
-    </div>
-
-    <!-- Youth Panel -->
-    <div class="threat-panel" id="threats-youth" role="tabpanel">
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">💬</span>
-        <div class="threat-card__title">Cyberbullying & Harassment</div>
-        <p class="threat-card__body">Persistent harassment through social platforms, gaming chats, and messaging apps — causing severe emotional harm and isolation.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">🎮</span>
-        <div class="threat-card__title">Gaming Scams & Predators</div>
-        <p class="threat-card__body">In-game strangers build trust before requesting personal info, money, or to meet in person. Predators actively target youth in gaming communities.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">🕵️</span>
-        <div class="threat-card__title">Identity Grooming</div>
-        <p class="threat-card__body">Adults posing as peers online to gradually earn trust — often moving from public platforms to private messaging before escalating.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">👣</span>
-        <div class="threat-card__title">Digital Footprint & Privacy</div>
-        <p class="threat-card__body">Posts, photos, and check-ins create a permanent record. Youth often don't realize how much personal information is publicly visible.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">⚠️</span>
-        <div class="threat-card__title">Sextortion & Image-Based Abuse</div>
-        <p class="threat-card__body">Increasingly common: youth coerced into sharing images, then blackmailed. This is a crime — and it must be reported, not hidden.</p>
-      </div>
-      <div class="threat-card fade-up">
-        <span class="threat-card__icon">🎭</span>
-        <div class="threat-card__title">Deepfakes & AI Content</div>
-        <p class="threat-card__body">AI creates fake news, deepfake videos, and impersonation accounts. Youth are among the highest consumers of this content.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     WARNING SIGNS
-════════════════════════════════════════ -->
-<section class="section section--alt" id="warning-signs">
-  <div class="container">
-    <span class="section__eyebrow">Warning Signs</span>
-    <h2 class="section__heading">If you see any of these —<br />pause. Verify before you act.</h2>
-    <p class="section__subheading" style="margin-bottom:40px;">Scammers rely on one thing: that you don't know the warning signs. Now you will.</p>
-
-    <div class="warning-list fade-up">
-      <div class="warning-item">
-        <div class="warning-item__number">1</div>
-        <div>
-          <div class="warning-item__title">Urgency & Pressure</div>
-          <p class="warning-item__body">"Act NOW or face consequences." Real institutions — banks, government, police — always give you time to think and verify.</p>
-        </div>
-      </div>
-      <div class="warning-item">
-        <div class="warning-item__number">2</div>
-        <div>
-          <div class="warning-item__title">Unexpected Contact</div>
-          <p class="warning-item__body">A call, email, or message from someone you know — but something feels off. Trust that feeling. Hang up and call them directly on a number you know.</p>
-        </div>
-      </div>
-      <div class="warning-item">
-        <div class="warning-item__number">3</div>
-        <div>
-          <div class="warning-item__title">Requests for Secrecy</div>
-          <p class="warning-item__body">"Don't tell anyone about this." This is always a manipulation tactic. Legitimate organizations never ask you to keep contact secret.</p>
-        </div>
-      </div>
-      <div class="warning-item">
-        <div class="warning-item__number">4</div>
-        <div>
-          <div class="warning-item__title">Gift Cards or Wire Transfers</div>
-          <p class="warning-item__body">No government agency, bank, or legitimate company ever asks for payment via gift cards or wire transfer. Ever. Full stop.</p>
-        </div>
-      </div>
-      <div class="warning-item">
-        <div class="warning-item__number">5</div>
-        <div>
-          <div class="warning-item__title">Too Good or Too Alarming</div>
-          <p class="warning-item__body">Incredible prizes, urgent threats, or emergency family calls designed to panic you into acting fast. Emotion is the weapon — awareness is the defence.</p>
-        </div>
-      </div>
-      <div class="warning-item">
-        <div class="warning-item__number">6</div>
-        <div>
-          <div class="warning-item__title">Moving to a Private Platform</div>
-          <p class="warning-item__body">Someone asking to move from a public chat to WhatsApp, Telegram, or text is a red flag — especially if you don't know them well.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     PROTECTION PLAN
-════════════════════════════════════════ -->
-<section class="section" id="protection-plan">
-  <div class="container">
-    <span class="section__eyebrow">Your Protection Plan</span>
-    <h2 class="section__heading">Three steps anyone can take<br />starting today.</h2>
-    <p class="section__subheading">No technical background required. These actions significantly reduce your risk.</p>
-
-    <div class="protection-steps">
-      <div class="protection-step fade-up">
-        <div class="protection-step__number">1</div>
-        <div class="protection-step__title">Secure Your Accounts</div>
-        <ul class="protection-step__items">
-          <li class="protection-step__item">Use a unique password for your email — never reuse it anywhere</li>
-          <li class="protection-step__item">Enable two-step verification on banking and email</li>
-          <li class="protection-step__item">Keep a written password list at home — not on your phone</li>
-        </ul>
-      </div>
-      <div class="protection-step fade-up">
-        <div class="protection-step__number">2</div>
-        <div class="protection-step__title">Pause Before You Act</div>
-        <ul class="protection-step__items">
-          <li class="protection-step__item">Urgency is a trick — hang up, then verify independently</li>
-          <li class="protection-step__item">Call back using a number from the official website only</li>
-          <li class="protection-step__item">Never send money, gift cards, or personal info under pressure</li>
-        </ul>
-      </div>
-      <div class="protection-step fade-up">
-        <div class="protection-step__number">3</div>
-        <div class="protection-step__title">Know Your Online Presence</div>
-        <ul class="protection-step__items">
-          <li class="protection-step__item">Review what is publicly visible on your social profiles</li>
-          <li class="protection-step__item">Talk to youth in your life about privacy settings</li>
-          <li class="protection-step__item">Think before you post — what could this reveal about you?</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     ABOUT
-════════════════════════════════════════ -->
-<section class="section section--alt" id="about">
-  <div class="container">
-    <div class="about-grid">
-
-      <div>
-        <span class="section__eyebrow">About The Elder IT</span>
-        <h2 class="section__heading">Knowledge is the oldest form of protection.</h2>
-        <p style="margin-bottom:20px;">The Elder IT is a digital safety, awareness, and education business based in Brantford, Ontario. We serve individuals, families, and communities across all ages and generations.</p>
-        <p style="margin-bottom:20px;">The name is inspired by The Elder Scrolls — scrolls of knowledge — reimagined for the digital age. It carries wisdom, guidance, and authority across all demographics. It is not named after any one age group.</p>
-
-        <div class="about-principle">
-          <p class="about-principle__text">"Digital safety is not a privilege. It is a right — for every generation."</p>
-          <span class="about-principle__attr">Elder's Founding Principle</span>
-        </div>
-
-        <div class="region-pills" style="margin-top:28px;">
-          <span class="region-pill">Greater Toronto Area</span>
-          <span class="region-pill">Waterloo / Brantford</span>
-          <span class="region-pill">Niagara Region</span>
-          <span class="region-pill">Remote delivery available</span>
-        </div>
-      </div>
-
-      <div class="about-values">
-        <div class="about-value fade-up">
-          <div class="about-value__icon">🛡️</div>
-          <div>
-            <div class="about-value__title">Protection</div>
-            <p class="about-value__body">Keeping people safe from digital threats through practical, actionable knowledge — not fear, not jargon, not dependency.</p>
-          </div>
-        </div>
-        <div class="about-value fade-up">
-          <div class="about-value__icon">📚</div>
-          <div>
-            <div class="about-value__title">Education</div>
-            <p class="about-value__body">Building genuine knowledge and confidence. We do things with our clients — not for them. Every session is a learning session.</p>
-          </div>
-        </div>
-        <div class="about-value fade-up">
-          <div class="about-value__icon">💡</div>
-          <div>
-            <div class="about-value__title">Empowerment</div>
-            <p class="about-value__body">Giving every person the ability to navigate the digital world on their own terms — from a 12-year-old to a 75-year-old.</p>
-          </div>
-        </div>
-        <div class="about-value fade-up">
-          <div class="about-value__icon">🤝</div>
-          <div>
-            <div class="about-value__title">What We Don't Do</div>
-            <p class="about-value__body">We don't sell hardware. We don't manage IT infrastructure. We don't provide legal or financial advice. We keep our focus narrow so it stays sharp.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     SERVICES
-════════════════════════════════════════ -->
-<section class="section" id="services">
-  <div class="container">
-    <span class="section__eyebrow">What We Do</span>
-    <h2 class="section__heading">Services built for real life,<br />not corporate IT.</h2>
-    <p class="section__subheading">Every service is delivered with you — in person or by video call. No jargon. No judgment. We come to you.</p>
-
-    <div class="services-grid">
-
-      <div class="service-card fade-up">
-        <span class="service-card__icon">🏘️</span>
-        <div class="service-card__title">Community Workshops</div>
-        <p class="service-card__body">In-person sessions at community centres, mosques, churches, schools, and halls. Practical and accessible for all ages. Free to attend — we come to you.</p>
-      </div>
-
-      <div class="service-card fade-up">
-        <span class="service-card__icon">🔍</span>
-        <div class="service-card__title">Digital Safety Check-Ins</div>
-        <p class="service-card__body">Guided reviews of your devices, accounts, privacy settings, and online habits. Tailored to your specific situation — no assumptions.</p>
-      </div>
-
-      <div class="service-card fade-up">
-        <span class="service-card__icon">📱</span>
-        <div class="service-card__title">Device Setup & Security</div>
-        <p class="service-card__body">New device setup, security hardening, data transfers from old devices, smart home configuration. Done with you — so you know how it works.</p>
-      </div>
-
-      <div class="service-card fade-up">
-        <span class="service-card__icon">👨‍👩‍👧‍👦</span>
-        <div class="service-card__title">Family Safety Workshops</div>
-        <p class="service-card__body">90-minute in-home sessions covering parental controls, youth safety online, and household device security. For the whole family at once.</p>
-      </div>
-
-      <div class="service-card fade-up">
-        <span class="service-card__icon">🔑</span>
-        <div class="service-card__title">Account Recovery</div>
-        <p class="service-card__body">Locked out of email, social media, or banking? We guide you through recovery step by step — and help make sure it doesn't happen again.</p>
-      </div>
-
-      <div class="service-card fade-up">
-        <span class="service-card__icon">🚨</span>
-        <div class="service-card__title">Incident Guidance</div>
-        <p class="service-card__body">If something has already happened — a scam, a breach, a compromised account — we help you understand what occurred and what your options are. No judgment.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     PLANS
-════════════════════════════════════════ -->
-<section class="section section--alt" id="plans">
-  <div class="container">
-    <span class="section__eyebrow">Membership Plans</span>
-    <h2 class="section__heading">Ongoing protection,<br />not one-time fixes.</h2>
-    <p class="section__subheading">All plans include onboarding and monthly check-ins. All prices + Ontario HST (13%).</p>
-
-    <!-- Community seminar entry point -->
-    <div style="margin-bottom:48px; background:var(--navy); border-radius:var(--radius-lg); padding:32px 40px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;" class="fade-up">
-      <div>
-        <p style="font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Not ready for a plan yet?</p>
-        <p style="font-size:1.1rem; font-weight:600; color:white; margin-bottom:6px;">Start with a free community session.</p>
-        <p style="font-size:0.875rem; color:rgba(255,255,255,0.6); max-width:480px;">We run free digital safety workshops at community centres, seniors residences, and faith organizations across Brantford and the surrounding area. No commitment. Just come and learn.</p>
-      </div>
-      <a href="#contact" class="btn btn--primary" style="white-space:nowrap; flex-shrink:0;">Find a Session Near You</a>
-    </div>
-
-    <div class="plans-grid">
-
-      <!-- Individual -->
-      <div class="plan-card fade-up">
-        <div class="plan-card__name">Individual</div>
-        <div class="plan-card__price">$49<span>/mo</span></div>
-        <div class="plan-card__hst">+ HST · 1 named member</div>
-        <div class="plan-card__divider"></div>
-        <ul class="plan-card__features">
-          <li class="plan-card__feature">Onboarding security audit (60 min, one-time)</li>
-          <li class="plan-card__feature">Monthly check-in call (30 min)</li>
-          <li class="plan-card__feature">One hands-on session per month (60 min)</li>
-          <li class="plan-card__feature">Unlimited scam & safety questions by text or email</li>
-        </ul>
-        <a href="#contact" class="btn btn--navy">Get Started</a>
-      </div>
-
-      <!-- Family -->
-      <div class="plan-card fade-up">
-        <div class="plan-card__name">Family</div>
-        <div class="plan-card__price">$85<span>/mo</span></div>
-        <div class="plan-card__hst">+ HST · Up to 5 members</div>
-        <div class="plan-card__divider"></div>
-        <ul class="plan-card__features">
-          <li class="plan-card__feature">Onboarding audit for all members (one-time)</li>
-          <li class="plan-card__feature">Monthly check-in call (45 min)</li>
-          <li class="plan-card__feature">Two hands-on sessions per month (60 min each)</li>
-          <li class="plan-card__feature">Parental controls & youth safety setup</li>
-          <li class="plan-card__feature">All members covered for questions & urgent support</li>
-        </ul>
-        <a href="#contact" class="btn btn--navy">Get Started</a>
-      </div>
-
-      <!-- Elder — Featured -->
-      <div class="plan-card plan-card--featured fade-up">
-        <div class="plan-card__name">Elder</div>
-        <div class="plan-card__price">$149<span>/mo</span></div>
-        <div class="plan-card__hst">+ HST · Up to 10 members</div>
-        <div class="plan-card__divider"></div>
-        <ul class="plan-card__features">
-          <li class="plan-card__feature">Full onboarding audit for all named members</li>
-          <li class="plan-card__feature">Three hands-on sessions per month</li>
-          <li class="plan-card__feature">Members covered anywhere in Canada</li>
-          <li class="plan-card__feature">Priority urgent response — scam in progress, account locked</li>
-        </ul>
-        <a href="#contact" class="btn btn--primary">Get Started</a>
-      </div>
-
-      <!-- Solo Professional -->
-      <div class="plan-card fade-up">
-        <div class="plan-card__name">Solo Professional</div>
-        <div class="plan-card__price">$179<span>/mo</span></div>
-        <div class="plan-card__hst">+ HST · 3-month minimum</div>
-        <div class="plan-card__divider"></div>
-        <ul class="plan-card__features">
-          <li class="plan-card__feature">For realtors, lawyers, sole proprietors</li>
-          <li class="plan-card__feature">Onboarding audit of all business devices & accounts</li>
-          <li class="plan-card__feature">Quarterly security review</li>
-          <li class="plan-card__feature">Staff awareness session per quarter (60 min)</li>
-          <li class="plan-card__feature">Priority contact for urgent business security issues</li>
-        </ul>
-        <a href="#contact" class="btn btn--navy">Get Started</a>
-      </div>
-
-    </div>
-
-    <!-- One-time services note -->
-    <div style="margin-top:48px; text-align:center; background:white; border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px; max-width:700px; margin-left:auto; margin-right:auto;" class="fade-up">
-      <p style="font-weight:600; color:var(--navy); margin-bottom:12px; font-size:1rem;">Need something once, not ongoing?</p>
-      <p style="font-size:0.875rem; margin-bottom:16px;">One-time services are available without a plan: device setup ($89), account recovery ($75/session), data transfer ($65), smart home setup ($125), and in-home family safety workshop ($120). All + HST.</p>
-      <a href="#contact" class="btn btn--primary">Ask About One-Time Services</a>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     FAQ
-════════════════════════════════════════ -->
-<section class="section" id="faq">
-  <div class="container">
-    <span class="section__eyebrow">Frequently Asked Questions</span>
-    <h2 class="section__heading" style="text-align:center; margin-bottom:16px;">Honest answers.</h2>
-    <p style="text-align:center; color:var(--text-mid); margin-bottom:56px;">No sales language. No runaround.</p>
-
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What does The Elder IT actually do?
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-        </button>
-        <div class="faq-answer">
-          <p>We educate and support individuals, families, and communities on digital safety — in plain language, at every age. Our sessions cover everything from scam recognition to device setup to parental controls. The goal is always that you walk away knowing more than when you came in.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Do you fix computers or sell devices?
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-        </button>
-        <div class="faq-answer">
-          <p>No. We focus entirely on education, awareness, and guidance. We help you understand and protect yourself — we don't sell hardware and we don't manage IT infrastructure. If you need to buy something, we'll tell you what to look for so you can make your own informed decision.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          How do I become a member?
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-        </button>
-        <div class="faq-answer">
-          <p>Book a free 30-minute consultation — in person or by phone. We'll talk about what you need, answer your questions, and figure out if there's a good fit. If there is, we set everything up for you as part of onboarding. You don't fill out forms or create accounts on your own — we do that together.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Is the consultation really free?
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-        </button>
-        <div class="faq-answer">
-          <p>Yes. No catch. Every new client relationship starts with a free 30-minute consultation — by phone or in person. There's no obligation to sign up for anything afterward.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What areas do you serve?
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-        </button>
-        <div class="faq-answer">
-          <p>In-person services cover the Greater Toronto Area, the Waterloo/Brantford corridor (including London and Cambridge), and the Niagara Region (St. Catharines, Niagara Falls, Thorold). Remote sessions by video call are available anywhere — just ask.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          How do you protect my privacy?
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-        </button>
-        <div class="faq-answer">
-          <p>We store only what's necessary: your name, contact information, and payment details. We never collect or store your passwords or credentials — ever. During sessions, any browsing is done in private/incognito mode. Everything is completed within the session — nothing is retained afterward. Your information is never shared or sold.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Do you work with businesses or organizations?
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-        </button>
-        <div class="faq-answer">
-          <p>Our primary focus is individuals, families, and community organizations. For businesses — staff awareness training, digital risk assessments, phishing simulations — we take engagements on a per-case basis. Reach out at <a href="mailto:connect@theelderit.com" style="color:var(--navy);font-weight:600;">connect@theelderit.com</a> and we'll discuss.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          I already got scammed. Can you still help?
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg>
-        </button>
-        <div class="faq-answer">
-          <p>Yes. Incident guidance is part of what we do. If something has already happened — a scam, a compromised account, a suspicious call — we help you understand what occurred and what your next steps are. No judgment, no shame. It happens to people at every level of technical knowledge.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     CONTACT & BOOKING
-════════════════════════════════════════ -->
-<section class="section section--alt" id="contact">
-  <div class="container">
-    <span class="section__eyebrow">Get In Touch</span>
-    <h2 class="section__heading">Book your free<br />consultation.</h2>
-    <p class="section__subheading">30 minutes. In person or by phone. No obligation. We'll figure out together if we can help.</p>
-
-    <div class="contact-grid">
-
-      <!-- Info -->
-      <div>
-        <div class="contact-info__item">
-          <div class="contact-info__icon">📧</div>
-          <div>
-            <div class="contact-info__label">Email</div>
-            <div class="contact-info__value"><a href="mailto:hello@theelderit.com">hello@theelderit.com</a></div>
-          </div>
-        </div>
-
-        <div class="contact-info__item">
-          <div class="contact-info__icon">🌐</div>
-          <div>
-            <div class="contact-info__label">Website</div>
-            <div class="contact-info__value"><a href="https://theelderit.com">theelderit.com</a></div>
-          </div>
-        </div>
-        <div class="contact-info__item">
-          <div class="contact-info__icon">📍</div>
-          <div>
-            <div class="contact-info__label">Based In</div>
-            <div class="contact-info__value">Brantford, Ontario<br /><span style="font-size:0.82rem;color:var(--text-light);">Serving GTA · Waterloo/Brantford · Niagara</span></div>
-          </div>
-        </div>
-
-        <div style="margin-top:32px; padding:24px; background:white; border-radius:var(--radius-lg); border:1px solid var(--border);">
-          <p style="font-size:0.82rem; color:var(--text-mid); line-height:1.7;">
-            <strong style="color:var(--navy);">Response time:</strong> We typically respond within 1 business day.
-          </p>
-        </div>
-      </div>
-
-      <!-- Booking Form -->
-      <div class="booking-form">
-        <form id="booking-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
-          <input type="hidden" name="_subject" value="New consultation request — The Elder IT" />
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="first-name">First Name *</label>
-              <input class="form-input" type="text" id="first-name" name="first_name" required placeholder="Jane" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="last-name">Last Name *</label>
-              <input class="form-input" type="text" id="last-name" name="last_name" required placeholder="Smith" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="email">Email *</label>
-            <input class="form-input" type="email" id="email" name="email" required placeholder="jane@email.com" />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="phone">Phone</label>
-            <input class="form-input" type="tel" id="phone" name="phone" placeholder="647-555-0100" />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="contact-pref">Preferred way to reach you *</label>
-            <select class="form-select" id="contact-pref" name="contact_preference" required>
-              <option value="" disabled selected>Select one</option>
-              <option value="Phone call">Phone call</option>
-              <option value="Email">Email</option>
-              <option value="Either is fine">Either is fine</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="topic">What can we help with? *</label>
-            <select class="form-select" id="topic" name="topic" required>
-              <option value="" disabled selected>Select a topic</option>
-              <option value="Device help or setup">Device help or setup</option>
-              <option value="Scam or fraud concern">Scam or fraud concern — something happened</option>
-              <option value="Family safety">Family safety & parental controls</option>
-              <option value="Youth online safety">Youth online safety</option>
-              <option value="Membership plan">Membership plan information</option>
-              <option value="Community workshop">Community workshop or seminar</option>
-              <option value="General inquiry">General inquiry</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="message">Anything else you'd like us to know?</label>
-            <textarea class="form-textarea" id="message" name="message" placeholder="Tell us a bit more about what's going on — no pressure to share details you're not comfortable with."></textarea>
-          </div>
-
-          <button type="submit" class="btn btn--primary btn--submit" style="width:100%; justify-content:center; padding:16px;">
-            Request a Free Consultation
-          </button>
-          <p class="form-note">Free, no-obligation 30-minute session. We'll confirm within 1 business day.</p>
-        </form>
-
-        <!-- Success state -->
-        <div id="form-success" class="form-success">
-          <div class="form-success__icon">✅</div>
-          <div class="form-success__title">We received your request.</div>
-          <p class="form-success__body">We'll be in touch within 1 business day to confirm your consultation. If you'd prefer a call, let us know in your message and we'll reach out by phone.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     CLOSING BANNER
-════════════════════════════════════════ -->
 <div class="mission-banner">
   <div class="container">
     <p class="mission-banner__quote">
       Whether you are 16 or 76 — protecting yourself online starts with one thing: <em>awareness.</em>
     </p>
-    <div style="margin-top:32px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <a href="#contact" class="btn btn--primary">Book a Free Consultation</a>
+    <div style="margin-top:32px;">
+      <a href="contact.html" class="btn btn--primary">Book a Free Consultation</a>
     </div>
   </div>
 </div>
 
-
-<!-- ════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════ -->
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
-
       <div>
         <div class="footer__logo-name">The Elder <span>IT</span></div>
         <p class="footer__tagline">Digital Safety & Awareness for Every Generation.<br />Brantford, Ontario — Serving the GTA, Waterloo, and Niagara.</p>
         <p class="footer__differentiator">"We don't do it for you. We do it with you."</p>
       </div>
-
       <div>
         <div class="footer__heading">Navigate</div>
         <ul class="footer__links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#threats">Threat Awareness</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#plans">Plans & Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Book a Consultation</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="awareness.html">Awareness</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="plans.html">Plans & Pricing</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Book a Consultation</a></li>
         </ul>
       </div>
-
       <div>
         <div class="footer__heading">Contact</div>
         <ul class="footer__links">
@@ -2195,19 +1671,14 @@ a { color: inherit; text-decoration: none; }
           <li><a href="https://theelderit.com">theelderit.com</a></li>
         </ul>
       </div>
-
     </div>
-
     <div class="footer__divider"></div>
-
     <div class="footer__bottom">
       <span>&copy; 2026 The Elder IT. All rights reserved.</span>
       <span>Brantford, Ontario, Canada</span>
     </div>
   </div>
 </footer>
-
-
 <script>
 /* ============================================
    THE ELDER IT — Main JavaScript
