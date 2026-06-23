@@ -550,9 +550,10 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   gap: 0;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
+  background: var(--white);
 }
 
 .warning-item {
@@ -561,7 +562,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 24px;
   padding: 24px 28px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid var(--border);
   transition: background 0.2s;
 }
 
@@ -576,21 +577,21 @@ a { color: inherit; text-decoration: none; }
   font-size: 2rem;
   font-weight: 900;
   color: var(--gold);
-  opacity: 0.4;
+  opacity: 0.6;
   line-height: 1;
 }
 
 .warning-item__title {
   font-size: 1rem;
-  font-weight: 600;
-  color: var(--white);
+  font-weight: 700;
+  color: var(--navy);
   margin-bottom: 4px;
 }
 
 .warning-item__body {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.5;
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.6;
 }
 
 /* ── SERVICES ── */
@@ -2048,13 +2049,7 @@ a { color: inherit; text-decoration: none; }
             <div class="contact-info__value"><a href="mailto:hello@theelderit.com">hello@theelderit.com</a></div>
           </div>
         </div>
-        <div class="contact-info__item">
-          <div class="contact-info__icon">📞</div>
-          <div>
-            <div class="contact-info__label">Phone</div>
-            <div class="contact-info__value"><a href="tel:6472905414">647-290-5414</a></div>
-          </div>
-        </div>
+
         <div class="contact-info__item">
           <div class="contact-info__icon">🌐</div>
           <div>
@@ -2146,7 +2141,7 @@ a { color: inherit; text-decoration: none; }
         <div id="form-success" class="form-success">
           <div class="form-success__icon">✅</div>
           <div class="form-success__title">We received your request.</div>
-          <p class="form-success__body">We'll be in touch within 1 business day to confirm your consultation. In the meantime, if you have an urgent concern, call us at <strong>647-290-5414</strong>.</p>
+          <p class="form-success__body">We'll be in touch within 1 business day to confirm your consultation. If you'd prefer a call, let us know in your message and we'll reach out by phone.</p>
         </div>
       </div>
 
@@ -2165,7 +2160,6 @@ a { color: inherit; text-decoration: none; }
     </p>
     <div style="margin-top:32px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
       <a href="#contact" class="btn btn--primary">Book a Free Consultation</a>
-      <a href="tel:6472905414" class="btn btn--outline">Call 647-290-5414</a>
     </div>
   </div>
 </div>
@@ -2202,7 +2196,6 @@ a { color: inherit; text-decoration: none; }
           <li><a href="mailto:hello@theelderit.com">hello@theelderit.com</a></li>
           <li><a href="mailto:support@theelderit.com">support@theelderit.com</a></li>
           <li><a href="mailto:connect@theelderit.com">connect@theelderit.com</a></li>
-          <li><a href="tel:6472905414">647-290-5414</a></li>
           <li><a href="https://theelderit.com">theelderit.com</a></li>
         </ul>
       </div>
@@ -2212,7 +2205,7 @@ a { color: inherit; text-decoration: none; }
     <div class="footer__divider"></div>
 
     <div class="footer__bottom">
-      <span>&copy; 2026 The Elder IT — Sajid Mirza. All rights reserved.</span>
+      <span>&copy; 2026 The Elder IT. All rights reserved.</span>
       <span>Brantford, Ontario, Canada</span>
     </div>
   </div>
