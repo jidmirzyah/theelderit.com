@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Plans & Pricing — Monthly Digital Safety Memberships | The Elder IT" />
+  <meta name="theme-color" content="#0D1F3C" />
+  <title>Plans & Pricing — Monthly Digital Safety Memberships — The Elder IT</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D1F3C' rx='6'/><text x='16' y='22' text-anchor='middle' font-size='16' fill='%23C9973A' font-family='serif' font-weight='bold'>E</text></svg>" />
+  <style>
+/* ============================================
+   THE ELDER IT — Main Stylesheet
+   Colors: Navy #0D1F3C | Gold #C9973A | White
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --navy: #0D1F3C;
+  --navy-light: #152e58;
+  --gold: #C9973A;
+  --gold-light: #e0b05a;
+  --white: #ffffff;
+  --off-white: #F7F5F0;
+  --text-dark: #1a1a2e;
+  --text-mid: #4a4a6a;
+  --text-light: #8888aa;
+  --border: #e2ddd4;
+  --shadow: rgba(13, 31, 60, 0.12);
+  --radius: 8px;
+  --radius-lg: 16px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: var(--text-dark);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 900; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 700; }
+
+p { line-height: 1.75; color: var(--text-mid); }
+
+a { color: inherit; text-decoration: none; }
+
+/* ── LAYOUT ── */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section--alt {
+  background: var(--off-white);
+}
+
+.section--dark {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.section__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.section__heading {
+  margin-bottom: 16px;
+}
+
+.section__subheading {
+  font-size: 1.15rem;
+  color: var(--text-mid);
+  max-width: 600px;
+  margin-bottom: 56px;
+}
+
+.section--dark .section__subheading {
+  color: rgba(255,255,255,0.7);
+}
+
+.section--dark h2 {
+  color: var(--white);
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--navy);
+  border-bottom: 1px solid rgba(201, 151, 58, 0.2);
+  transition: box-shadow 0.3s;
+}
+
+.nav.scrolled {
+  box-shadow: 0 4px 24px rgba(13,31,60,0.35);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  padding: 0 24px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.nav__logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.nav__logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.nav__logo-name span {
+  color: var(--gold);
+}
+
+.nav__logo-tagline {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-top: 3px;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav__links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  transition: color 0.2s;
+}
+
+.nav__links a:hover {
+  color: var(--gold);
+}
+
+.nav__cta {
+  background: var(--gold);
+  color: var(--navy) !important;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  font-weight: 600 !important;
+  transition: background 0.2s !important;
+}
+
+.nav__cta:hover {
+  background: var(--gold-light) !important;
+  color: var(--navy) !important;
+}
+
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.nav__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 68px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201,151,58,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(201,151,58,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 80px 24px;
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero__scroll-line {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin-bottom: 24px;
+}
+
+.hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.hero__heading {
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.hero__heading em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.hero__body {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.hero__stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,151,58,0.2);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__stat::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+
+.hero__stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.hero__stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+}
+
+.hero__stat-source {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.btn--primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(201,151,58,0.3);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.btn--outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.btn--navy {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.btn--navy:hover {
+  background: var(--navy-light);
+  transform: translateY(-1px);
+}
+
+/* ── AUDIENCE CARDS ── */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.audience-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.audience-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+  transform-origin: left;
+}
+
+.audience-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px var(--shadow);
+  transform: translateY(-4px);
+}
+
+.audience-card:hover::after {
+  transform: scaleX(1);
+}
+
+.audience-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.audience-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.audience-card__body {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+.audience-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  background: var(--off-white);
+  border-radius: 100px;
+  color: var(--text-mid);
+}
+
+/* ── THREAT SECTION ── */
+.threat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.threat-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  transition: border-color 0.2s;
+}
+
+.threat-card:hover {
+  border-color: rgba(201,151,58,0.4);
+}
+
+.threat-card__icon {
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.threat-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.threat-card__body {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+
+.threat-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.threat-tab {
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.threat-tab.active,
+.threat-tab:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+}
+
+.threat-panel { display: none; }
+.threat-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+/* ── WARNING SIGNS ── */
+.warning-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.warning-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.warning-item:last-child { border-bottom: none; }
+
+.warning-item:hover {
+  background: rgba(201,151,58,0.06);
+}
+
+.warning-item__number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--gold);
+  opacity: 0.6;
+  line-height: 1;
+}
+
+.warning-item__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.warning-item__body {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+/* ── SERVICES ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: all 0.25s;
+}
+
+.service-card:hover {
+  box-shadow: 0 12px 40px var(--shadow);
+  border-color: rgba(201,151,58,0.4);
+}
+
+.service-card__icon {
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.service-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.service-card__body {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+/* ── PLANS ── */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.plan-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  position: relative;
+  transition: all 0.25s;
+}
+
+.plan-card:hover {
+  box-shadow: 0 16px 48px var(--shadow);
+  transform: translateY(-4px);
+}
+
+.plan-card--featured {
+  border: 2px solid var(--gold);
+  background: var(--navy);
+  color: var(--white);
+}
+
+.plan-card--featured .plan-card__price,
+.plan-card--featured .plan-card__name {
+  color: var(--white);
+}
+
+.plan-card--featured .plan-card__feature {
+  color: rgba(255,255,255,0.75);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.plan-card--featured .plan-card__feature::before {
+  color: var(--gold);
+}
+
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.plan-card__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.plan-card__price {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.plan-card__price span {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-light);
+}
+
+.plan-card__hst {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+.plan-card--featured .plan-card__hst {
+  color: rgba(255,255,255,0.4);
+}
+
+.plan-card__divider {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+}
+
+.plan-card--featured .plan-card__divider {
+  background: rgba(255,255,255,0.1);
+}
+
+.plan-card__features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.plan-card__feature {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  padding-left: 20px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+  line-height: 1.4;
+}
+
+.plan-card__feature:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.plan-card__feature::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.plan-card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── FAQ ── */
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 24px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: color 0.2s;
+}
+
+.faq-question:hover {
+  color: var(--gold);
+}
+
+.faq-question svg {
+  flex-shrink: 0;
+  transition: transform 0.25s;
+  color: var(--gold);
+}
+
+.faq-item.open .faq-question svg {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.2s;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 400px;
+  padding-bottom: 24px;
+}
+
+.faq-answer p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+/* ── CONTACT / BOOKING ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.contact-info__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.contact-info__icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(201,151,58,0.1);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+.contact-info__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.contact-info__value {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+}
+
+.contact-info__value a {
+  color: var(--navy);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.contact-info__value a:hover {
+  color: var(--gold);
+}
+
+.booking-form {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,151,58,0.12);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-light);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-note {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-top: 12px;
+  text-align: center;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 32px;
+}
+
+.form-success__icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.form-success__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.form-success__body {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+}
+
+/* ── MISSION BANNER ── */
+.mission-banner {
+  background: var(--navy);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-banner::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(201,151,58,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.mission-banner__quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  max-width: 800px;
+  margin: 0 auto 24px;
+  line-height: 1.3;
+}
+
+.mission-banner__quote em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.mission-banner__attr {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: #080f1e;
+  color: rgba(255,255,255,0.6);
+  padding: 64px 0 32px;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer__logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.footer__logo-name span {
+  color: var(--gold);
+}
+
+.footer__tagline {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.footer__differentiator {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.footer__heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__links a {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.2s;
+}
+
+.footer__links a:hover {
+  color: var(--gold);
+}
+
+.footer__divider {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+  margin-bottom: 28px;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ── PROTECTION PLAN ── */
+.protection-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.protection-step {
+  text-align: center;
+  padding: 40px 28px;
+  background: var(--off-white);
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+
+.protection-step__number {
+  width: 52px;
+  height: 52px;
+  background: var(--navy);
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.protection-step__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.protection-step__items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.protection-step__item {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.protection-step__item::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.75rem;
+}
+
+/* ── ABOUT SECTION ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-principle {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  margin-top: 32px;
+}
+
+.about-principle__text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.about-principle__attr {
+  font-size: 0.75rem;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-values {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-value {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.about-value__icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(201,151,58,0.1);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.about-value__title {
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.about-value__body {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+/* ── REGION PILLS ── */
+.region-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.region-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(201,151,58,0.1);
+  border: 1px solid rgba(201,151,58,0.25);
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 100px;
+}
+
+.region-pill::before {
+  content: '📍';
+  font-size: 0.75rem;
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 1024px) {
+  .plans-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 60px 24px;
+  }
+
+  .hero__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .audience-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .threat-grid,
+  .threat-panel.active {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .protection-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .section { padding: 64px 0; }
+
+  .nav__links { display: none; }
+  .nav__hamburger { display: flex; }
+
+  .nav__links.mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--navy);
+    padding: 24px;
+    gap: 20px;
+    border-top: 1px solid rgba(201,151,58,0.2);
+    z-index: 99;
+  }
+
+  .hero__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .audience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .threat-grid,
+  .threat-panel.active {
+    grid-template-columns: 1fr;
+  }
+
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .booking-form {
+    padding: 24px;
+  }
+
+  .warning-item {
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { transition: none; opacity: 1; transform: none; }
+  * { transition-duration: 0.01ms !important; }
+}
+
+
+/* ── HOMEPAGE SECTION CARDS ── */
+.home-sections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+
+.home-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+  transform-origin: left;
+}
+
+.home-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px var(--shadow);
+  transform: translateY(-4px);
+}
+
+.home-card:hover::after {
+  transform: scaleX(1);
+}
+
+.home-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.home-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.home-card__body {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.home-card__arrow {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: var(--navy);
+  padding: 120px 0 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201,151,58,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-header__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.page-header__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.page-header__body {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  max-width: 560px;
+}
+
+/* ── ACTIVE NAV ── */
+.nav__links a.active {
+  color: var(--gold);
+}
+
+@media (max-width: 900px) {
+  .home-sections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-sections {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="The Elder IT — Home">
+      <span class="nav__logo-name">The Elder <span>IT</span></span>
+      <span class="nav__logo-tagline">Digital Safety for Every Generation</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="awareness.html">Awareness</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="plans.html" class="active">Plans</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html" class="nav__cta">Book a Consultation</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <span class="page-header__eyebrow">Plans & Pricing</span>
+    <h1 class="page-header__title">Ongoing protection,<br />not one-time fixes.</h1>
+    <p class="page-header__body">Monthly memberships that keep you covered with regular check-ins, hands-on sessions, and priority support when you need it most.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <div style="margin-bottom:48px; background:var(--navy); border-radius:var(--radius-lg); padding:32px 40px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;" class="fade-up">
+      <div>
+        <p style="font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Not ready for a plan yet?</p>
+        <p style="font-size:1.1rem; font-weight:600; color:white; margin-bottom:6px;">Start with a free community session.</p>
+        <p style="font-size:0.875rem; color:rgba(255,255,255,0.6); max-width:480px;">We run free digital safety workshops at community centres, seniors residences, and faith organizations across Brantford and the surrounding area. No commitment. Just come and learn.</p>
+      </div>
+      <a href="contact.html" class="btn btn--primary" style="white-space:nowrap; flex-shrink:0;">Find a Session Near You</a>
+    </div>
+
+    <span class="section__eyebrow">Monthly Plans</span>
+    <h2 class="section__heading">Choose your level of coverage.</h2>
+    <p class="section__subheading">All plans include onboarding and monthly check-ins. All prices + Ontario HST (13%).</p>
+
+    <div class="plans-grid">
+      <div class="plan-card fade-up">
+        <div class="plan-card__name">Individual</div>
+        <div class="plan-card__price">$49<span>/mo</span></div>
+        <div class="plan-card__hst">+ HST · 1 named member</div>
+        <div class="plan-card__divider"></div>
+        <ul class="plan-card__features">
+          <li class="plan-card__feature">Onboarding security audit (60 min, one-time)</li>
+          <li class="plan-card__feature">Monthly check-in call (30 min)</li>
+          <li class="plan-card__feature">One hands-on session per month (60 min)</li>
+          <li class="plan-card__feature">Unlimited scam & safety questions by text or email</li>
+        </ul>
+        <a href="contact.html" class="btn btn--navy">Get Started</a>
+      </div>
+      <div class="plan-card fade-up">
+        <div class="plan-card__name">Family</div>
+        <div class="plan-card__price">$85<span>/mo</span></div>
+        <div class="plan-card__hst">+ HST · Up to 5 members</div>
+        <div class="plan-card__divider"></div>
+        <ul class="plan-card__features">
+          <li class="plan-card__feature">Onboarding audit for all members (one-time)</li>
+          <li class="plan-card__feature">Monthly check-in call (45 min)</li>
+          <li class="plan-card__feature">Two hands-on sessions per month (60 min each)</li>
+          <li class="plan-card__feature">Parental controls & youth safety setup</li>
+          <li class="plan-card__feature">All members covered for questions & urgent support</li>
+        </ul>
+        <a href="contact.html" class="btn btn--navy">Get Started</a>
+      </div>
+      <div class="plan-card plan-card--featured fade-up">
+        <div class="plan-card__name">Elder</div>
+        <div class="plan-card__price">$149<span>/mo</span></div>
+        <div class="plan-card__hst">+ HST · Up to 10 members</div>
+        <div class="plan-card__divider"></div>
+        <ul class="plan-card__features">
+          <li class="plan-card__feature">Full onboarding audit for all named members</li>
+          <li class="plan-card__feature">Three hands-on sessions per month</li>
+          <li class="plan-card__feature">Members covered anywhere in Canada</li>
+          <li class="plan-card__feature">Priority urgent response — scam in progress, account locked</li>
+        </ul>
+        <a href="contact.html" class="btn btn--primary">Get Started</a>
+      </div>
+      <div class="plan-card fade-up">
+        <div class="plan-card__name">Solo Professional</div>
+        <div class="plan-card__price">$179<span>/mo</span></div>
+        <div class="plan-card__hst">+ HST · 3-month minimum</div>
+        <div class="plan-card__divider"></div>
+        <ul class="plan-card__features">
+          <li class="plan-card__feature">For realtors, lawyers, sole proprietors</li>
+          <li class="plan-card__feature">Onboarding audit of all business devices & accounts</li>
+          <li class="plan-card__feature">Quarterly security review</li>
+          <li class="plan-card__feature">Staff awareness session per quarter (60 min)</li>
+          <li class="plan-card__feature">Priority contact for urgent business security issues</li>
+        </ul>
+        <a href="contact.html" class="btn btn--navy">Get Started</a>
+      </div>
+    </div>
+
+    <div style="margin-top:48px; text-align:center; background:var(--off-white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px; max-width:700px; margin-left:auto; margin-right:auto;" class="fade-up">
+      <p style="font-weight:600; color:var(--navy); margin-bottom:12px; font-size:1rem;">Need something once, not ongoing?</p>
+      <p style="font-size:0.875rem; margin-bottom:16px; color:var(--text-mid);">One-time services are available without a plan: device setup ($89), account recovery ($75/session), data transfer ($65), smart home setup ($125), and in-home family safety workshop ($120). All + HST.</p>
+      <a href="contact.html" class="btn btn--primary">Ask About One-Time Services</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="mission-banner">
+  <div class="container">
+    <p class="mission-banner__quote">Every plan starts with a <em>free consultation.</em><br />No pressure. No obligation.</p>
+    <div style="margin-top:32px;"><a href="contact.html" class="btn btn--primary">Book Your Free Session</a></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo-name">The Elder <span>IT</span></div>
+        <p class="footer__tagline">Digital Safety & Awareness for Every Generation.<br />Brantford, Ontario — Serving the GTA, Waterloo, and Niagara.</p>
+        <p class="footer__differentiator">"We don't do it for you. We do it with you."</p>
+      </div>
+      <div>
+        <div class="footer__heading">Navigate</div>
+        <ul class="footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="awareness.html">Awareness</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="plans.html">Plans & Pricing</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Book a Consultation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__heading">Contact</div>
+        <ul class="footer__links">
+          <li><a href="mailto:hello@theelderit.com">hello@theelderit.com</a></li>
+          <li><a href="https://theelderit.com">theelderit.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__divider"></div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 The Elder IT. All rights reserved.</span>
+      <span>Brantford, Ontario, Canada</span>
+    </div>
+  </div>
+</footer>
+<script>
+/* ============================================
+   THE ELDER IT — Main JavaScript
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ── NAV SCROLL ──
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── MOBILE HAMBURGER ──
+  const hamburger = document.querySelector('.nav__hamburger');
+  const navLinks = document.querySelector('.nav__links');
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('mobile-open');
+      const spans = hamburger.querySelectorAll('span');
+      spans.forEach(s => s.classList.toggle('open'));
+    });
+
+    // Close on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-open');
+      });
+    });
+  }
+
+  // ── THREAT TABS ──
+  const tabs = document.querySelectorAll('.threat-tab');
+  const panels = document.querySelectorAll('.threat-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const target = tab.dataset.panel;
+      const panel = document.getElementById(target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  // ── FAQ ACCORDION ──
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      // Close all
+      faqItems.forEach(i => i.classList.remove('open'));
+      // Open clicked if it was closed
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── SCROLL ANIMATIONS ──
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ── SMOOTH SCROLL for anchor links ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── BOOKING FORM ──
+  const bookingForm = document.getElementById('booking-form');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = bookingForm.querySelector('.btn--submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      const formData = new FormData(bookingForm);
+
+      try {
+        const response = await fetch(bookingForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          bookingForm.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+          alert('Something went wrong. Please email us at hello@theelderit.com');
+        }
+      } catch (err) {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+        alert('Something went wrong. Please email us at hello@theelderit.com');
+      }
+    });
+  }
+
+  // ── CONTACT FORM ──
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('.btn--submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          contactForm.style.display = 'none';
+          document.getElementById('contact-success').style.display = 'block';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      } catch (err) {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    });
+  }
+
+});
+
+</script>
+</body>
+</html>
