@@ -3,864 +3,1836 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — MIRZYAH</title>
-  <meta name="description" content="This is not a story. It is a record." />
-  <meta name="theme-color" content="#080808" />
-  <meta property="og:title" content="MIRZYAH — About" />
-  <meta property="og:description" content="This is not a story. It is a record." />
-  <meta property="og:url" content="https://mirzyah.com/about.html" />
-  <meta property="og:type" content="website" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23080808'/%3E%3Ccircle cx='100' cy='100' r='82' fill='%23A8874A'/%3E%3Ccircle cx='114' cy='100' r='82' fill='%23080808'/%3E%3Ctext x='116' y='128' text-anchor='middle' font-family='Georgia,serif' font-size='78' fill='%23A8874A'%3EM%3C/text%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300&display=swap" rel="stylesheet" />
-
+  <meta name="description" content="About — Who We Are and What We Stand For | The Elder IT" />
+  <meta name="theme-color" content="#0D1F3C" />
+  <title>About — Who We Are and What We Stand For — The Elder IT</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D1F3C' rx='6'/><text x='16' y='22' text-anchor='middle' font-size='16' fill='%23C9973A' font-family='serif' font-weight='bold'>E</text></svg>" />
   <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --black: #080808;
-      --gold: #A8874A;
-      --white: #FFFFFF;
-    }
-
-    html, body {
-      min-height: 100%;
-      background-color: var(--black);
-      color: var(--white);
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-    }
-
-    body {
-      animation: fadeIn 1.2s ease forwards;
-      opacity: 0;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    /* Even the act of selecting text belongs to the House. */
-    ::selection {
-      background-color: rgba(168, 135, 74, 0.85);
-      color: #080808;
-    }
-
-    /* Keyboard Guests are Guests. The focus ring is the House gold. */
-    a:focus-visible {
-      outline: 1px solid rgba(168, 135, 74, 0.65);
-      outline-offset: 4px;
-    }
-
-    /* ── NAVIGATION ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px 48px;
-      /* Same plane as the entrance — scrim above, gold hairline below,
-         warming when attention arrives. One House, one nav. */
-      background: linear-gradient(to bottom, rgba(8, 8, 8, 0.92), rgba(8, 8, 8, 0));
-    }
-
-    nav::after {
-      content: '';
-      position: absolute;
-      left: 48px;
-      right: 48px;
-      bottom: 0;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(168, 135, 74, 0.32), transparent);
-      opacity: 0.4;
-      transition: opacity 0.6s ease;
-    }
-
-    nav:hover::after {
-      opacity: 0.9;
-    }
-
-    @keyframes navIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes navInStar {
-      from { opacity: 0; }
-      to   { opacity: 0.85; }
-    }
-
-    /* Left cluster — star (links home) + the Guest's future entrance. */
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-    }
-
-    .nav-star {
-      font-size: 14px;
-      color: #A8874A;
-      user-select: none;
-      line-height: 1;
-      text-decoration: none;
-      display: inline-block;
-      opacity: 0;
-      animation: navInStar 0.8s ease forwards 0.15s,
-                 starGlint 11s ease-in-out infinite 6s;
-      transition: filter 0.3s ease;
-    }
-
-    /* The star is the way back. On approach, it answers with light —
-       filter, not transform, so the glint keeps its own rhythm. */
-    .nav-star:hover {
-      filter: drop-shadow(0 0 6px rgba(168, 135, 74, 0.7));
-    }
-
-    .nav-heritage {
-      opacity: 0;
-      animation: navIn 0.8s ease forwards 0.3s;
-    }
-
-    .nav-links li {
-      opacity: 0;
-      animation: navIn 0.8s ease forwards;
-    }
-
-    .nav-links li:nth-child(1) { animation-delay: 0.45s; }
-    .nav-links li:nth-child(2) { animation-delay: 0.55s; }
-    .nav-links li:nth-child(3) { animation-delay: 0.65s; }
-    .nav-links li:nth-child(4) { animation-delay: 0.75s; }
-
-    /* Type the word and the House acknowledges you know it.
-       Four seconds. Then the room is locked again. */
-    .nav-isnad {
-      transition: color 0.6s ease, text-shadow 0.6s ease;
-    }
-
-    .nav-isnad .nav-label-heard { display: none; }
-
-    .nav-isnad.heard {
-      color: rgba(168, 135, 74, 0.92);
-      text-shadow: 0 0 10px rgba(168, 135, 74, 0.35);
-    }
-
-    .nav-isnad.heard .nav-label-default,
-    .nav-isnad.heard .nav-label-hover { display: none !important; }
-    .nav-isnad.heard .nav-label-heard { display: inline; }
-
-    /* Same star, same sky. Offset from the home page so the two never
-       glint in sync — the House is one place, not one loop. */
-    @keyframes starGlint {
-      0%, 92%, 100% {
-        opacity: 0.85;
-        text-shadow: none;
-        transform: scale(1);
-      }
-      95% {
-        opacity: 1;
-        text-shadow: 0 0 8px rgba(168, 135, 74, 0.85), 0 0 18px rgba(168, 135, 74, 0.35);
-        transform: scale(1.12);
-      }
-      98% {
-        opacity: 0.85;
-        text-shadow: none;
-        transform: scale(1);
-      }
-    }
-
-    /* Begin Heritage — gold-outlined, hover says "Not Yet". */
-    .nav-heritage {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      color: rgba(255, 255, 255, 0.55);
-      text-transform: uppercase;
-      cursor: default;
-      user-select: none;
-      position: relative;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 180px;
-      padding: 8px 16px;
-      text-indent: 0.22em;
-      border: 1px solid rgba(168, 135, 74, 0.45);
-      transition: border-color 0.25s ease, color 0.25s ease;
-    }
-
-    .nav-heritage:hover {
-      color: rgba(255, 255, 255, 0.80);
-      border-color: rgba(168, 135, 74, 0.78);
-    }
-
-    .nav-heritage .nav-label-default { display: inline; }
-    .nav-heritage .nav-label-hover { display: none; }
-    .nav-heritage:hover .nav-label-default { display: none; }
-    .nav-heritage:hover .nav-label-hover { display: inline; }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-
-    .nav-links li {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      color: rgba(255, 255, 255, 0.38);
-      text-transform: uppercase;
-      cursor: default;
-      user-select: none;
-      position: relative;
-    }
-
-    .nav-links li.active {
-      color: rgba(255, 255, 255, 0.75);
-    }
-
-    .nav-links li a {
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .nav-links li:not(.active):hover {
-      color: rgba(255, 255, 255, 0.68);
-    }
-
-    .nav-links li .nav-label-default { display: inline; }
-    .nav-links li .nav-label-hover { display: none; }
-    .nav-links li:not(.active):hover .nav-label-default { display: none; }
-    .nav-links li:not(.active):hover .nav-label-hover { display: inline; }
-
-    /* ── MAIN CONTENT ── */
-    main {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 48px 100px;
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    /* Opening line */
-    .about-eyebrow {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 10px;
-      letter-spacing: 0.4em;
-      color: rgba(255, 255, 255, 0.28);
-      text-transform: uppercase;
-      text-indent: 0.4em;
-      margin-bottom: 64px;
-    }
-
-    /* Primary statement */
-    .about-primary {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-style: italic;
-      font-size: 32px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.92);
-      margin-bottom: 64px;
-      letter-spacing: 0.02em;
-    }
-
-    /* Gold rule divider */
-    .about-rule {
-      width: 1px;
-      height: 48px;
-      background-color: rgba(168, 135, 74, 0.4);
-      margin: 0 auto 64px;
-    }
-
-    /* Body paragraphs */
-    .about-body {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 18px;
-      line-height: 2;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 48px;
-      letter-spacing: 0.01em;
-    }
-
-    .about-body + .about-body {
-      margin-top: 0;
-    }
-
-    /* Pause — empty space between thoughts */
-    .about-pause {
-      height: 48px;
-    }
-
-    /* Closing statement */
-    .about-closing {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-style: italic;
-      font-size: 20px;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, 0.75);
-      margin-top: 16px;
-      letter-spacing: 0.02em;
-    }
-
-    /* Sign-off */
-    .about-signoff {
-      margin-top: 72px;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 11px;
-      letter-spacing: 0.45em;
-      color: rgba(168, 135, 74, 0.7);
-      text-transform: uppercase;
-      text-indent: 0.45em;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      text-align: center;
-      padding: 0 0 28px 0;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 9px;
-      letter-spacing: 0.28em;
-      color: rgba(255, 255, 255, 0.22);
-      text-transform: uppercase;
-      text-indent: 0.28em;
-      user-select: none;
-      background: linear-gradient(to top, rgba(8,8,8,1) 60%, rgba(8,8,8,0));
-      padding-top: 32px;
-    }
-
-    /* Footer star keeps its own time — third clock in the House. */
-    .footer-star {
-      display: inline-block;
-      animation: starGlint 11s ease-in-out infinite;
-      animation-delay: 3s;
-    }
-
-    /* ── THE RECORD READS ITSELF OUT ──
-       The page does not arrive as a block. Each line surfaces in order —
-       eyebrow, statement, rule, paragraphs, closing, name. Sequence is the
-       point. Nothing meaningful appears before its moment. */
-    .reveal {
-      opacity: 0;
-      transform: translateY(12px);
-      animation: surface 1.4s ease forwards;
-    }
-
-    @keyframes surface {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    main > .reveal:nth-child(1)  { animation-delay: 0.3s; }
-    main > .reveal:nth-child(2)  { animation-delay: 0.8s; }
-    main > .reveal:nth-child(3)  { animation-delay: 1.5s; }
-    main > .reveal:nth-child(4)  { animation-delay: 1.9s; }
-    main > .reveal:nth-child(6)  { animation-delay: 2.4s; }
-    main > .reveal:nth-child(8)  { animation-delay: 2.9s; }
-    main > .reveal:nth-child(10) { animation-delay: 3.4s; }
-    main > .reveal:nth-child(11) { animation-delay: 4.0s; }
-    main > .reveal:nth-child(12) { animation-delay: 4.6s; }
-    main > .reveal:nth-child(13) { animation-delay: 5.4s; }
-
-    /* The gold rules do not fade in — they are drawn, top to bottom,
-       the way a line is ruled onto a page. This is a record, after all. */
-    .about-rule.reveal {
-      animation-name: drawRule;
-      transform: scaleY(0);
-      transform-origin: top;
-    }
-
-    @keyframes drawRule {
-      from { opacity: 0; transform: scaleY(0); }
-      to   { opacity: 1; transform: scaleY(1); }
-    }
-
-    /* The name arrives last, letters settling closer as it lands —
-       the same gesture as the wordmark at the entrance. One House. */
-    .about-signoff.reveal {
-      animation-name: settleSignoff;
-      animation-duration: 1.8s;
-    }
-
-    @keyframes settleSignoff {
-      from { opacity: 0; transform: translateY(12px); letter-spacing: 0.65em; }
-      to   { opacity: 1; transform: translateY(0); letter-spacing: 0.45em; }
-    }
-
-    /* Once a line has surfaced, it settles — pinned in place, and from
-       then on it can respond to attention instead of ceremony. */
-    .reveal.settled {
-      animation: none;
-      opacity: 1;
-      transform: none;
-    }
-
-    /* Attention brings a line forward. The paragraph under the Guest's
-       eye lifts from 55% to 72% — the rest of the record stays quiet. */
-    .about-body {
-      transition: color 0.6s ease;
-    }
-
-    .about-body:hover {
-      color: rgba(255, 255, 255, 0.72);
-    }
-
-    /* One word in the opening statement knows what it is. Rest on the
-       statement and "record" warms to gold. Nothing is labelled. */
-    .word-record,
-    .word-found {
-      transition: color 1.2s ease;
-    }
-
-    .about-primary:hover .word-record {
-      color: var(--gold);
-    }
-
-    .about-closing:hover .word-found {
-      color: rgba(168, 135, 74, 0.9);
-    }
-
-    /* The settled rules breathe — a very slow brightening and dimming,
-       fourteen seconds to the cycle. Drawn lines, still alive. */
-    .about-rule.settled {
-      animation: ruleBreath 14s ease-in-out infinite;
-    }
-
-    @keyframes ruleBreath {
-      0%, 100% { background-color: rgba(168, 135, 74, 0.4); }
-      50%      { background-color: rgba(168, 135, 74, 0.62); }
-    }
-
-    /* The name responds to the hand — spacing eases open, gold rises. */
-    .about-signoff.settled {
-      transition: letter-spacing 0.8s ease, color 0.8s ease;
-    }
-
-    .about-signoff.settled:hover {
-      letter-spacing: 0.52em;
-      color: rgba(168, 135, 74, 0.95);
-    }
-
-    /* Stillness. Left alone long enough, the closing lines breathe
-       like a candle in still air. Movement in the room stills them. */
-    body.idle .about-closing.settled {
-      animation: candle 9s ease-in-out infinite;
-    }
-
-    @keyframes candle {
-      0%, 100% { opacity: 1; }
-      50%      { opacity: 0.8; }
-    }
-
-    /* ── THE READING RULE ──
-       A single gold hairline at the very top of the page that fills as
-       the Guest moves through the record. The record keeps your place.
-       It only exists when there is somewhere to scroll to. */
-    .reading-rule {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 1px;
-      width: 0;
-      background-color: rgba(168, 135, 74, 0.55);
-      z-index: 120;
-      display: none;
-    }
-
-    /* Rooms do not jump-cut. Doors dim the light before they open. */
-    body.leaving {
-      animation: fadeOut 0.35s ease forwards;
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; }
-    }
-
-    /* ── THE LANTERN ──
-       Same light as the entrance. The Guest carries it from room to room. */
-    .lantern {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 50;
-      opacity: 0;
-      transition: opacity 1.2s ease;
-      background: radial-gradient(
-        circle 340px at var(--lx, 50%) var(--ly, 50%),
-        rgba(168, 135, 74, 0.055),
-        rgba(168, 135, 74, 0.018) 45%,
-        transparent 70%
-      );
-      mix-blend-mode: screen;
-    }
-
-    .lantern.lit {
-      opacity: 1;
-    }
-
-    @media (pointer: coarse) {
-      .lantern { display: none; }
-    }
-
-    /* ── MOBILE ── */
-    @media (max-width: 640px) {
-      nav {
-        padding: 22px 24px;
-      }
-
-      nav::after {
-        left: 24px;
-        right: 24px;
-      }
-
-      .nav-left {
-        gap: 16px;
-      }
-
-      .nav-heritage {
-        font-size: 8px;
-        letter-spacing: 0.12em;
-        min-width: 120px;
-        padding: 6px 12px;
-        text-indent: 0.12em;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 16px;
-      }
-
-      .nav-links li {
-        font-size: 9px;
-        letter-spacing: 0.18em;
-      }
-
-      main {
-        padding: 100px 32px 100px;
-      }
-
-      .about-primary {
-        font-size: 24px;
-      }
-
-      .about-body {
-        font-size: 16px;
-      }
-
-      .about-closing {
-        font-size: 17px;
-      }
-    }
-
-    /* Reduced motion — everything present, everything still */
-    @media (prefers-reduced-motion: reduce) {
-      body {
-        animation: none;
-        opacity: 1;
-      }
-      .reveal,
-      .about-rule.reveal,
-      .about-signoff.reveal {
-        animation: none;
-        opacity: 1;
-        transform: none;
-      }
-      .nav-star,
-      .footer-star {
-        animation: none;
-        opacity: 1;
-      }
-      .nav-heritage,
-      .nav-links li {
-        animation: none;
-        opacity: 1;
-      }
-      .about-rule.settled {
-        animation: none;
-      }
-      body.idle .about-closing.settled {
-        animation: none;
-      }
-      .about-signoff.settled,
-      .about-body,
-      .word-record,
-      .word-found {
-        transition: none;
-      }
-      nav::after {
-        transition: none;
-      }
-      .lantern {
-        display: none;
-      }
-    }
-  </style>
+/* ============================================
+   THE ELDER IT — Main Stylesheet
+   Colors: Navy #0D1F3C | Gold #C9973A | White
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --navy: #0D1F3C;
+  --navy-light: #152e58;
+  --gold: #C9973A;
+  --gold-light: #e0b05a;
+  --white: #ffffff;
+  --off-white: #F7F5F0;
+  --text-dark: #1a1a2e;
+  --text-mid: #4a4a6a;
+  --text-light: #8888aa;
+  --border: #e2ddd4;
+  --shadow: rgba(13, 31, 60, 0.12);
+  --radius: 8px;
+  --radius-lg: 16px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: var(--text-dark);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 900; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 700; }
+
+p { line-height: 1.75; color: var(--text-mid); }
+
+a { color: inherit; text-decoration: none; }
+
+/* ── LAYOUT ── */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section--alt {
+  background: var(--off-white);
+}
+
+.section--dark {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.section__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.section__heading {
+  margin-bottom: 16px;
+}
+
+.section__subheading {
+  font-size: 1.15rem;
+  color: var(--text-mid);
+  max-width: 600px;
+  margin-bottom: 56px;
+}
+
+.section--dark .section__subheading {
+  color: rgba(255,255,255,0.7);
+}
+
+.section--dark h2 {
+  color: var(--white);
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--navy);
+  border-bottom: 1px solid rgba(201, 151, 58, 0.2);
+  transition: box-shadow 0.3s;
+}
+
+.nav.scrolled {
+  box-shadow: 0 4px 24px rgba(13,31,60,0.35);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  padding: 0 24px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.nav__logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.nav__logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.nav__logo-name span {
+  color: var(--gold);
+}
+
+.nav__logo-tagline {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-top: 3px;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav__links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  transition: color 0.2s;
+}
+
+.nav__links a:hover {
+  color: var(--gold);
+}
+
+.nav__cta {
+  background: var(--gold);
+  color: var(--navy) !important;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  font-weight: 600 !important;
+  transition: background 0.2s !important;
+}
+
+.nav__cta:hover {
+  background: var(--gold-light) !important;
+  color: var(--navy) !important;
+}
+
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.nav__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 68px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201,151,58,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(201,151,58,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 80px 24px;
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero__scroll-line {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin-bottom: 24px;
+}
+
+.hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.hero__heading {
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.hero__heading em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.hero__body {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.hero__stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,151,58,0.2);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__stat::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+
+.hero__stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.hero__stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+}
+
+.hero__stat-source {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.btn--primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(201,151,58,0.3);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.btn--outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.btn--navy {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.btn--navy:hover {
+  background: var(--navy-light);
+  transform: translateY(-1px);
+}
+
+/* ── AUDIENCE CARDS ── */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.audience-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.audience-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+  transform-origin: left;
+}
+
+.audience-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px var(--shadow);
+  transform: translateY(-4px);
+}
+
+.audience-card:hover::after {
+  transform: scaleX(1);
+}
+
+.audience-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.audience-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.audience-card__body {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+.audience-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  background: var(--off-white);
+  border-radius: 100px;
+  color: var(--text-mid);
+}
+
+/* ── THREAT SECTION ── */
+.threat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.threat-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  transition: border-color 0.2s;
+}
+
+.threat-card:hover {
+  border-color: rgba(201,151,58,0.4);
+}
+
+.threat-card__icon {
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.threat-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.threat-card__body {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+
+.threat-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.threat-tab {
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.threat-tab.active,
+.threat-tab:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+}
+
+.threat-panel { display: none; }
+.threat-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+/* ── WARNING SIGNS ── */
+.warning-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.warning-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.warning-item:last-child { border-bottom: none; }
+
+.warning-item:hover {
+  background: rgba(201,151,58,0.06);
+}
+
+.warning-item__number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--gold);
+  opacity: 0.6;
+  line-height: 1;
+}
+
+.warning-item__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.warning-item__body {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+/* ── SERVICES ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: all 0.25s;
+}
+
+.service-card:hover {
+  box-shadow: 0 12px 40px var(--shadow);
+  border-color: rgba(201,151,58,0.4);
+}
+
+.service-card__icon {
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.service-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.service-card__body {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+/* ── PLANS ── */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.plan-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  position: relative;
+  transition: all 0.25s;
+}
+
+.plan-card:hover {
+  box-shadow: 0 16px 48px var(--shadow);
+  transform: translateY(-4px);
+}
+
+.plan-card--featured {
+  border: 2px solid var(--gold);
+  background: var(--navy);
+  color: var(--white);
+}
+
+.plan-card--featured .plan-card__price,
+.plan-card--featured .plan-card__name {
+  color: var(--white);
+}
+
+.plan-card--featured .plan-card__feature {
+  color: rgba(255,255,255,0.75);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.plan-card--featured .plan-card__feature::before {
+  color: var(--gold);
+}
+
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.plan-card__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.plan-card__price {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.plan-card__price span {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-light);
+}
+
+.plan-card__hst {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+.plan-card--featured .plan-card__hst {
+  color: rgba(255,255,255,0.4);
+}
+
+.plan-card__divider {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+}
+
+.plan-card--featured .plan-card__divider {
+  background: rgba(255,255,255,0.1);
+}
+
+.plan-card__features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.plan-card__feature {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  padding-left: 20px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+  line-height: 1.4;
+}
+
+.plan-card__feature:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.plan-card__feature::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.plan-card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── FAQ ── */
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 24px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: color 0.2s;
+}
+
+.faq-question:hover {
+  color: var(--gold);
+}
+
+.faq-question svg {
+  flex-shrink: 0;
+  transition: transform 0.25s;
+  color: var(--gold);
+}
+
+.faq-item.open .faq-question svg {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.2s;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 400px;
+  padding-bottom: 24px;
+}
+
+.faq-answer p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+/* ── CONTACT / BOOKING ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.contact-info__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.contact-info__icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(201,151,58,0.1);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+.contact-info__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.contact-info__value {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+}
+
+.contact-info__value a {
+  color: var(--navy);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.contact-info__value a:hover {
+  color: var(--gold);
+}
+
+.booking-form {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,151,58,0.12);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-light);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-note {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-top: 12px;
+  text-align: center;
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 32px;
+}
+
+.form-success__icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.form-success__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.form-success__body {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+}
+
+/* ── MISSION BANNER ── */
+.mission-banner {
+  background: var(--navy);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-banner::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(201,151,58,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.mission-banner__quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  max-width: 800px;
+  margin: 0 auto 24px;
+  line-height: 1.3;
+}
+
+.mission-banner__quote em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.mission-banner__attr {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: #080f1e;
+  color: rgba(255,255,255,0.6);
+  padding: 64px 0 32px;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer__logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.footer__logo-name span {
+  color: var(--gold);
+}
+
+.footer__tagline {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.footer__differentiator {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.footer__heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__links a {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.2s;
+}
+
+.footer__links a:hover {
+  color: var(--gold);
+}
+
+.footer__divider {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+  margin-bottom: 28px;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ── PROTECTION PLAN ── */
+.protection-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.protection-step {
+  text-align: center;
+  padding: 40px 28px;
+  background: var(--off-white);
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+
+.protection-step__number {
+  width: 52px;
+  height: 52px;
+  background: var(--navy);
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.protection-step__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.protection-step__items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.protection-step__item {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.protection-step__item::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.75rem;
+}
+
+/* ── ABOUT SECTION ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-principle {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  margin-top: 32px;
+}
+
+.about-principle__text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.about-principle__attr {
+  font-size: 0.75rem;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-values {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-value {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.about-value__icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(201,151,58,0.1);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.about-value__title {
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.about-value__body {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+/* ── REGION PILLS ── */
+.region-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.region-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(201,151,58,0.1);
+  border: 1px solid rgba(201,151,58,0.25);
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 100px;
+}
+
+.region-pill::before {
+  content: '📍';
+  font-size: 0.75rem;
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 1024px) {
+  .plans-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 60px 24px;
+  }
+
+  .hero__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .audience-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .threat-grid,
+  .threat-panel.active {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .protection-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .section { padding: 64px 0; }
+
+  .nav__links { display: none; }
+  .nav__hamburger { display: flex; }
+
+  .nav__links.mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--navy);
+    padding: 24px;
+    gap: 20px;
+    border-top: 1px solid rgba(201,151,58,0.2);
+    z-index: 99;
+  }
+
+  .hero__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .audience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .threat-grid,
+  .threat-panel.active {
+    grid-template-columns: 1fr;
+  }
+
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .booking-form {
+    padding: 24px;
+  }
+
+  .warning-item {
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { transition: none; opacity: 1; transform: none; }
+  * { transition-duration: 0.01ms !important; }
+}
+
+
+/* ── HOMEPAGE SECTION CARDS ── */
+.home-sections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+
+.home-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+  transform-origin: left;
+}
+
+.home-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px var(--shadow);
+  transform: translateY(-4px);
+}
+
+.home-card:hover::after {
+  transform: scaleX(1);
+}
+
+.home-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.home-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.home-card__body {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.home-card__arrow {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: var(--navy);
+  padding: 120px 0 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201,151,58,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.page-header__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.page-header__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.page-header__body {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  max-width: 560px;
+}
+
+/* ── ACTIVE NAV ── */
+.nav__links a.active {
+  color: var(--gold);
+}
+
+@media (max-width: 900px) {
+  .home-sections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-sections {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 <body>
-
-  <!--
-       Even the record has margins.
-       You are reading in them.
-
-       archive@mirzyah.com
-  -->
-
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-left">
-      <a href="index.html" class="nav-star" data-door>✦</a>
-      <span class="nav-heritage">
-        <span class="nav-label-default">Begin Heritage</span>
-        <span class="nav-label-hover">Not Yet</span>
-      </span>
-    </div>
-    <ul class="nav-links">
-      <li class="active">
-        <span class="nav-label-default">About</span>
-      </li>
-      <li>
-        <span class="nav-label-default">The Vault</span>
-        <span class="nav-label-hover">Locked</span>
-      </li>
-      <li class="nav-isnad">
-        <span class="nav-label-default">Isnad</span>
-        <span class="nav-label-hover">Locked</span>
-        <span class="nav-label-heard">Soon.</span>
-      </li>
-      <li>
-        <span class="nav-label-default">Gear</span>
-        <span class="nav-label-hover">Locked</span>
-      </li>
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="The Elder IT — Home">
+      <span class="nav__logo-name">The Elder <span>IT</span></span>
+      <span class="nav__logo-tagline">Digital Safety for Every Generation</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="awareness.html">Awareness</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="plans.html">Plans</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html" class="nav__cta">Book a Consultation</a></li>
     </ul>
-  </nav>
+    <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <!-- ABOUT CONTENT -->
-  <main>
+<div class="page-header">
+  <div class="container">
+    <span class="page-header__eyebrow">About The Elder IT</span>
+    <h1 class="page-header__title">Knowledge is the oldest<br />form of protection.</h1>
+    <p class="page-header__body">A digital safety and education business built around one belief: that every person deserves to navigate the digital world safely — at any age.</p>
+  </div>
+</div>
 
-    <p class="about-eyebrow reveal">About</p>
+<section class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <span class="section__eyebrow">Who We Are</span>
+        <h2 class="section__heading">Built for communities.<br />Designed for every age.</h2>
+        <p style="margin-bottom:20px;">The Elder IT is a digital safety, awareness, and education business based in Brantford, Ontario. We serve individuals, families, and communities across all ages and generations — from youth navigating social media to older adults protecting their finances.</p>
+        <p style="margin-bottom:20px;">The name is inspired by The Elder Scrolls — scrolls of knowledge — reimagined for the digital age. It carries wisdom, guidance, and authority across all demographics. It is not named after any one age group.</p>
+        <p style="margin-bottom:32px;">Unlike traditional IT companies that do things <em>for</em> their clients, we do things <em>with</em> them. Every session is a learning session. The goal is always that you walk away more capable than when you arrived.</p>
 
-    <p class="about-primary reveal">
-      This is not a brand.<br>
-      This is a <span class="word-record">record</span>.
-    </p>
+        <div class="about-principle">
+          <p class="about-principle__text">"Digital safety is not a privilege. It is a right — for every generation."</p>
+          <span class="about-principle__attr">Elder's Founding Principle</span>
+        </div>
 
-    <div class="about-rule reveal"></div>
+        <div class="region-pills" style="margin-top:28px;">
+          <span class="region-pill">Greater Toronto Area</span>
+          <span class="region-pill">Waterloo / Brantford</span>
+          <span class="region-pill">Niagara Region</span>
+          <span class="region-pill">Remote delivery available</span>
+        </div>
+      </div>
 
-    <p class="about-body reveal">
-      Most things are made to be forgotten.<br>
-      Worn once. Replaced. Left behind without ceremony.
-    </p>
+      <div class="about-values">
+        <div class="about-value fade-up">
+          <div class="about-value__icon">🛡️</div>
+          <div>
+            <div class="about-value__title">Protection</div>
+            <p class="about-value__body">Keeping people safe from digital threats through practical, actionable knowledge — not fear, not jargon, not dependency.</p>
+          </div>
+        </div>
+        <div class="about-value fade-up">
+          <div class="about-value__icon">📚</div>
+          <div>
+            <div class="about-value__title">Education</div>
+            <p class="about-value__body">Building genuine knowledge and confidence. We do things with our clients — not for them. Every session is a learning session.</p>
+          </div>
+        </div>
+        <div class="about-value fade-up">
+          <div class="about-value__icon">💡</div>
+          <div>
+            <div class="about-value__title">Empowerment</div>
+            <p class="about-value__body">Giving every person the ability to navigate the digital world on their own terms — from a 12-year-old to a 75-year-old.</p>
+          </div>
+        </div>
+        <div class="about-value fade-up">
+          <div class="about-value__icon">🤝</div>
+          <div>
+            <div class="about-value__title">What We Don't Do</div>
+            <p class="about-value__body">We don't sell hardware. We don't manage IT infrastructure. We don't provide legal or financial advice. We keep our focus narrow so it stays sharp.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="about-pause"></div>
+<section class="section section--alt">
+  <div class="container">
+    <span class="section__eyebrow">Who We Serve</span>
+    <h2 class="section__heading">Protection for everyone<br />in your household.</h2>
+    <p class="section__subheading">From a 12-year-old on social media to a 75-year-old managing their bank account — digital threats don't discriminate by age.</p>
+    <div class="audience-grid">
+      <div class="audience-card fade-up">
+        <span class="audience-card__icon">🎮</span>
+        <div class="audience-card__title">Youth</div>
+        <p class="audience-card__body">Online gaming, social media, and messaging apps create real risks. We help young people recognize manipulation and protect their digital identity.</p>
+        <div class="audience-card__tags">
+          <span class="tag">Cyberbullying</span><span class="tag">Gaming safety</span><span class="tag">Sextortion</span><span class="tag">Digital footprint</span>
+        </div>
+      </div>
+      <div class="audience-card fade-up">
+        <span class="audience-card__icon">🏠</span>
+        <div class="audience-card__title">Families</div>
+        <p class="audience-card__body">Parental controls, device security, and scam awareness — we help families set up protections that actually work for your household.</p>
+        <div class="audience-card__tags">
+          <span class="tag">Parental controls</span><span class="tag">Device security</span><span class="tag">Scam awareness</span><span class="tag">Privacy</span>
+        </div>
+      </div>
+      <div class="audience-card fade-up">
+        <span class="audience-card__icon">🛡️</span>
+        <div class="audience-card__title">Older Adults</div>
+        <p class="audience-card__body">Phone scams, CRA fraud, AI voice cloning, and romance fraud target older Canadians at a disproportionate rate. Awareness is the best defence.</p>
+        <div class="audience-card__tags">
+          <span class="tag">Phone scams</span><span class="tag">AI fraud</span><span class="tag">Account protection</span><span class="tag">CRA fraud</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <p class="about-body reveal">
-      Mirzyah was built on a different premise.<br>
-      That what you carry says something about who you are.<br>
-      That ownership is not a transaction — it is a beginning.
-    </p>
+<div class="mission-banner">
+  <div class="container">
+    <p class="mission-banner__quote">"We don't do it for you.<br />We do it <em>with</em> you."</p>
+    <div style="margin-top:32px;"><a href="contact.html" class="btn btn--primary">Book a Free Consultation</a></div>
+  </div>
+</div>
 
-    <div class="about-pause"></div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo-name">The Elder <span>IT</span></div>
+        <p class="footer__tagline">Digital Safety & Awareness for Every Generation.<br />Brantford, Ontario — Serving the GTA, Waterloo, and Niagara.</p>
+        <p class="footer__differentiator">"We don't do it for you. We do it with you."</p>
+      </div>
+      <div>
+        <div class="footer__heading">Navigate</div>
+        <ul class="footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="awareness.html">Awareness</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="plans.html">Plans & Pricing</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Book a Consultation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__heading">Contact</div>
+        <ul class="footer__links">
+          <li><a href="mailto:hello@theelderit.com">hello@theelderit.com</a></li>
+          <li><a href="https://theelderit.com">theelderit.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__divider"></div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 The Elder IT. All rights reserved.</span>
+      <span>Brantford, Ontario, Canada</span>
+    </div>
+  </div>
+</footer>
+<script>
+/* ============================================
+   THE ELDER IT — Main JavaScript
+   ============================================ */
 
-    <p class="about-body reveal">
-      Every piece made here has a birth record.<br>
-      A history. A name attached to it.<br>
-      Yours, then whoever comes after you.
-    </p>
+document.addEventListener('DOMContentLoaded', () => {
 
-    <div class="about-pause"></div>
+  // ── NAV SCROLL ──
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
 
-    <p class="about-body reveal">
-      We do not make things for everyone.<br>
-      We make things for the person who understands<br>
-      that tension and balance are the same force<br>
-      moving in opposite directions.
-    </p>
+  // ── MOBILE HAMBURGER ──
+  const hamburger = document.querySelector('.nav__hamburger');
+  const navLinks = document.querySelector('.nav__links');
 
-    <div class="about-rule reveal" style="margin-top: 16px;"></div>
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('mobile-open');
+      const spans = hamburger.querySelectorAll('span');
+      spans.forEach(s => s.classList.toggle('open'));
+    });
 
-    <p class="about-closing reveal">
-      The rest is not ready to be seen yet.<br>
-      But the door is open.<br>
-      <span class="word-found">You found it.</span>
-    </p>
-
-    <p class="about-signoff reveal">Mirzyah</p>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-star">✦</span> &nbsp;·&nbsp; Ontario, Canada &nbsp;·&nbsp; Est. 2026 &nbsp;·&nbsp; mirzyah.com
-  </footer>
-
-  <!-- THE READING RULE — the record keeps your place. -->
-  <div class="reading-rule" id="readingRule" aria-hidden="true"></div>
-
-  <!-- THE LANTERN — the Guest carries the same light from room to room. -->
-  <div class="lantern" id="lantern" aria-hidden="true"></div>
-
-  <script>
-    // When the Guest steps away, the tab holds the mark, and waits.
-    (function () {
-      var homeTitle = document.title;
-      document.addEventListener('visibilitychange', function () {
-        document.title = document.hidden ? '\u2726' : homeTitle;
+    // Close on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-open');
       });
-    })();
+    });
+  }
 
-    // Once each line has surfaced, it settles — pinned, and touchable.
-    (function () {
-      document.querySelectorAll('.reveal').forEach(function (el) {
-        el.addEventListener('animationend', function () {
-          el.classList.add('settled');
-        });
-      });
-    })();
+  // ── THREAT TABS ──
+  const tabs = document.querySelectorAll('.threat-tab');
+  const panels = document.querySelectorAll('.threat-panel');
 
-    // If a Guest types the word, the House acknowledges they know it.
-    (function () {
-      var buf = '';
-      document.addEventListener('keydown', function (e) {
-        if (!e.key || e.key.length !== 1) return;
-        buf = (buf + e.key.toLowerCase()).slice(-5);
-        if (buf === 'isnad') {
-          buf = '';
-          var el = document.querySelector('.nav-isnad');
-          if (el && !el.classList.contains('heard')) {
-            el.classList.add('heard');
-            setTimeout(function () { el.classList.remove('heard'); }, 4000);
-          }
-        }
-      });
-    })();
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const target = tab.dataset.panel;
+      const panel = document.getElementById(target);
+      if (panel) panel.classList.add('active');
+    });
+  });
 
-    // Rooms do not jump-cut. Doors dim the light before they open.
-    (function () {
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      document.querySelectorAll('a[data-door]').forEach(function (a) {
-        a.addEventListener('click', function (e) {
-          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-          e.preventDefault();
-          var href = a.getAttribute('href');
-          if (reduce) { location.href = href; return; }
-          document.body.classList.add('leaving');
-          setTimeout(function () { location.href = href; }, 360);
-        });
-      });
-    })();
+  // ── FAQ ACCORDION ──
+  const faqItems = document.querySelectorAll('.faq-item');
 
-    // The record keeps your place — a gold hairline that fills as the
-    // Guest moves through the page. Only exists when there is somewhere
-    // to move to.
-    (function () {
-      var rule = document.getElementById('readingRule');
-      if (!rule) return;
-      function upd() {
-        var d = document.documentElement;
-        var max = d.scrollHeight - d.clientHeight;
-        if (max <= 4) {
-          rule.style.display = 'none';
-          return;
-        }
-        rule.style.display = 'block';
-        var y = window.scrollY || d.scrollTop || 0;
-        rule.style.width = (y / max * 100) + '%';
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      // Close all
+      faqItems.forEach(i => i.classList.remove('open'));
+      // Open clicked if it was closed
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── SCROLL ANIMATIONS ──
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
       }
-      window.addEventListener('scroll', upd, { passive: true });
-      window.addEventListener('resize', upd);
-      upd();
-    })();
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    // The carried flame, and the room's awareness of stillness.
-    (function () {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  fadeEls.forEach(el => observer.observe(el));
 
-      var lantern = document.getElementById('lantern');
+  // ── SMOOTH SCROLL for anchor links ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
 
-      var tx = -1000, ty = -1000;
-      var x = tx, y = ty;
-      var lit = false;
-      var raf = null;
+  // ── BOOKING FORM ──
+  const bookingForm = document.getElementById('booking-form');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = bookingForm.querySelector('.btn--submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
 
-      function frame() {
-        x += (tx - x) * 0.08;
-        y += (ty - y) * 0.08;
-        if (lantern) {
-          lantern.style.setProperty('--lx', x + 'px');
-          lantern.style.setProperty('--ly', y + 'px');
-        }
-        if (Math.abs(tx - x) > 0.3 || Math.abs(ty - y) > 0.3) {
-          raf = requestAnimationFrame(frame);
+      const formData = new FormData(bookingForm);
+
+      try {
+        const response = await fetch(bookingForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          bookingForm.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
         } else {
-          raf = null;
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+          alert('Something went wrong. Please email us at hello@theelderit.com');
         }
+      } catch (err) {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+        alert('Something went wrong. Please email us at hello@theelderit.com');
       }
+    });
+  }
 
-      document.addEventListener('mousemove', function (e) {
-        tx = e.clientX;
-        ty = e.clientY;
-        if (!lit && lantern) {
-          x = tx; y = ty;
-          lantern.classList.add('lit');
-          lit = true;
+  // ── CONTACT FORM ──
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('.btn--submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          contactForm.style.display = 'none';
+          document.getElementById('contact-success').style.display = 'block';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
         }
-        if (!raf) raf = requestAnimationFrame(frame);
-      }, { passive: true });
-
-      document.addEventListener('mouseleave', function () {
-        if (lantern) lantern.classList.remove('lit');
-        lit = false;
-      });
-
-      // Stillness wakes the candle; movement stills it.
-      var idleT;
-      function wake() {
-        document.body.classList.remove('idle');
-        clearTimeout(idleT);
-        idleT = setTimeout(function () {
-          document.body.classList.add('idle');
-        }, 45000);
+      } catch (err) {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
       }
-      ['mousemove', 'keydown', 'touchstart', 'scroll'].forEach(function (ev) {
-        document.addEventListener(ev, wake, { passive: true });
-      });
-      wake();
-    })();
-  </script>
+    });
+  }
 
+});
+
+</script>
 </body>
 </html>
