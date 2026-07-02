@@ -80,6 +80,7 @@
         var on = document.documentElement.classList.toggle('text-lg');
         sizeBtn.setAttribute('aria-pressed', String(on));
         try { localStorage.setItem('elder-text-lg', on ? '1' : '0'); } catch (e) {}
+        if (window.elderEqualizeFlips) requestAnimationFrame(window.elderEqualizeFlips);
       });
     }
 
@@ -393,232 +394,6 @@
       });
     }
 
-    /* ── W2-A. AUDIENCE TAB SCROLLSPY (plans) ── */
-    var switchBtns = document.querySelectorAll('.audience-switch__btn');
-    var bizAnchor = document.getElementById('business');
-    if (switchBtns.length === 2 && bizAnchor) {
-      window.addEventListener('scroll', function () {
-        var inBiz = bizAnchor.getBoundingClientRect().top < window.innerHeight * 0.45;
-        switchBtns[0].classList.toggle('active', !inBiz);
-        switchBtns[1].classList.toggle('active', inBiz);
-      }, { passive: true });
-    }
-
-    /* ── W2-B. 3D TILT ON PRICING CARDS ── */
-    if (window.matchMedia('(hover: hover)').matches && !reducedMotion) {
-      document.querySelectorAll('.plan-card, .biz-plan-card').forEach(function (card) {
-        card.classList.add('tiltable');
-        card.addEventListener('pointerenter', function () {
-          card.style.transition = 'transform 0.15s ease';
-        });
-        card.addEventListener('pointermove', function (e) {
-          var r = card.getBoundingClientRect();
-          var rx = ((e.clientY - r.top) / r.height - 0.5) * -5;
-          var ry = ((e.clientX - r.left) / r.width - 0.5) * 5;
-          card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
-        });
-        card.addEventListener('pointerleave', function () {
-          card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
-        });
-      });
-    }
-
-    /* ── W2-C. LIVE FRAUD-LOSS TICKER (awareness) ── */
-    var ticker = document.getElementById('loss-ticker-amount');
-    if (ticker) {
-      var RATE = 2700000000 / (365 * 24 * 3600); // ~$85.6/second, CAFC 2023 figure
-      var opened = Date.now();
-      function fmtMoney(x) {
-        return '$' + x.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      }
-      function tick() {
-        ticker.textContent = fmtMoney(((Date.now() - opened) / 1000) * RATE);
-      }
-      tick();
-      setInterval(tick, reducedMotion ? 2000 : 120);
-    }
-
-    /* ── W2-D. THREAT CARD FLIPS (awareness) ── */
-    document.querySelectorAll('.threat-card--flip').forEach(function (card) {
-      function flip() {
-        var on = card.classList.toggle('flipped');
-        card.setAttribute('aria-pressed', String(on));
-      }
-      card.addEventListener('click', flip);
-      card.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
-      });
-    });
-
-    /* ── W2-E. PASSWORD EXPERIMENT (awareness) ── */
-    var pwInput = document.getElementById('pw-lab-input');
-    if (pwInput) {
-      var fill = document.querySelector('.pw-lab__fill');
-      var word = document.querySelector('.pw-lab__word');
-      var time = document.querySelector('.pw-lab__time');
-      var tip = document.querySelector('.pw-lab__tip');
-      var GUESSES = 1e10; // offline attack, guesses/second
-      function crackTime(pw) {
-        if (!pw) return null;
-        var pool = 0;
-        if (/[a-z]/.test(pw)) pool += 26;
-        if (/[A-Z]/.test(pw)) pool += 26;
-        if (/[0-9]/.test(pw)) pool += 10;
-        if (/[^a-zA-Z0-9]/.test(pw)) pool += 33;
-        var seconds = Math.pow(pool, pw.length) / GUESSES / 2;
-        return seconds;
-      }
-      function human(sec) {
-        if (sec < 1) return 'less than a second';
-        var units = [[31557600 * 1e9, 'billion years'], [31557600 * 1e6, 'million years'],
-                     [31557600 * 1000, 'thousand years'], [31557600, 'years'],
-                     [2629800, 'months'], [86400, 'days'], [3600, 'hours'], [60, 'minutes'], [1, 'seconds']];
-        for (var i = 0; i < units.length; i++) {
-          if (sec >= units[i][0]) {
-            var v = sec / units[i][0];
-            return (v >= 100 ? Math.round(v).toLocaleString('en-CA') : v.toFixed(1)) + ' ' + units[i][1];
-          }
-        }
-        return 'moments';
-      }
-      pwInput.addEventListener('input', function () {
-        var pw = pwInput.value;
-        var sec = crackTime(pw);
-        if (sec === null) {
-          fill.style.width = '0%';
-          word.textContent = '—';
-          time.innerHTML = 'Start typing to see how long a computer would need.';
-          tip.textContent = 'Tip: length beats cleverness. Four random words beat one clever substitution, every time.';
-          return;
-        }
-        var verdict, pct, advice;
-        if (sec < 3600) { verdict = 'Broken instantly'; pct = 12; advice = 'A modern computer tears through short passwords in moments. Add length before anything else.'; }
-        else if (sec < 86400 * 30) { verdict = 'Weak'; pct = 34; advice = 'Better — but a patient attacker gets there. Push past 12 characters and mix in symbols.'; }
-        else if (sec < 31557600 * 100) { verdict = 'Respectable'; pct = 62; advice = 'Solid for most accounts. For email and banking, go longer still — those are the keys to everything else.'; }
-        else { verdict = 'Fortress'; pct = 100; advice = 'This is the goal. Now the real advice: use a password manager so every account gets one of these — and never reuse it.'; }
-        fill.style.width = pct + '%';
-        word.textContent = verdict;
-        time.innerHTML = 'Estimated time to crack: <strong>' + human(sec) + '</strong>';
-        tip.textContent = advice;
-      });
-    }
-
-    /* ── W2-F. SCAM OR LEGIT QUIZ (awareness) ── */
-    var sol = document.getElementById('sol-quiz');
-    if (sol) {
-      var scenarios = [
-        { text: '\u201CHi Grandma, it\u2019s me. I\u2019m in trouble and I need $800 in Apple gift cards tonight. Please don\u2019t tell Mom \u2014 I\u2019m so embarrassed.\u201D', scam: true,
-          why: 'Three flags in two sentences: urgency, gift cards, and secrecy. The \u201Cgrandchild emergency\u201D is one of Canada\u2019s most common phone scams \u2014 now supercharged by AI voice cloning. Hang up, call the real grandchild.' },
-        { text: 'An email from your bank\u2019s exact address says a new device signed in, lists the city and time, and tells you: \u201CIf this wasn\u2019t you, call the number on the back of your card.\u201D', scam: false,
-          why: 'This one is legitimate practice \u2014 note what it does NOT do: no link to click, no login demand, no urgency. It points you to a number you already own. That pattern is the tell.' },
-        { text: 'A text from \u201CCanada Post\u201D: your package is held for a $1.12 customs fee. The link goes to canada-post-delivery.info and asks for your credit card.', scam: true,
-          why: 'The tiny amount is the trick \u2014 it\u2019s not about $1.12, it\u2019s about your card number. Real couriers don\u2019t collect fees through lookalike domains by text.' },
-        { text: 'You get a call from \u201CMicrosoft Support\u201D: they\u2019ve detected a virus on your computer and need remote access right now to remove it before your files are destroyed.', scam: true,
-          why: 'Microsoft \u2014 and every real tech company \u2014 does not call you about viruses. Nobody monitors your computer waiting to phone you. Remote-access requests from inbound calls are always a scam.' },
-        { text: 'Your phone pops up: \u201CA new iOS/Android update is available. Install tonight while charging?\u201D from your device\u2019s own Settings app.', scam: false,
-          why: 'Legitimate \u2014 and important. System updates from your device\u2019s own settings are one of the best free defences you have. The scam version arrives by text or email link, never from Settings itself.' }
-      ];
-      var idx = 0, right = 0, answered = false;
-      var scEl = sol.querySelector('.sol-quiz__scenario');
-      var fbEl = sol.querySelector('.sol-quiz__feedback');
-      var nextBtn = sol.querySelector('.sol-quiz__next');
-      var countEl = sol.querySelector('.sol-quiz__count');
-      var btnScam = sol.querySelector('.sol-quiz__btn--scam');
-      var btnLegit = sol.querySelector('.sol-quiz__btn--legit');
-      function load() {
-        answered = false;
-        fbEl.className = 'sol-quiz__feedback';
-        fbEl.textContent = '';
-        nextBtn.classList.remove('show');
-        scEl.textContent = scenarios[idx].text;
-        countEl.textContent = 'Scenario ' + (idx + 1) + ' of ' + scenarios.length;
-        btnScam.disabled = false; btnLegit.disabled = false;
-        btnScam.style.display = ''; btnLegit.style.display = '';
-      }
-      function answer(saidScam) {
-        if (answered) return;
-        answered = true;
-        var sc = scenarios[idx];
-        var correct = saidScam === sc.scam;
-        if (correct) right++;
-        fbEl.className = 'sol-quiz__feedback show ' + (correct ? 'sol-quiz__feedback--right' : 'sol-quiz__feedback--wrong');
-        fbEl.innerHTML = '<strong>' + (correct ? 'Correct.' : (sc.scam ? 'That was a scam.' : 'That one was legitimate.')) + '</strong> ' + sc.why;
-        nextBtn.textContent = idx === scenarios.length - 1 ? 'See my score' : 'Next scenario';
-        nextBtn.classList.add('show');
-        btnScam.disabled = true; btnLegit.disabled = true;
-      }
-      btnScam.addEventListener('click', function () { answer(true); });
-      btnLegit.addEventListener('click', function () { answer(false); });
-      nextBtn.addEventListener('click', function () {
-        idx++;
-        if (idx < scenarios.length) return load();
-        scEl.innerHTML = '<div class="sol-quiz__score">' + right + ' / ' + scenarios.length + '</div>' +
-          (right === scenarios.length
-            ? 'A perfect read. That pause-and-check instinct is exactly what keeps people safe \u2014 now teach it to someone you love.'
-            : 'The ones you missed are the ones scammers count on. Scroll back through the threats above \u2014 every pattern here is covered.');
-        btnScam.style.display = 'none'; btnLegit.style.display = 'none';
-        fbEl.className = 'sol-quiz__feedback';
-        nextBtn.textContent = 'Try again';
-        nextBtn.classList.add('show');
-        nextBtn.onclick = null;
-        idx = -1; right = 0; // next click reloads from 0
-      });
-      load();
-    }
-
-    /* ── W2-G. HERO LANTERN PARTICLES (index) ── */
-    var hero = document.querySelector('.hero');
-    if (hero && !reducedMotion && window.matchMedia('(hover: hover)').matches) {
-      var canvas = document.createElement('canvas');
-      canvas.className = 'hero__particles';
-      canvas.setAttribute('aria-hidden', 'true');
-      hero.prepend(canvas);
-      var ctx = canvas.getContext('2d');
-      var parts = [];
-      function sizeCanvas() {
-        canvas.width = hero.offsetWidth;
-        canvas.height = hero.offsetHeight;
-      }
-      sizeCanvas();
-      window.addEventListener('resize', sizeCanvas);
-      for (var pi = 0; pi < 42; pi++) {
-        parts.push({
-          x: Math.random(), y: Math.random(),
-          r: 0.8 + Math.random() * 1.8,
-          vy: 0.00025 + Math.random() * 0.00055,
-          vx: (Math.random() - 0.5) * 0.0002,
-          ph: Math.random() * Math.PI * 2
-        });
-      }
-      (function drawParts(t) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        parts.forEach(function (pt) {
-          pt.y -= pt.vy; pt.x += pt.vx;
-          if (pt.y < -0.02) { pt.y = 1.02; pt.x = Math.random(); }
-          if (pt.x < 0) pt.x = 1; if (pt.x > 1) pt.x = 0;
-          var tw = 0.35 + 0.3 * Math.sin(t / 900 + pt.ph);
-          ctx.beginPath();
-          ctx.arc(pt.x * canvas.width, pt.y * canvas.height, pt.r, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(224,176,90,' + tw.toFixed(2) + ')';
-          ctx.fill();
-        });
-        requestAnimationFrame(drawParts);
-      })(0);
-    }
-
-    /* ── W2-H. JOURNEY GOLD FILL ON SCROLL (about) ── */
-    var journey = document.querySelector('.journey');
-    if (journey) {
-      function fillJourney() {
-        var r = journey.getBoundingClientRect();
-        var mid = window.innerHeight * 0.55;
-        var p = (mid - r.top) / r.height;
-        journey.style.setProperty('--journey-fill', (Math.max(0, Math.min(1, p)) * 100).toFixed(1) + '%');
-      }
-      window.addEventListener('scroll', fillJourney, { passive: true });
-      fillJourney();
-    }
-
     /* ── 16. 3D TILT on tiles (excludes flip cards) ── */
     if (window.matchMedia('(hover: hover)').matches && !reducedMotion) {
       var tiltEls = document.querySelectorAll(
@@ -805,12 +580,19 @@
       if (reducedMotion) {
         jSteps.forEach(function (s) { s.classList.add('active'); });
       } else {
+        var jWrap = jSteps[0].closest('.journey');
+        var jArr = Array.prototype.slice.call(jSteps);
+        function jFill() {
+          var lastActive = -1;
+          jArr.forEach(function (st, i) { if (st.classList.contains('active')) lastActive = i; });
+          if (jWrap) jWrap.style.setProperty('--journey-fill', ((lastActive + 1) / jArr.length * 100) + '%');
+        }
         var jObs = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
-            if (e.isIntersecting) e.target.classList.add('active');
+            if (e.isIntersecting) { e.target.classList.add('active'); jFill(); }
           });
         }, { threshold: 0.55 });
-        jSteps.forEach(function (s) { jObs.observe(s); });
+        jArr.forEach(function (s) { jObs.observe(s); });
       }
     }
 
@@ -1030,6 +812,7 @@
     var bookingForm = document.getElementById('booking-form');
     if (bookingForm) {
       var reqFields = Array.prototype.slice.call(bookingForm.querySelectorAll('[required]'));
+      if (!reqFields.length) reqFields = Array.prototype.slice.call(bookingForm.querySelectorAll('input[type="text"], input[type="email"], select'));
       var prog = document.createElement('div');
       prog.className = 'form-progress';
       prog.innerHTML = '<div class="form-progress__label"><span>Your request</span><strong><span class="fp-count">0</span> of ' + reqFields.length + ' complete</strong></div>' +
@@ -1173,6 +956,58 @@
       def.querySelector('.defender__overlay-title').textContent = 'Arcade paused';
       def.querySelector('.defender__overlay-body').textContent = 'This game uses motion, which your system settings have turned off. The Real-or-Scam quiz above covers the same skills.';
       def.querySelector('.defender__start').style.display = 'none';
+    }
+
+    /* ── 39. THE GUARDED HOUSE (homepage signature) ── */
+    var houseSec = document.getElementById('guarded-house');
+    if (houseSec) {
+      var stories = [
+        { tag: 'Upstairs, left window', who: 'Nana, 74',
+          threat: 'At 9:14 PM her phone rings. A shaken voice: <strong>"Grandma, I\u2019m in trouble \u2014 please don\u2019t tell Mom."</strong> It sounds exactly like her grandson. It isn\u2019t. It\u2019s a cloned voice, and it wants gift cards.',
+          guard: 'We set up a <strong>family code word</strong> and drill the call-back habit \u2014 hang up, dial the real number. Ten minutes of practice defeats a million-dollar scam industry.' },
+        { tag: 'Upstairs, right window', who: 'Maya, 13',
+          threat: 'A "teammate" from her game has been friendly for weeks. Tonight he asks her to <strong>move the chat somewhere private</strong> \u2014 and to keep it their secret.',
+          guard: 'Her parents co-manage her settings <strong>with her, not behind her back</strong> \u2014 and she knows "keep it secret" is the reddest flag there is. She tells them the same night.' },
+        { tag: 'Main floor', who: 'Mom & Dad',
+          threat: 'The router still runs <strong>factory-default settings</strong> from the day it came out of the box. Every device in the house \u2014 and every password typed on them \u2014 sits behind a door with the lock the burglars all have keys to.',
+          guard: 'Full <strong>home network verification</strong>: hardened router, DNS-level blocking, a guest network for visitors. Done together at the kitchen table, explained in plain language.' },
+        { tag: 'The home office', who: 'The family business',
+          threat: 'Client files, invoices, and tax records share the same Wi-Fi as the smart TV and a decade of forgotten gadgets. One compromised device and it\u2019s <strong>not an inconvenience \u2014 it\u2019s a liability</strong>.',
+          guard: 'The <strong>Professional plan</strong> draws a hard boundary around the business: commercial audit, quarterly reviews, breach intervention \u2014 and a data perimeter ready for AI when you are.' }
+      ];
+      var hotspots = houseSec.querySelectorAll('.house__hotspot');
+      var winArts = ['win-art-1', 'win-art-2', 'win-art-3', 'win-art-4'].map(function (id) { return document.getElementById(id); });
+      var tagEl = houseSec.querySelector('.house__story-tag');
+      var whoEl = houseSec.querySelector('.house__story-who');
+      var threatEl = houseSec.querySelector('.house__story-threat');
+      var guardEl = houseSec.querySelector('.house__story-guard');
+      var cardEl = houseSec.querySelector('.house__story-card');
+      function showStory(i) {
+        var st = stories[i];
+        cardEl.style.animation = 'none';
+        void cardEl.offsetWidth;
+        cardEl.style.animation = '';
+        tagEl.textContent = st.tag;
+        whoEl.textContent = st.who;
+        threatEl.innerHTML = st.threat;
+        guardEl.innerHTML = st.guard;
+        hotspots.forEach(function (h, hi) { h.classList.toggle('active', hi === i); });
+        winArts.forEach(function (w, wi) { if (w) w.classList.toggle('active', wi === i); });
+      }
+      hotspots.forEach(function (h) {
+        h.addEventListener('click', function () { showStory(parseInt(h.dataset.story, 10)); });
+      });
+      showStory(0);
+      if ('IntersectionObserver' in window && !reducedMotion) {
+        var hObs2 = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { houseSec.classList.add('awake'); hObs2.disconnect(); }
+          });
+        }, { threshold: 0.3 });
+        hObs2.observe(houseSec);
+      } else {
+        houseSec.classList.add('awake');
+      }
     }
   });
 
