@@ -7,6 +7,12 @@
   'use strict';
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Global flip — assigned before anything else can fail; inline onclick uses it */
+  window.elderFlip = function (card) {
+    var on = card.classList.toggle('flipped');
+    card.setAttribute('aria-pressed', String(on));
+  };
+
   document.addEventListener('DOMContentLoaded', function () {
 
     /* ── 1. SKIP LINK (injected) ── */
@@ -898,18 +904,20 @@
       });
     }
 
-    /* ── 25. HERO CONSTELLATION (home) ── */
-    var hero = document.querySelector('.hero');
-    if (hero && !reducedMotion && window.matchMedia('(min-width: 760px)').matches) {
+    /* ── 25. CONSTELLATION — hero + mission banners on the home page ── */
+    function initNet(host, opacity) {
       var net = document.createElement('canvas');
       net.className = 'hero-net';
-      hero.prepend(net);
+      if (opacity) net.style.opacity = opacity;
+      host.prepend(net);
+      host.classList.add('has-net');
+      if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
       var nctx = net.getContext('2d');
       var pts = [], mouse = { x: -9999, y: -9999 };
       function sizeNet() {
-        net.width = hero.offsetWidth;
-        net.height = hero.offsetHeight;
-        var n = Math.min(70, Math.floor(net.width / 22));
+        net.width = host.offsetWidth;
+        net.height = host.offsetHeight;
+        var n = Math.min(70, Math.floor(net.width / 24));
         pts = [];
         for (var i = 0; i < n; i++) {
           pts.push({ x: Math.random() * net.width, y: Math.random() * net.height,
@@ -918,11 +926,11 @@
       }
       sizeNet();
       window.addEventListener('resize', sizeNet);
-      hero.addEventListener('pointermove', function (e) {
+      host.addEventListener('pointermove', function (e) {
         var r = net.getBoundingClientRect();
         mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
       });
-      hero.addEventListener('pointerleave', function () { mouse.x = -9999; mouse.y = -9999; });
+      host.addEventListener('pointerleave', function () { mouse.x = -9999; mouse.y = -9999; });
       var netRaf;
       function drawNet() {
         netRaf = requestAnimationFrame(drawNet);
@@ -954,13 +962,18 @@
           }
         }
       }
-      var heroObs = new IntersectionObserver(function (entries) {
+      var netObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
           if (e.isIntersecting) netRaf = requestAnimationFrame(drawNet);
           else cancelAnimationFrame(netRaf);
         });
       });
-      heroObs.observe(hero);
+      netObs.observe(host);
+    }
+    var hero = document.querySelector('.hero');
+    if (hero && !reducedMotion && window.matchMedia('(min-width: 760px)').matches) {
+      initNet(hero);
+      document.querySelectorAll('.mission-banner').forEach(function (mb) { initNet(mb, '0.4'); });
     }
 
     /* ── 26. PLANS STICKY MINI-NAV ── */
@@ -1181,20 +1194,237 @@
       });
     }, { threshold: 0.6 });
     mObs.observe(box);
+
+    /* ── 30. MOBILE SCAM-SIM: linear story, all messages visible ── */
+    var sim2 = document.getElementById('scam-sim');
+    if (sim2 && window.matchMedia('(max-width: 900px)').matches) {
+      sim2.querySelectorAll('.msg').forEach(function (m) { m.classList.add('show'); });
+      sim2.querySelectorAll('.scam-step').forEach(function (st) { st.classList.add('active'); });
+    }
+
+    /* ── 31. INTERSTITIAL REVEALS (anatomy + checkpoint) ── */
+    if ('IntersectionObserver' in window) {
+      [['#anatomy-section .anatomy', 0.35], ['#checkpoint-section .checkpoint', 0.4]].forEach(function (pair) {
+        var el = document.querySelector(pair[0]);
+        if (!el) return;
+        if (reducedMotion) { el.classList.add('lit'); return; }
+        var o = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { el.classList.add('lit'); o.disconnect(); }
+          });
+        }, { threshold: pair[1] });
+        o.observe(el);
+      });
+    }
+
+    /* ── 32. AWARENESS JOURNEY LINE ── */
+    if (document.body.classList.contains('page-awareness') && 'IntersectionObserver' in window) {
+      var stops = [
+        ['scam-sim', 'Watch'], ['threats-by-audience', 'Know'], ['flag-game-section', 'Spot'],
+        ['real-or-scam-section', 'Judge'], ['inbox-defender-section', 'Defend'], ['protection-plan', 'Protect']
+      ].filter(function (st) { return document.getElementById(st[0]); });
+      if (stops.length > 2) {
+        var jl = document.createElement('div');
+        jl.className = 'journey-line';
+        jl.setAttribute('aria-hidden', 'true');
+        stops.forEach(function (st, i) {
+          if (i > 0) {
+            var seg = document.createElement('span');
+            seg.className = 'journey-line__seg';
+            seg.dataset.idx = i;
+            jl.appendChild(seg);
+          }
+          var node = document.createElement('button');
+          node.type = 'button';
+          node.className = 'journey-line__node';
+          node.dataset.label = st[1];
+          node.dataset.idx = i;
+          node.addEventListener('click', function () {
+            document.getElementById(st[0]).scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
+          });
+          jl.appendChild(node);
+        });
+        document.body.appendChild(jl);
+        var jlObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var idx = stops.findIndex(function (st) { return st[0] === e.target.id; });
+            jl.querySelectorAll('.journey-line__node').forEach(function (n) {
+              n.classList.toggle('done', parseInt(n.dataset.idx, 10) <= idx);
+            });
+            jl.querySelectorAll('.journey-line__seg').forEach(function (sg) {
+              sg.classList.toggle('done', parseInt(sg.dataset.idx, 10) <= idx);
+            });
+          });
+        }, { rootMargin: '-35% 0px -55% 0px' });
+        stops.forEach(function (st) { jlObs.observe(document.getElementById(st[0])); });
+      }
+    }
+
+    /* ── 33. SERVICE DEMO STRIPS — every tile alive, each its own story ── */
+    var demoDefs = [
+      { match: 'Community Workshops', build: function (strip) {
+          strip.innerHTML = 'seats filling ';
+          for (var i = 0; i < 8; i++) { strip.innerHTML += '<span class="seat"></span>'; }
+        }, run: function (strip) {
+          var seats = strip.querySelectorAll('.seat');
+          seats.forEach(function (st) { st.classList.remove('on'); });
+          seats.forEach(function (st, i) { setTimeout(function () { st.classList.add('on'); }, 120 * (i + 1)); });
+        } },
+      { match: 'Digital Safety Check-Ins', build: function (strip) {
+          strip.innerHTML = '<span class="chk">✓ passwords</span><span class="chk">✓ updates</span><span class="chk">✓ backups</span>';
+        }, run: function (strip) {
+          var chks = strip.querySelectorAll('.chk');
+          chks.forEach(function (c) { c.classList.remove('on'); });
+          chks.forEach(function (c, i) { setTimeout(function () { c.classList.add('on'); }, 300 * (i + 1)); });
+        } },
+      { match: 'Device Setup', build: function (strip) {
+          strip.innerHTML = '<span class="dsl">hardening…</span><span class="bar"><i></i></span>';
+        }, run: function (strip) {
+          var bar = strip.querySelector('.bar i'), lbl = strip.querySelector('.dsl');
+          bar.style.transition = 'none'; bar.style.width = '0';
+          lbl.textContent = 'hardening…';
+          void bar.offsetWidth;
+          bar.style.transition = '';
+          bar.style.width = '100%';
+          setTimeout(function () { lbl.textContent = '🔒 locked'; }, 1150);
+        } },
+      { match: 'Account Recovery', build: function (strip) {
+          strip.innerHTML = '<span class="rec">&gt; standing by<span class="cursor"></span></span>';
+        }, run: function (strip) {
+          var el = strip.querySelector('.rec');
+          var msg = '> recovering access…';
+          var ci = 0;
+          el.textContent = '';
+          var t = setInterval(function () {
+            ci++;
+            el.textContent = msg.slice(0, ci);
+            if (ci >= msg.length) {
+              clearInterval(t);
+              setTimeout(function () { el.innerHTML = '&gt; access restored ✓'; }, 500);
+            }
+          }, 30);
+        } },
+      { match: 'Incident Guidance', build: function (strip) {
+          strip.innerHTML = 'status: <span class="pill">URGENT</span>';
+        }, run: function (strip) {
+          var pill = strip.querySelector('.pill');
+          pill.classList.remove('calm');
+          pill.textContent = 'URGENT';
+          setTimeout(function () { pill.classList.add('calm'); pill.textContent = 'CONTAINED ✓'; }, 900);
+        } }
+    ];
+    document.querySelectorAll('.service-card').forEach(function (card) {
+      var title = card.querySelector('.service-card__title');
+      if (!title) return;
+      demoDefs.forEach(function (defn) {
+        if (title.textContent.indexOf(defn.match) === -1) return;
+        var strip = document.createElement('div');
+        strip.className = 'svc-demo';
+        strip.setAttribute('aria-hidden', 'true');
+        defn.build(strip);
+        card.appendChild(strip);
+        var busy = false;
+        function go() {
+          if (busy || reducedMotion) return;
+          busy = true;
+          defn.run(strip);
+          setTimeout(function () { busy = false; }, 1900);
+        }
+        card.addEventListener('mouseenter', go);
+        card.addEventListener('click', go);
+      });
+    });
+
+    /* ── 34. HEADING GOLD STROKE (site-wide) ── */
+    if ('IntersectionObserver' in window) {
+      var heads = document.querySelectorAll('.section__heading');
+      if (reducedMotion) {
+        heads.forEach(function (h) { h.classList.add('lit'); });
+      } else {
+        var hObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('lit'); hObs.unobserve(e.target); }
+          });
+        }, { threshold: 0.5 });
+        heads.forEach(function (h) { hObs.observe(h); });
+      }
+    }
+
+    /* ── 35. HERO POINTER PARALLAX ── */
+    var hero2 = document.querySelector('.hero');
+    if (hero2 && !reducedMotion && window.matchMedia('(hover: hover)').matches) {
+      hero2.addEventListener('pointermove', function (e) {
+        var r = hero2.getBoundingClientRect();
+        hero2.style.setProperty('--px', ((e.clientX - r.left) / r.width - 0.5) * -1);
+        hero2.style.setProperty('--py', ((e.clientY - r.top) / r.height - 0.5) * -1);
+      });
+      hero2.addEventListener('pointerleave', function () {
+        hero2.style.setProperty('--px', 0);
+        hero2.style.setProperty('--py', 0);
+      });
+    }
+
+    /* ── 36. CURSOR LANTERN (desktop) ── */
+    if (!reducedMotion && window.matchMedia('(hover: hover)').matches) {
+      var lc = document.createElement('div');
+      lc.className = 'lantern-cursor';
+      lc.style.opacity = '0';
+      document.body.appendChild(lc);
+      var lx = 0, ly = 0, tx = 0, ty = 0, seen = false;
+      document.addEventListener('pointermove', function (e) {
+        tx = e.clientX; ty = e.clientY;
+        if (!seen) { seen = true; lx = tx; ly = ty; lc.style.opacity = '1'; }
+      });
+      (function lantLoop() {
+        requestAnimationFrame(lantLoop);
+        lx += (tx - lx) * 0.18;
+        ly += (ty - ly) * 0.18;
+        lc.style.transform = 'translate3d(' + lx + 'px,' + ly + 'px,0)';
+      })();
+    }
+
+    /* ── 37. PAGE TRANSITION VEIL ── */
+    if (!reducedMotion) {
+      var veil = document.createElement('div');
+      veil.className = 'veil veil--boot';
+      document.body.appendChild(veil);
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) { veil.className = 'veil'; }
+      });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest ? e.target.closest('a[href]') : null;
+        if (!a) return;
+        var href = a.getAttribute('href');
+        if (!href || href.charAt(0) === '#' || a.target === '_blank' || a.hasAttribute('download')) return;
+        if (/^(mailto:|tel:|https?:\/\/)/i.test(href) && a.host !== location.host) return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        var samePageHash = href.indexOf('#') > -1 && href.split('#')[0] === location.pathname.split('/').pop();
+        if (samePageHash) return;
+        e.preventDefault();
+        veil.className = 'veil veil--in';
+        setTimeout(function () { location.href = href; }, 300);
+      });
+    }
+
+    /* ── 38. LANTERN INTRO BLOOM (home, once per session) ── */
+    if (document.querySelector('.hero') && !reducedMotion) {
+      var seenIntro = false;
+      try { seenIntro = sessionStorage.getItem('elder-intro') === '1'; } catch (e) {}
+      if (!seenIntro) {
+        var intro = document.createElement('div');
+        intro.className = 'lantern-intro';
+        document.body.appendChild(intro);
+        setTimeout(function () { intro.remove(); }, 1700);
+        try { sessionStorage.setItem('elder-intro', '1'); } catch (e) {}
+      }
+    }
   });
 
-  /* ── FLIP DELEGATION — document-level, cannot be broken by other features ── */
-  function elderFlip(card) {
-    var on = card.classList.toggle('flipped');
-    card.setAttribute('aria-pressed', String(on));
-  }
-  document.addEventListener('click', function (e) {
-    var card = e.target.closest ? e.target.closest('.threat-card--flip') : null;
-    if (card) elderFlip(card);
-  });
+  /* ── FLIP keyboard support (clicks are handled by inline onclick) ── */
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' && e.key !== ' ') return;
     var card = e.target.closest ? e.target.closest('.threat-card--flip') : null;
-    if (card) { e.preventDefault(); elderFlip(card); }
+    if (card) { e.preventDefault(); window.elderFlip(card); }
   });
 })();
