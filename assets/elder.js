@@ -630,15 +630,23 @@
       });
     }
 
-    /* ── 17. THREAT CARD FLIPS ── */
-    document.querySelectorAll('.threat-card--flip').forEach(function (card) {
-      function flip() {
-        var on = card.classList.toggle('flipped');
-        card.setAttribute('aria-pressed', String(on));
-      }
-      card.addEventListener('click', flip);
-      card.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+    /* ── 17. THREAT CARD FLIPS — height equalization (binding is delegated, see EOF) ── */
+    window.elderEqualizeFlips = function () {
+      document.querySelectorAll('.threat-card--flip').forEach(function (card) {
+        var inner = card.querySelector('.flip-inner');
+        var front = card.querySelector('.flip-front');
+        var back = card.querySelector('.flip-back');
+        if (!inner || !front || !back) return;
+        if (card.offsetParent === null) return; /* hidden tab panel — measure later */
+        var h = Math.max(front.scrollHeight, back.scrollHeight, 230);
+        inner.style.height = h + 'px';
+      });
+    };
+    window.elderEqualizeFlips();
+    window.addEventListener('resize', window.elderEqualizeFlips);
+    document.querySelectorAll('.threat-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        requestAnimationFrame(window.elderEqualizeFlips);
       });
     });
 
@@ -1153,5 +1161,40 @@
       def.querySelector('.defender__overlay-body').textContent = 'This game uses motion, which your system settings have turned off. The Real-or-Scam quiz above covers the same skills.';
       def.querySelector('.defender__start').style.display = 'none';
     }
+  });
+
+  /* ── MANIFESTO REVEAL (about founding principle) ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    var man = document.querySelector('.manifesto');
+    if (!man || !('IntersectionObserver' in window)) return;
+    var box = man.closest('.about-principle');
+    var text = man.dataset.manifesto || man.textContent;
+    var keywords = ['privilege.', 'right', 'generation."'];
+    var words = text.split(' ').map(function (w, i) {
+      var key = keywords.indexOf(w) > -1 ? ' word--key' : '';
+      return '<span class="word' + key + '" style="--wd:' + (i * 90) + 'ms">' + w + '</span>';
+    });
+    man.innerHTML = words.join(' ');
+    var mObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { box.classList.add('lit'); mObs.disconnect(); }
+      });
+    }, { threshold: 0.6 });
+    mObs.observe(box);
+  });
+
+  /* ── FLIP DELEGATION — document-level, cannot be broken by other features ── */
+  function elderFlip(card) {
+    var on = card.classList.toggle('flipped');
+    card.setAttribute('aria-pressed', String(on));
+  }
+  document.addEventListener('click', function (e) {
+    var card = e.target.closest ? e.target.closest('.threat-card--flip') : null;
+    if (card) elderFlip(card);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var card = e.target.closest ? e.target.closest('.threat-card--flip') : null;
+    if (card) { e.preventDefault(); elderFlip(card); }
   });
 })();
