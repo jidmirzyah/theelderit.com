@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#0D1F3C" />
   <title>FAQ — Honest Answers to Your Questions — The Elder IT</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D1F3C' rx='6'/><text x='16' y='22' text-anchor='middle' font-size='16' fill='%23C9973A' font-family='serif' font-weight='bold'>E</text></svg>" />
+  <link rel="stylesheet" href="assets/elder.css" />
   <style>
 /* ============================================
    THE ELDER IT — Main Stylesheet
@@ -1545,6 +1546,11 @@ a { color: inherit; text-decoration: none; }
 
 <section class="section">
   <div class="container">
+    <div class="faq-search fade-up">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" id="faq-search-input" placeholder="Type a question — e.g., pricing, setup fee, privacy…" aria-label="Search frequently asked questions" />
+    </div>
+
     <div class="faq-list">
 
       <div class="faq-item">
@@ -1554,7 +1560,7 @@ a { color: inherit; text-decoration: none; }
 
       <div class="faq-item">
         <button class="faq-question">Do you fix computers or sell devices?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
-        <div class="faq-answer"><p>No. We focus entirely on education, awareness, and guidance. We help you understand and protect yourself — we don't sell hardware and we don't manage IT infrastructure. If you need to buy something, we'll tell you what to look for so you can make your own informed decision.</p></div>
+        <div class="faq-answer"><p>We don't sell hardware, and we don't fix broken computers. For individuals and families, our focus is education, awareness, and guidance — you stay in control of your own devices. For businesses, our Professional and Managed AI plans do include managed infrastructure: audits, monitoring, and AI automation built and maintained by us. If you need to buy something, we'll tell you what to look for so you can make your own informed decision.</p></div>
       </div>
 
       <div class="faq-item">
@@ -1579,7 +1585,7 @@ a { color: inherit; text-decoration: none; }
 
       <div class="faq-item">
         <button class="faq-question">Do you work with businesses or organizations?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
-        <div class="faq-answer"><p>Yes — Elder IT offers dedicated business services across two tracks. Our <strong>Managed IT</strong> tier covers device and account security, staff awareness training, and quarterly reviews for small businesses. Our <strong>Managed AI Services</strong> tier builds and manages AI agents that handle lead response, client follow-up, and communication workflows — running on your own dedicated infrastructure, fully managed by us end to end. We currently serve realtors, trades, and professional services. <a href="plans.html#business" style="color:var(--navy);font-weight:600;">See Business Plans →</a></p></div>
+        <div class="faq-answer"><p>Yes — and there's a dedicated track for it. The <a href="plans.html#professional" style="color:var(--navy);font-weight:600;">Professional plan</a> ($199/mo) hardens your business footprint and primes it for automation, and our <a href="plans.html#business" style="color:var(--navy);font-weight:600;">Managed AI plans</a> build and run automated agents on your own isolated infrastructure. For community organizations and custom engagements, reach out at <a href="mailto:connect@theelderit.com" style="color:var(--navy);font-weight:600;">connect@theelderit.com</a> and we'll discuss.</p></div>
       </div>
 
       <div class="faq-item">
@@ -1587,7 +1593,28 @@ a { color: inherit; text-decoration: none; }
         <div class="faq-answer"><p>Yes. Incident guidance is part of what we do. If something has already happened — a scam, a compromised account, a suspicious call — we help you understand what occurred and what your next steps are. No judgment, no shame. It happens to people at every level of technical knowledge.</p></div>
       </div>
 
+      <div class="faq-item">
+        <button class="faq-question">How is membership priced?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
+        <div class="faq-answer"><p>Not by headcount. We price on two things: how complex your digital world is (one laptop vs. a smart home with a device in every room) and how much ongoing guidance you want (answers when you ask vs. priority response during a live crisis). That's why our home tiers are called Essential ($60/mo), Collaborative ($100/mo), and Sovereign ($150/mo) — they describe your environment, not your family size. All + HST.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">What is the Onboarding &amp; Setup Fee?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
+        <div class="faq-answer"><p>A one-time fee, equal to one month of your membership, charged only when you join. It covers the foundation work: your full audit, exposure cleanup, and initial hardening. So your first payment is $120 for Essential, $200 for Collaborative, or $300 for Sovereign (+ HST) — and every month after is just your regular membership.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Why do business plans have a 3-month minimum?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
+        <div class="faq-answer"><p>Because real value takes a full cycle. Three months gives us time to audit your devices properly, stand up monitoring and security, and test your actual use cases — and gives you time to see the results in your own operations. Anything shorter would be selling you a snapshot, not a service.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">What don't Managed AI prices include?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
+        <div class="faq-answer"><p>Usage costs. Your monthly plan covers the deployment, monitoring, security, and calibration of your AI infrastructure. Token consumption, LLM API calls, and transaction credits run on your actual usage and are metered separately — the same as with any AI service. We estimate your expected usage during setup so there are no surprises.</p></div>
+      </div>
+
     </div>
+    <div class="faq-noresults">No matches for that search. Try a different word — or just <a href="mailto:hello@theelderit.com">email us directly</a>.</div>
   </div>
 </section>
 
@@ -1608,6 +1635,10 @@ a { color: inherit; text-decoration: none; }
         <div class="footer__logo-name">The Elder <span>IT</span></div>
         <p class="footer__tagline">Digital Safety & Awareness for Every Generation.<br />Brantford, Ontario — Serving the GTA, Waterloo, and Niagara.</p>
         <p class="footer__differentiator">"We don't do it for you. We do it with you."</p>
+        <div class="footer__social">
+          <a href="https://x.com/theelderit" target="_blank" rel="noopener" aria-label="The Elder IT on X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+
       </div>
       <div>
         <div class="footer__heading">Navigate</div>
@@ -1794,5 +1825,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+<script src="assets/elder.js" defer></script>
 </body>
 </html>
