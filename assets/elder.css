@@ -477,7 +477,8 @@ html.text-lg .nav__logo-tagline { display: none; }
 }
 .scam-step__title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 10px; color: var(--white); }
 .scam-step__body { color: rgba(255,255,255,0.72); font-size: 0.95rem; line-height: 1.75; }
-.scam-sim__intro { text-align: center; max-width: 640px; margin: 0 auto 10px; padding: 0 24px; }
+.scam-sim__intro { text-align: left; max-width: 1140px; margin: 0 auto 10px; padding: 0 24px; }
+.scam-sim__intro p { max-width: 620px; }
 .scam-sim__intro .section__eyebrow { margin-bottom: 14px; }
 .scam-sim__intro h2 { color: var(--white); margin-bottom: 14px; }
 .scam-sim__intro p { color: rgba(255,255,255,0.68); }
@@ -1017,20 +1018,24 @@ html.text-lg .nav__logo-tagline { display: none; }
   min-height: 230px;
 }
 .threat-card--flip .flip-inner {
-  display: grid;
+  position: relative;
   width: 100%;
   min-height: 230px;
   transition: transform 0.6s cubic-bezier(0.4, 0.1, 0.2, 1);
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform;
 }
 .threat-card--flip.flipped .flip-inner { transform: rotateY(180deg); }
 .flip-front, .flip-back {
-  grid-area: 1 / 1;
+  position: absolute;
+  inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border-radius: var(--radius-lg);
   padding: 28px 24px;
 }
+.flip-front { transform: rotateY(0deg); }
 .flip-front {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
@@ -1123,19 +1128,19 @@ html.text-lg .nav__logo-tagline { display: none; }
 .journey__step.active { opacity: 1; }
 .journey__step.active .journey__dot { background: var(--gold); color: var(--navy); border-color: var(--gold); }
 
-/* ── FLOATING LANTERN ORBS (page headers) ── */
-.page-header { position: relative; overflow: hidden; }
-.page-header::before, .page-header::after {
+/* ── FLOATING LANTERN ORB (page headers) ──
+   Uses ::after only — the base stylesheet owns ::before. */
+.page-header::after {
   content: "";
   position: absolute;
+  width: 150px; height: 150px;
+  bottom: -40px; left: 10%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,151,58,0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(201,151,58,0.3), transparent 70%);
   filter: blur(6px);
   pointer-events: none;
-  animation: orbDrift 14s ease-in-out infinite alternate;
+  animation: orbDrift 16s ease-in-out infinite alternate;
 }
-.page-header::before { width: 220px; height: 220px; top: -60px; right: 8%; }
-.page-header::after  { width: 140px; height: 140px; bottom: -40px; left: 12%; animation-duration: 18s; animation-delay: -6s; }
 @keyframes orbDrift {
   from { transform: translate(0, 0) scale(1); }
   to   { transform: translate(-40px, 26px) scale(1.15); }
@@ -1144,7 +1149,7 @@ html.text-lg .nav__logo-tagline { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .plan-card--pro::before { animation: none; }
-  .page-header::before, .page-header::after { animation: none; }
+  .page-header::after { animation: none; }
   .plan-card:hover::after, .biz-plan-card:hover::after { animation: none; }
   .threat-card--flip .flip-inner { transition: none; }
 }
@@ -1228,12 +1233,11 @@ html.text-lg .nav__logo-tagline { display: none; }
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.35s ease;
 }
-.pillar__panel > * { overflow: hidden; }
+.pillar__wrap { overflow: hidden; min-height: 0; }
 .pillar.open .pillar__panel { grid-template-rows: 1fr; }
-.pillar__body { padding: 0 22px; font-size: 0.94rem; line-height: 1.75; }
-.pillar.open .pillar__body { padding-bottom: 6px; }
+.pillar__body { padding: 0 22px 6px; font-size: 0.94rem; line-height: 1.75; }
 .pillar__practice {
-  margin: 0 22px 20px;
+  margin: 8px 22px 20px;
   padding: 12px 16px;
   background: rgba(201,151,58,0.07);
   border-left: 3px solid var(--gold);
@@ -1242,7 +1246,6 @@ html.text-lg .nav__logo-tagline { display: none; }
   line-height: 1.65;
   color: var(--text-mid);
 }
-.pillar:not(.open) .pillar__body, .pillar:not(.open) .pillar__practice { margin-bottom: 0; padding-top: 0; padding-bottom: 0; }
 
 /* ── HERO CONSTELLATION (home) ── */
 .hero { position: relative; }
@@ -1385,4 +1388,134 @@ html.text-lg .nav__logo-tagline { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .hero__eyebrow, .hero__heading, .hero__body, .hero__actions { animation: none; }
   .mini-nav { transition: none; }
+}
+
+/* ============================================================
+   AGENT SHOWCASE — "What AI can be added" panel, visual pass
+   Dark navy tiles, gold circuitry, one signature motion per agent
+   ============================================================ */
+.addons-grid .addon-item {
+  position: relative;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-light) 100%) !important;
+  border: 1px solid rgba(201,151,58,0.3) !important;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.addons-grid .addon-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold) !important;
+  box-shadow: 0 14px 34px rgba(13,31,60,0.4);
+}
+/* scanning beam sweeps each tile on hover */
+.addons-grid .addon-item::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: -30%;
+  width: 18%;
+  background: linear-gradient(105deg, transparent, rgba(201,151,58,0.22), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+.addons-grid .addon-item:hover::before { animation: agentScan 0.8s ease forwards; }
+@keyframes agentScan { to { left: 120%; } }
+
+.addons-grid .addon-item__icon {
+  display: grid;
+  place-items: center;
+  width: 46px; height: 46px;
+  flex-shrink: 0;
+  background: rgba(201,151,58,0.12);
+  border: 1px solid rgba(201,151,58,0.4);
+  border-radius: 12px;
+  font-size: 1.25rem;
+  position: relative;
+}
+.addons-grid .addon-item__title { color: var(--gold-light); }
+.addons-grid .addon-item__body { color: rgba(255,255,255,0.72); }
+
+/* status LED on every agent chip */
+.addons-grid .addon-item__icon::after {
+  content: "";
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 0 rgba(201,151,58,0.6);
+  animation: agentLed 2.4s ease-out infinite;
+}
+@keyframes agentLed {
+  0% { box-shadow: 0 0 0 0 rgba(201,151,58,0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(201,151,58,0); }
+  100% { box-shadow: 0 0 0 0 rgba(201,151,58,0); }
+}
+
+/* one signature motion per agent, by position */
+.addons-grid .addon-item:nth-child(1):hover .addon-item__icon { animation: agentPing 0.55s ease; }      /* Lead Response — inbox ping */
+.addons-grid .addon-item:nth-child(2):hover .addon-item__icon { animation: agentSpin 0.7s ease; }       /* Nurture — cycle */
+.addons-grid .addon-item:nth-child(3):hover .addon-item__icon { animation: agentPop 0.5s ease; }        /* Package — unbox */
+.addons-grid .addon-item:nth-child(4):hover .addon-item__icon { animation: agentRing 0.6s ease; }       /* Post-call — ring */
+.addons-grid .addon-item:nth-child(5):hover .addon-item__icon { animation: agentSend 0.55s ease; }      /* Market update — send */
+.addons-grid .addon-item:nth-child(6):hover .addon-item__icon { animation: agentSparkle 0.7s ease; }    /* Review — shine */
+.addons-grid .addon-item:nth-child(7):hover .addon-item__icon { animation: agentPing 0.55s ease; }      /* Event — ping */
+.addons-grid .addon-item:nth-child(8):hover .addon-item__icon { animation: agentSparkle 0.9s ease; }    /* Many more — shimmer */
+
+@keyframes agentPing { 30% { transform: translateY(-7px); } 55% { transform: translateY(2px); } 100% { transform: none; } }
+@keyframes agentSpin { to { transform: rotate(360deg); } }
+@keyframes agentPop { 40% { transform: scale(1.25); } 100% { transform: none; } }
+@keyframes agentRing { 20% { transform: rotate(-14deg); } 40% { transform: rotate(12deg); } 60% { transform: rotate(-8deg); } 80% { transform: rotate(5deg); } 100% { transform: none; } }
+@keyframes agentSend { 45% { transform: translate(6px, -8px); opacity: 0.4; } 55% { transform: translate(-4px, 4px); opacity: 0.4; } 100% { transform: none; opacity: 1; } }
+@keyframes agentSparkle { 30% { transform: scale(1.2) rotate(8deg); filter: drop-shadow(0 0 8px rgba(224,176,90,0.9)); } 100% { transform: none; filter: none; } }
+
+/* staggered entrance when the panel opens */
+.addons-panel.open .addon-item { animation: agentIn 0.45s ease both; }
+.addons-panel.open .addon-item:nth-child(2) { animation-delay: 0.05s; }
+.addons-panel.open .addon-item:nth-child(3) { animation-delay: 0.1s; }
+.addons-panel.open .addon-item:nth-child(4) { animation-delay: 0.15s; }
+.addons-panel.open .addon-item:nth-child(5) { animation-delay: 0.2s; }
+.addons-panel.open .addon-item:nth-child(6) { animation-delay: 0.25s; }
+.addons-panel.open .addon-item:nth-child(7) { animation-delay: 0.3s; }
+.addons-panel.open .addon-item:nth-child(8) { animation-delay: 0.35s; }
+@keyframes agentIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+.addons-note { color: var(--text-mid); }
+
+@media (prefers-reduced-motion: reduce) {
+  .addons-grid .addon-item__icon::after { animation: none; }
+  .addons-grid .addon-item:hover .addon-item__icon { animation: none !important; }
+  .addons-panel.open .addon-item { animation: none; }
+  .addons-grid .addon-item:hover::before { animation: none; }
+}
+
+
+/* ── MANIFESTO REVEAL (about — the founding principle) ── */
+.about-principle { position: relative; overflow: hidden; }
+.about-principle::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -20%;
+  width: 40%; height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(201,151,58,0.12), transparent);
+  transform: skewX(-16deg) translateX(-120%);
+  pointer-events: none;
+}
+.about-principle.lit::before { animation: manifestoSweep 1.6s ease 0.2s forwards; }
+@keyframes manifestoSweep { to { transform: skewX(-16deg) translateX(420%); } }
+.manifesto .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  filter: blur(3px);
+  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+  transition-delay: var(--wd, 0ms);
+}
+.about-principle.lit .manifesto .word { opacity: 1; transform: none; filter: none; }
+.manifesto .word--key { color: var(--gold-light); }
+.about-principle__attr { display: inline-block; opacity: 0; transition: opacity 0.6s ease 1.4s; }
+.about-principle.lit .about-principle__attr { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .manifesto .word { opacity: 1; transform: none; filter: none; transition: none; }
+  .about-principle__attr { opacity: 1; transition: none; }
+  .about-principle.lit::before { animation: none; }
 }
