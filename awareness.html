@@ -1703,7 +1703,32 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
-<section class="section" id="protection-plan"><section class="section" id="protection-plan">
+<section class="section section--dark" id="inbox-defender-section">
+  <div class="container">
+    <span class="section__eyebrow">Arcade Mode</span>
+    <h2 class="section__heading" style="color:white;">Inbox Defender.</h2>
+    <p class="section__subheading">Messages are falling toward your inbox. <strong style="color:var(--gold-light);">Tap the scams to zap them</strong> — but let the real ones through. Three shields. It gets faster. Good luck.</p>
+
+    <div class="defender" id="inbox-defender">
+      <div class="defender__hud">
+        <div class="defender__stat">Score: <span class="defender__score">0</span></div>
+        <div class="defender__stat">Shields: <span class="defender__shields">🛡️🛡️🛡️</span></div>
+        <div class="defender__stat defender__best" style="display:none;">Best: <span class="defender__best-num">0</span></div>
+      </div>
+      <div class="defender__field" aria-label="Game field">
+        <div class="defender__overlay">
+          <p class="defender__overlay-title">Ready?</p>
+          <p class="defender__overlay-body">Zap the scams. Spare the real messages. Protect the inbox.</p>
+          <button type="button" class="btn btn--primary defender__start">Start Game</button>
+        </div>
+        <div class="defender__inbox" aria-hidden="true">📥 INBOX</div>
+      </div>
+      <p class="defender__note">Every "scam" in this game is modelled on a real pattern from the threats above. If you can zap it here, you can spot it in real life.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="protection-plan"><section class="section" id="protection-plan"><section class="section" id="protection-plan">
   <div class="container">
     <span class="section__eyebrow">Your Protection Plan</span>
     <h2 class="section__heading">Three steps anyone can take<br />starting today.</h2>
