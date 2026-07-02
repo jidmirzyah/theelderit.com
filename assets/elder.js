@@ -799,5 +799,359 @@
         jSteps.forEach(function (s) { jObs.observe(s); });
       }
     }
+
+    /* ── 22. FILTER CHIPS (services + FAQ) ── */
+    document.querySelectorAll('.svc-filter').forEach(function (bar) {
+      var chips2 = bar.querySelectorAll('.svc-chip');
+      var scope = bar.closest('.container') || document;
+      chips2.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips2.forEach(function (c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var f = chip.dataset.filter;
+          scope.querySelectorAll('[data-cat]').forEach(function (card) {
+            var show = f === 'all' || card.dataset.cat.split(' ').indexOf(f) > -1;
+            card.classList.toggle('svc-hide', !show);
+            if (show) {
+              card.classList.remove('svc-pop');
+              void card.offsetWidth;
+              card.classList.add('svc-pop');
+            }
+          });
+        });
+      });
+    });
+
+    /* ── 23. AI TERMINAL wake effect (services robot tile) ── */
+    var aiCard = null;
+    document.querySelectorAll('.service-card').forEach(function (c) {
+      if (c.textContent.indexOf('Managed AI Services') > -1) aiCard = c;
+    });
+    if (aiCard) {
+      var term = document.createElement('div');
+      term.className = 'ai-terminal';
+      term.setAttribute('aria-hidden', 'true');
+      term.innerHTML = '<span class="term-line">&gt; agents on standby<span class="cursor"></span></span>';
+      aiCard.appendChild(term);
+      var termLines = [
+        '> agent.wake()',
+        '> new lead detected — 11:42 PM',
+        '> reply drafted, sent in 4.2s',
+        '> follow-up scheduled: day 3',
+        '> your data boundary: sealed ✓'
+      ];
+      var termBusy = false;
+      function runTerminal() {
+        if (termBusy || reducedMotion) return;
+        termBusy = true;
+        term.innerHTML = '';
+        var li = 0;
+        function typeLine() {
+          if (li >= termLines.length) {
+            term.innerHTML += '<span class="cursor"></span>';
+            termBusy = false;
+            return;
+          }
+          var line = termLines[li];
+          var el = document.createElement('div');
+          term.appendChild(el);
+          var ci = 0;
+          var t = setInterval(function () {
+            ci++;
+            el.textContent = line.slice(0, ci);
+            if (ci >= line.length) {
+              clearInterval(t);
+              li++;
+              setTimeout(typeLine, 240);
+            }
+          }, 18);
+        }
+        typeLine();
+      }
+      aiCard.addEventListener('mouseenter', runTerminal);
+      aiCard.addEventListener('click', runTerminal);
+    }
+
+    /* ── 24. PILLARS ACCORDION (about) ── */
+    var pillarEls = document.querySelectorAll('.pillar');
+    if (pillarEls.length) {
+      pillarEls.forEach(function (pl) {
+        pl.querySelector('.pillar__head').addEventListener('click', function () {
+          var isOpen = pl.classList.contains('open');
+          pillarEls.forEach(function (o) {
+            o.classList.remove('open');
+            o.querySelector('.pillar__head').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            pl.classList.add('open');
+            pl.querySelector('.pillar__head').setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    }
+
+    /* ── 25. HERO CONSTELLATION (home) ── */
+    var hero = document.querySelector('.hero');
+    if (hero && !reducedMotion && window.matchMedia('(min-width: 760px)').matches) {
+      var net = document.createElement('canvas');
+      net.className = 'hero-net';
+      hero.prepend(net);
+      var nctx = net.getContext('2d');
+      var pts = [], mouse = { x: -9999, y: -9999 };
+      function sizeNet() {
+        net.width = hero.offsetWidth;
+        net.height = hero.offsetHeight;
+        var n = Math.min(70, Math.floor(net.width / 22));
+        pts = [];
+        for (var i = 0; i < n; i++) {
+          pts.push({ x: Math.random() * net.width, y: Math.random() * net.height,
+                     vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35 });
+        }
+      }
+      sizeNet();
+      window.addEventListener('resize', sizeNet);
+      hero.addEventListener('pointermove', function (e) {
+        var r = net.getBoundingClientRect();
+        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+      });
+      hero.addEventListener('pointerleave', function () { mouse.x = -9999; mouse.y = -9999; });
+      var netRaf;
+      function drawNet() {
+        netRaf = requestAnimationFrame(drawNet);
+        nctx.clearRect(0, 0, net.width, net.height);
+        pts.forEach(function (p) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > net.width) p.vx *= -1;
+          if (p.y < 0 || p.y > net.height) p.vy *= -1;
+          nctx.beginPath();
+          nctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+          nctx.fillStyle = 'rgba(201,151,58,0.7)';
+          nctx.fill();
+        });
+        for (var i = 0; i < pts.length; i++) {
+          for (var j = i + 1; j < pts.length; j++) {
+            var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+            var d = dx * dx + dy * dy;
+            if (d < 110 * 110) {
+              nctx.strokeStyle = 'rgba(201,151,58,' + (0.25 * (1 - d / 12100)) + ')';
+              nctx.lineWidth = 1;
+              nctx.beginPath(); nctx.moveTo(pts[i].x, pts[i].y); nctx.lineTo(pts[j].x, pts[j].y); nctx.stroke();
+            }
+          }
+          var mdx = pts[i].x - mouse.x, mdy = pts[i].y - mouse.y;
+          var md = mdx * mdx + mdy * mdy;
+          if (md < 150 * 150) {
+            nctx.strokeStyle = 'rgba(224,176,90,' + (0.45 * (1 - md / 22500)) + ')';
+            nctx.beginPath(); nctx.moveTo(pts[i].x, pts[i].y); nctx.lineTo(mouse.x, mouse.y); nctx.stroke();
+          }
+        }
+      }
+      var heroObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) netRaf = requestAnimationFrame(drawNet);
+          else cancelAnimationFrame(netRaf);
+        });
+      });
+      heroObs.observe(hero);
+    }
+
+    /* ── 26. PLANS STICKY MINI-NAV ── */
+    if (document.getElementById('residential') && document.getElementById('business')) {
+      var mini = document.createElement('nav');
+      mini.className = 'mini-nav';
+      mini.setAttribute('aria-label', 'Plan sections');
+      mini.innerHTML = '<div class="mini-nav__inner">' +
+        '<a href="#residential" data-sec="residential">Home &amp; Business</a>' +
+        '<a href="#business" data-sec="business">Managed AI</a>' +
+        '<a href="#tier-quiz" data-sec="tier-quiz">Find My Tier</a>' +
+        '</div>';
+      document.body.appendChild(mini);
+      window.addEventListener('scroll', function () {
+        mini.classList.toggle('show', window.scrollY > 620);
+      }, { passive: true });
+      var secs = ['residential', 'business', 'tier-quiz'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+      var miniLinks = mini.querySelectorAll('a');
+      if ('IntersectionObserver' in window) {
+        var secObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              miniLinks.forEach(function (a) {
+                a.classList.toggle('active', a.dataset.sec === e.target.id);
+              });
+            }
+          });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+        secs.forEach(function (sc) { secObs.observe(sc); });
+      }
+    }
+
+    /* ── 27. LIVE FRAUD-LOSS COUNTER (awareness) ── */
+    if (document.getElementById('scam-sim')) {
+      var ph = document.querySelector('.page-header .container');
+      if (ph) {
+        var lc = document.createElement('div');
+        lc.className = 'loss-counter';
+        lc.innerHTML = '<span class="loss-counter__num">$0</span>' +
+          '<span class="loss-counter__label">lost by Canadians to fraud since you opened this page</span>' +
+          '<span class="loss-counter__src">Estimate based on $2.7B+/yr reported — Canadian Anti-Fraud Centre, 2023</span>';
+        ph.appendChild(lc);
+        var numEl = lc.querySelector('.loss-counter__num');
+        var perSec = 2700000000 / (365 * 24 * 3600); // ≈ $85.6/s
+        var t0 = Date.now();
+        setInterval(function () {
+          var lost = ((Date.now() - t0) / 1000) * perSec;
+          numEl.textContent = '$' + Math.floor(lost).toLocaleString('en-CA');
+        }, 500);
+      }
+    }
+
+    /* ── 28. CONTACT FORM PROGRESS ── */
+    var bookingForm = document.getElementById('booking-form');
+    if (bookingForm) {
+      var reqFields = Array.prototype.slice.call(bookingForm.querySelectorAll('[required]'));
+      var prog = document.createElement('div');
+      prog.className = 'form-progress';
+      prog.innerHTML = '<div class="form-progress__label"><span>Your request</span><strong><span class="fp-count">0</span> of ' + reqFields.length + ' complete</strong></div>' +
+        '<div class="form-progress__track"><div class="form-progress__fill"></div></div>';
+      bookingForm.prepend(prog);
+      var fpCount = prog.querySelector('.fp-count');
+      var fpFill = prog.querySelector('.form-progress__fill');
+      function updateProg() {
+        var done = reqFields.filter(function (f) { return f.value && f.value.trim() !== ''; }).length;
+        fpCount.textContent = done;
+        fpFill.style.width = (done / reqFields.length * 100) + '%';
+      }
+      reqFields.forEach(function (f) {
+        f.addEventListener('input', updateProg);
+        f.addEventListener('change', updateProg);
+      });
+      updateProg();
+    }
+
+    /* ── 29. INBOX DEFENDER (awareness arcade) ── */
+    var def = document.getElementById('inbox-defender');
+    if (def && !reducedMotion) {
+      var field = def.querySelector('.defender__field');
+      var overlay = def.querySelector('.defender__overlay');
+      var oTitle = def.querySelector('.defender__overlay-title');
+      var oBody = def.querySelector('.defender__overlay-body');
+      var startBtn = def.querySelector('.defender__start');
+      var scoreEl = def.querySelector('.defender__score');
+      var shieldsEl = def.querySelector('.defender__shields');
+      var bestWrap = def.querySelector('.defender__best');
+      var bestEl = def.querySelector('.defender__best-num');
+      var scams = [
+        'You won a $500 gift card! Claim now',
+        'URGENT: verify your SIN today',
+        'Package held — pay $1.99 fee',
+        'Grandma, I need bail money. Don\u2019t tell mom',
+        'Your crypto doubles in 24h — act fast',
+        'Bank alert: click to unlock account',
+        'FINAL NOTICE: refund expires tonight'
+      ];
+      var legits = [
+        'Dentist: appt Tuesday 2:00 PM',
+        'Your 2FA code: 493 218 — never share',
+        'Library: your book is due Friday',
+        'Mom: call me when you\u2019re free',
+        'Pharmacy: prescription ready for pickup'
+      ];
+      var dScore, dShields, spawnTimer, moveRaf, speed, playing = false;
+      var best = 0;
+      try { best = parseInt(localStorage.getItem('elder-defender-best') || '0', 10); } catch (e) {}
+      if (best > 0) { bestWrap.style.display = ''; bestEl.textContent = best; }
+      function updateHud() {
+        scoreEl.textContent = dScore;
+        shieldsEl.textContent = dShields > 0 ? '\uD83D\uDEE1\uFE0F'.repeat(dShields) : '\u2014';
+      }
+      function spawn() {
+        if (!playing) return;
+        var isScam = Math.random() < 0.62;
+        var pool = isScam ? scams : legits;
+        var el = document.createElement('button');
+        el.type = 'button';
+        el.className = 'fall-msg';
+        el.textContent = pool[Math.floor(Math.random() * pool.length)];
+        el.dataset.scam = isScam ? '1' : '0';
+        el.style.left = Math.random() * (field.offsetWidth - 240) + 5 + 'px';
+        el.dataset.y = '-60';
+        el.dataset.v = String(speed * (0.85 + Math.random() * 0.4));
+        el.addEventListener('pointerdown', function () {
+          if (!playing || el.dataset.done) return;
+          el.dataset.done = '1';
+          if (el.dataset.scam === '1') {
+            dScore += 10;
+            el.classList.add('zapped');
+            el.innerHTML += '<span class="tag tag--hit">+10 scam zapped</span>';
+          } else {
+            dScore = Math.max(0, dScore - 5);
+            el.classList.add('wrong');
+            el.innerHTML += '<span class="tag tag--miss">\u22125 that one was real</span>';
+          }
+          updateHud();
+          setTimeout(function () { el.remove(); }, 400);
+        });
+        field.appendChild(el);
+        spawnTimer = setTimeout(spawn, Math.max(520, 1500 - dScore * 8));
+      }
+      function move() {
+        if (!playing) return;
+        moveRaf = requestAnimationFrame(move);
+        speed += 0.00035;
+        field.querySelectorAll('.fall-msg').forEach(function (el) {
+          if (el.dataset.done) return;
+          var y = parseFloat(el.dataset.y) + parseFloat(el.dataset.v);
+          el.dataset.y = String(y);
+          el.style.transform = 'translateY(' + y + 'px)';
+          if (y > field.offsetHeight - 30) {
+            el.dataset.done = '1';
+            var wasScam = el.dataset.scam === '1';
+            el.remove();
+            if (wasScam) {
+              dShields--;
+              field.classList.remove('defender__flash');
+              void field.offsetWidth;
+              field.classList.add('defender__flash');
+              updateHud();
+              if (dShields <= 0) gameOver();
+            } else {
+              dScore += 2;
+              updateHud();
+            }
+          }
+        });
+      }
+      function gameOver() {
+        playing = false;
+        def.classList.remove('playing');
+        clearTimeout(spawnTimer);
+        cancelAnimationFrame(moveRaf);
+        field.querySelectorAll('.fall-msg').forEach(function (el) { el.remove(); });
+        if (dScore > best) {
+          best = dScore;
+          try { localStorage.setItem('elder-defender-best', String(best)); } catch (e) {}
+        }
+        bestWrap.style.display = '';
+        bestEl.textContent = best;
+        oTitle.textContent = 'Inbox breached.';
+        oBody.textContent = 'Final score: ' + dScore + '. Every scam that slipped past you here slips past thousands of real inboxes daily. One more round?';
+        startBtn.textContent = 'Play Again';
+      }
+      startBtn.addEventListener('click', function () {
+        dScore = 0; dShields = 3; speed = 1.1;
+        updateHud();
+        playing = true;
+        def.classList.add('playing');
+        spawn();
+        moveRaf = requestAnimationFrame(move);
+      });
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden && playing) gameOver();
+      });
+    } else if (def && reducedMotion) {
+      def.querySelector('.defender__overlay-title').textContent = 'Arcade paused';
+      def.querySelector('.defender__overlay-body').textContent = 'This game uses motion, which your system settings have turned off. The Real-or-Scam quiz above covers the same skills.';
+      def.querySelector('.defender__start').style.display = 'none';
+    }
   });
 })();
