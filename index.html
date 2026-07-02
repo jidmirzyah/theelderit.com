@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#0D1F3C" />
   <title>Digital Safety for Every Generation — The Elder IT</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D1F3C' rx='6'/><text x='16' y='22' text-anchor='middle' font-size='16' fill='%23C9973A' font-family='serif' font-weight='bold'>E</text></svg>" />
+  <link rel="stylesheet" href="assets/elder.css" />
   <style>
 /* ============================================
    THE ELDER IT — Main Stylesheet
@@ -1554,12 +1555,12 @@ a { color: inherit; text-decoration: none; }
     </div>
     <div class="hero__stats" aria-label="Key statistics">
       <div class="hero__stat fade-up">
-        <div class="hero__stat-number">$2.7B+</div>
+        <div class="hero__stat-number" data-countup="2.7" data-decimals="1" data-prefix="$" data-suffix="B+">$2.7B+</div>
         <div class="hero__stat-label">Lost by Canadians to fraud in 2023</div>
         <div class="hero__stat-source">Canadian Anti-Fraud Centre</div>
       </div>
       <div class="hero__stat fade-up">
-        <div class="hero__stat-number">70%</div>
+        <div class="hero__stat-number" data-countup="70" data-suffix="%">70%</div>
         <div class="hero__stat-label">Of fraud victims first contacted by phone or text</div>
         <div class="hero__stat-source">CAFC Annual Report 2023</div>
       </div>
@@ -1569,7 +1570,7 @@ a { color: inherit; text-decoration: none; }
         <div class="hero__stat-source">MediaSmarts Canada 2023</div>
       </div>
       <div class="hero__stat fade-up">
-        <div class="hero__stat-number">58%</div>
+        <div class="hero__stat-number" data-countup="58" data-suffix="%">58%</div>
         <div class="hero__stat-label">Of Canadians 55+ targeted by phishing last year</div>
         <div class="hero__stat-source">Statistics Canada 2023</div>
       </div>
@@ -1583,6 +1584,15 @@ a { color: inherit; text-decoration: none; }
       "We don't do it for you.<br />We do it <em>with</em> you."
     </p>
     <span class="mission-banner__attr">The Elder IT — Core Principle</span>
+  </div>
+</div>
+
+<div class="tip-strip" role="region" aria-label="Rotating digital safety tips">
+  <div class="tip-strip__inner">
+    <span class="tip-strip__label">Safety Tip</span>
+    <p class="tip-strip__text" id="tip-text" aria-live="polite"></p>
+    <button type="button" class="tip-strip__btn" id="tip-prev" aria-label="Previous tip">&#8249;</button>
+    <button type="button" class="tip-strip__btn" id="tip-next" aria-label="Next tip">&#8250;</button>
   </div>
 </div>
 
@@ -1614,7 +1624,7 @@ a { color: inherit; text-decoration: none; }
       <a href="plans.html" class="home-card fade-up">
         <span class="home-card__icon">📋</span>
         <div class="home-card__title">Plans & Pricing</div>
-        <p class="home-card__body">Monthly memberships for individuals and families — plus managed AI services for small businesses. Transparent pricing, no surprises.</p>
+        <p class="home-card__body">Home memberships priced by complexity, not headcount — plus Professional and Managed AI plans for business. Transparent pricing, no surprises.</p>
         <span class="home-card__arrow">See plans →</span>
       </a>
       <a href="faq.html" class="home-card fade-up">
@@ -1629,6 +1639,36 @@ a { color: inherit; text-decoration: none; }
         <p class="home-card__body">Free, 30-minute call — by phone or video. No obligation. We'll figure out if we can help.</p>
         <span class="home-card__arrow">Get in touch →</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <span class="section__eyebrow">How Membership Works</span>
+    <h2 class="section__heading">Three steps. Zero jargon.</h2>
+    <p class="section__subheading">Every membership is priced on how complex your digital world is and how much guidance you want — never on how many people are in your house.</p>
+    <div class="how-grid">
+      <div class="how-step fade-up">
+        <div class="how-step__num">1</div>
+        <div class="how-step__title">We talk — free, 30 minutes</div>
+        <p class="how-step__body">A phone or video call, no obligation. We map your digital world together: devices, accounts, network, and what keeps you up at night.</p>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-step__num">2</div>
+        <div class="how-step__title">We build your foundation</div>
+        <p class="how-step__body">Onboarding starts with a full audit and hardening pass — done with you in the room, so you understand every change we make.</p>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-step__num">3</div>
+        <div class="how-step__title">We co-pilot, monthly</div>
+        <p class="how-step__body">Live sessions, threat briefings, and priority help when something goes wrong. You grow more capable every month — that's the point.</p>
+      </div>
+    </div>
+    <div class="teaser-chips fade-up">
+      <a class="teaser-chip" href="plans.html#residential">Home memberships from <span>$60/mo</span></a>
+      <a class="teaser-chip" href="plans.html#professional">Professional for business — <span>$199/mo</span></a>
+      <a class="teaser-chip" href="plans.html#business">Managed AI from <span>$249/mo</span></a>
     </div>
   </div>
 </section>
@@ -1651,6 +1691,10 @@ a { color: inherit; text-decoration: none; }
         <div class="footer__logo-name">The Elder <span>IT</span></div>
         <p class="footer__tagline">Digital Safety & Awareness for Every Generation.<br />Brantford, Ontario — Serving the GTA, Waterloo, and Niagara.</p>
         <p class="footer__differentiator">"We don't do it for you. We do it with you."</p>
+        <div class="footer__social">
+          <a href="https://x.com/theelderit" target="_blank" rel="noopener" aria-label="The Elder IT on X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+
       </div>
       <div>
         <div class="footer__heading">Navigate</div>
@@ -1837,5 +1881,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+<script src="assets/elder.js" defer></script>
 </body>
 </html>
