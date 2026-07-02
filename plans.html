@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Plans & Pricing — Monthly Digital Safety Memberships | The Elder IT" />
+  <meta name="description" content="Plans & Pricing — Home memberships (Essential, Collaborative, Sovereign), the Professional business plan, and Managed AI tiers | The Elder IT" />
   <meta name="theme-color" content="#0D1F3C" />
   <title>Plans & Pricing — Monthly Digital Safety Memberships — The Elder IT</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D1F3C' rx='6'/><text x='16' y='22' text-anchor='middle' font-size='16' fill='%23C9973A' font-family='serif' font-weight='bold'>E</text></svg>" />
+  <link rel="stylesheet" href="assets/elder.css" />
   <style>
 /* ============================================
    THE ELDER IT — Main Stylesheet
@@ -1997,7 +1998,7 @@ a { color: inherit; text-decoration: none; }
   <div class="container">
     <span class="page-header__eyebrow">Plans & Pricing</span>
     <h1 class="page-header__title">Ongoing protection,<br />not one-time fixes.</h1>
-    <p class="page-header__body">Monthly memberships that keep you covered with regular check-ins, hands-on sessions, and priority support when you need it most.</p>
+    <p class="page-header__body">Memberships priced on two things: how complex your digital world is, and how much guidance you want. For your home, your business, and the automation that comes next.</p>
   </div>
 </div>
 
@@ -2013,71 +2014,146 @@ a { color: inherit; text-decoration: none; }
       <a href="contact.html?topic=Community+workshop" class="btn btn--primary" style="white-space:nowrap; flex-shrink:0;">Book a Group Session Near You</a>
     </div>
 
-    <span class="section__eyebrow">Monthly Plans</span>
-    <h2 class="section__heading">Choose your level of coverage.</h2>
-    <p class="section__subheading">All plans include onboarding and monthly check-ins. All prices + Ontario HST (13%).</p>
+    <div style="text-align:center;">
+      <div class="audience-switch" role="group" aria-label="Choose plan audience">
+        <button class="audience-switch__btn active" data-target="#residential" type="button">For Your Home</button>
+        <button class="audience-switch__btn" data-target="#professional" type="button">For Your Business</button>
+        <button class="audience-switch__btn" data-target="#business" type="button">Managed AI</button>
+      </div>
+    </div>
+
+    <span class="section__eyebrow" id="residential">Home Memberships</span>
+    <h2 class="section__heading">Priced by complexity,<br />not headcount.</h2>
+    <p class="section__subheading">We don't count the people in your household. We look at two things: how complex your digital world is, and how much ongoing guidance you want. All prices + Ontario HST (13%).</p>
+
+    <div class="value-metric fade-up">
+      <div class="value-metric__item">
+        <div class="value-metric__label">Ecosystem Complexity</div>
+        <p class="value-metric__text">From <strong>a phone and a laptop</strong> to <strong>a smart home with a device in every room</strong> — the more surface area you have, the more there is to protect.</p>
+      </div>
+      <div class="value-metric__item">
+        <div class="value-metric__label">Depth of Guidance</div>
+        <p class="value-metric__text">From <strong>answers when you ask</strong> to <strong>priority response during a live crisis</strong> — you choose how closely we work together.</p>
+      </div>
+    </div>
 
     <div class="plans-grid">
       <div class="plan-card fade-up">
-        <div class="plan-card__name">Individual</div>
-        <div class="plan-card__price">$49<span>/mo</span></div>
-        <div class="plan-card__hst">+ HST · 1 named member</div>
+        <div class="plan-card__name">Essential</div>
+        <div class="plan-card__price">$60<span>/mo</span></div>
+        <div class="plan-card__hst">+ HST · $60 Onboarding &amp; Setup Fee (one-time)</div>
         <div class="plan-card__divider"></div>
         <ul class="plan-card__features">
-          <li class="plan-card__feature">Onboarding security audit (60 min, one-time)</li>
-          <li class="plan-card__feature">Monthly check-in call (30 min)</li>
-          <li class="plan-card__feature">One hands-on session per month (60 min)</li>
-          <li class="plan-card__feature">Unlimited scam & safety questions by text or email</li>
+          <li class="plan-card__feature">For one person, one ecosystem — or an urgent problem that needs fixing now</li>
+          <li class="plan-card__feature">Personal digital footprint audit &amp; exposure cleanup</li>
+          <li class="plan-card__feature">Device-level security hardening — system, browser, and email filters</li>
+          <li class="plan-card__feature">Core threat awareness training built on real, local scams</li>
+          <li class="plan-card__feature">Monthly Live Co-Pilot Session — hands-on, together</li>
+          <li class="plan-card__feature">Unlimited scam &amp; safety questions by text or email</li>
         </ul>
-        <a href="contact.html" class="btn btn--navy">Get Started</a>
+        <details class="fee-details"><summary>What's my first payment?</summary><p>Your first payment is $120 + HST ($60 membership + $60 one-time Onboarding &amp; Setup Fee). Every month after: $60 + HST.</p></details>
+        <a href="contact.html?topic=Membership+plan" class="btn btn--navy">Get Started</a>
       </div>
+
       <div class="plan-card fade-up">
-        <div class="plan-card__name">Family</div>
-        <div class="plan-card__price">$85<span>/mo</span></div>
-        <div class="plan-card__hst">+ HST · Up to 5 members</div>
+        <div class="plan-card__name">Collaborative</div>
+        <div class="plan-card__price">$100<span>/mo</span></div>
+        <div class="plan-card__hst">+ HST · $100 Onboarding &amp; Setup Fee (one-time)</div>
         <div class="plan-card__divider"></div>
         <ul class="plan-card__features">
-          <li class="plan-card__feature">Onboarding audit for all members (one-time)</li>
-          <li class="plan-card__feature">Monthly check-in call (45 min)</li>
-          <li class="plan-card__feature">Two hands-on sessions per month (60 min each)</li>
-          <li class="plan-card__feature">Parental controls & youth safety setup</li>
-          <li class="plan-card__feature">All members covered for questions & urgent support</li>
+          <li class="plan-card__feature">For multi-device households that want active protection and shared learning</li>
+          <li class="plan-card__feature">Full home infrastructure security verification — router, DNS-level ad &amp; malware blocking, guest network</li>
+          <li class="plan-card__feature">Co-managed parental controls &amp; youth safety — configured with you, so the mastery stays in your house</li>
+          <li class="plan-card__feature">Quarterly Family Threat Briefings on emerging regional scams</li>
+          <li class="plan-card__feature">Monthly Live Co-Pilot Sessions</li>
+          <li class="plan-card__feature">Everyone in the household covered for questions &amp; urgent support</li>
         </ul>
-        <a href="contact.html" class="btn btn--navy">Get Started</a>
+        <details class="fee-details"><summary>What's my first payment?</summary><p>Your first payment is $200 + HST ($100 membership + $100 one-time Onboarding &amp; Setup Fee). Every month after: $100 + HST.</p></details>
+        <a href="contact.html?topic=Membership+plan" class="btn btn--navy">Get Started</a>
       </div>
+
       <div class="plan-card plan-card--featured fade-up">
-        <div class="plan-card__name">Elder</div>
-        <div class="plan-card__price">$149<span>/mo</span></div>
-        <div class="plan-card__hst">+ HST · Up to 10 members</div>
+        <div class="plan-card__name">Sovereign</div>
+        <div class="plan-card__price">$150<span>/mo</span></div>
+        <div class="plan-card__hst">+ HST · $150 Onboarding &amp; Setup Fee (one-time)</div>
         <div class="plan-card__divider"></div>
         <ul class="plan-card__features">
-          <li class="plan-card__feature">Full onboarding audit for all named members</li>
-          <li class="plan-card__feature">Three hands-on sessions per month</li>
-          <li class="plan-card__feature">Members covered anywhere in Canada</li>
-          <li class="plan-card__feature">Priority urgent response — scam in progress, account locked</li>
+          <li class="plan-card__feature">For smart-home and IoT-heavy environments that demand total perimeter control</li>
+          <li class="plan-card__feature">Full IoT &amp; smart home ecosystem isolation — devices segmented away from your sensitive data</li>
+          <li class="plan-card__feature">Advanced infrastructure hardening — mesh optimization, encrypted DNS, secure local backups</li>
+          <li class="plan-card__feature">Priority urgent incident response — real-time help during live digital crises</li>
+          <li class="plan-card__feature">Monthly Live Co-Pilot Sessions</li>
+          <li class="plan-card__feature">Unlimited questions &amp; urgent support, household-wide</li>
         </ul>
-        <a href="contact.html" class="btn btn--primary">Get Started</a>
+        <details class="fee-details"><summary>What's my first payment?</summary><p>Your first payment is $300 + HST ($150 membership + $150 one-time Onboarding &amp; Setup Fee). Every month after: $150 + HST.</p></details>
+        <a href="contact.html?topic=Membership+plan" class="btn btn--primary">Get Started</a>
       </div>
-      <div class="plan-card fade-up">
-        <div class="plan-card__name">Solo Professional</div>
-        <div class="plan-card__price">$179<span>/mo</span></div>
+
+      <div class="plan-card plan-card--pro fade-up" id="professional">
+        <span class="plan-card__badge">For Businesses &amp; Sole Proprietors</span>
+        <div class="plan-card__name">Professional</div>
+        <div class="plan-card__price">$199<span>/mo</span></div>
         <div class="plan-card__hst">+ HST · 3-month minimum</div>
         <div class="plan-card__divider"></div>
         <ul class="plan-card__features">
-          <li class="plan-card__feature">For realtors, lawyers, sole proprietors</li>
-          <li class="plan-card__feature">Onboarding audit of all business devices & accounts</li>
-          <li class="plan-card__feature">Quarterly security review</li>
-          <li class="plan-card__feature">Staff awareness session per quarter (60 min)</li>
-          <li class="plan-card__feature">Priority contact for urgent business security issues</li>
+          <li class="plan-card__feature">For realtors, lawyers, contractors, and small businesses handling client data</li>
+          <li class="plan-card__feature">Commercial surface audit &amp; hardening across business devices, channels, and client-facing accounts</li>
+          <li class="plan-card__feature">Continuous infrastructure reviews — quarterly, against real exposure</li>
+          <li class="plan-card__feature">Team Threat Briefings — industry-tailored, quarterly</li>
+          <li class="plan-card__feature">Priority breach intervention during live incidents</li>
+          <li class="plan-card__feature">AI Architecture Readiness — your data boundary, primed for automation</li>
         </ul>
-        <a href="contact.html" class="btn btn--navy">Get Started</a>
+        <p class="pro-bridge">Looking to automate your workflows? Professional integrates seamlessly with our <a href="#business">Managed AI plans</a>.</p>
+        <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--primary">Get Started</a>
+      </div>
+    </div>
+
+    <p class="guardrail-note">Home memberships cover personal and household use. Running a business on your plan? That's exactly what <a href="#professional">Professional</a> is built for.</p>
+
+    <div class="compare-wrap fade-up">
+      <table class="compare" aria-label="Home membership comparison">
+        <thead>
+          <tr><th>What you get</th><th>Essential</th><th>Collaborative</th><th>Sovereign</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monthly price (+ HST)</td><td>$60</td><td>$100</td><td>$150</td></tr>
+          <tr><td>Onboarding &amp; Setup Fee (one-time)</td><td>$60</td><td>$100</td><td>$150</td></tr>
+          <tr><td>Footprint audit &amp; device hardening</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Monthly Live Co-Pilot Sessions</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Home network verification &amp; DNS-level blocking</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Co-managed parental controls &amp; youth safety</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Quarterly Family Threat Briefings</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>IoT &amp; smart home isolation</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+          <tr><td>Advanced hardening — mesh, encrypted DNS, backups</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+          <tr><td>Priority urgent incident response</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tier-quiz fade-up" id="tier-quiz">
+      <span class="tier-quiz__eyebrow">Not sure? 30 seconds.</span>
+      <div class="tier-quiz__title">Find your tier.</div>
+      <p class="tier-quiz__sub">Three questions. No email required. Just an honest answer.</p>
+      <div class="tier-quiz__live">
+        <div class="tier-quiz__question"></div>
+        <div class="tier-quiz__options"></div>
+        <div class="tier-quiz__progress"></div>
+      </div>
+      <div class="tier-quiz__result">
+        <span class="tier-quiz__eyebrow">Our recommendation</span>
+        <div class="tier-quiz__result-name"></div>
+        <p class="tier-quiz__result-body"></p>
+        <div class="tier-quiz__actions">
+          <a href="#residential" class="btn btn--primary tier-quiz__result-link">See the plan</a>
+          <button type="button" class="tier-quiz__restart">Start over</button>
+        </div>
       </div>
     </div>
 
     <div style="margin-top:48px; text-align:center; background:var(--off-white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px; max-width:700px; margin-left:auto; margin-right:auto;" class="fade-up">
       <p style="font-weight:600; color:var(--navy); margin-bottom:12px; font-size:1rem;">Need something once, not ongoing?</p>
-      <p style="font-size:0.875rem; margin-bottom:16px; color:var(--text-mid);">One-time services are available without a plan: device setup ($89), account recovery ($75/session), data transfer ($65), smart home setup ($125), and in-home family safety workshop ($120). All + HST.</p>
-      <a href="contact.html" class="btn btn--primary">Ask About One-Time Services</a>
+      <p style="font-size:0.875rem; margin-bottom:16px; color:var(--text-mid);">One-time services are available without a plan — for homes and businesses alike: device setup ($89), account recovery ($75/session), data transfer ($65), smart home setup ($125), and in-home family safety workshop ($120). All + HST. We don't manage anything afterward — but we do teach you while we're there. That's the principle.</p>
+      <a href="contact.html?topic=One-time+service" class="btn btn--primary">Ask About One-Time Services</a>
     </div>
 
   </div>
@@ -2143,8 +2219,8 @@ a { color: inherit; text-decoration: none; }
   <div class="container">
 
     <span class="section__eyebrow">Business &amp; AI Services</span>
-    <h2 class="section__heading">Managed AI, built around your business.</h2>
-    <p class="section__subheading">For realtors, trades, and professional services. All prices + Ontario HST (13%).</p>
+    <h2 class="section__heading">Managed AI, priced by scale.</h2>
+    <p class="section__subheading">You don't buy hours — you buy operational scale: how many automations run inside your boundary, and how much tuning keeps them sharp. All prices + Ontario HST (13%). 3-month minimum on all tiers.</p>
 
     <!-- Value anchor strip -->
     <div class="value-strip fade-up">
@@ -2174,87 +2250,130 @@ a { color: inherit; text-decoration: none; }
 
     <div class="biz-plans-grid">
 
-      <!-- Card 1: Managed IT -->
+      <!-- Tier 1: Starter -->
       <div class="biz-plan-card fade-up">
-        <span class="biz-plan-card__tier">Core</span>
-        <div class="biz-plan-card__name">Managed IT</div>
+        <span class="biz-plan-card__tier">Tier 1</span>
+        <div class="biz-plan-card__name">Starter</div>
         <div class="biz-plan-card__pricing">
-          <div class="biz-plan-card__monthly">$199<span>/mo</span></div>
+          <div class="biz-plan-card__setup">One-time setup: <strong>$1,000</strong></div>
+          <div class="biz-plan-card__monthly">$249<span>/mo</span></div>
           <div class="biz-plan-card__minimum">+ HST · 3-month minimum</div>
         </div>
         <ul class="biz-plan-card__features">
-          <li class="biz-plan-card__feature">Full device & account security audit</li>
-          <li class="biz-plan-card__feature">Quarterly security review</li>
-          <li class="biz-plan-card__feature">Staff awareness session per quarter</li>
-          <li class="biz-plan-card__feature">Priority support for urgent issues</li>
-          <li class="biz-plan-card__feature">Foundation for adding AI services</li>
-        </ul>
-        <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--navy">Get Started</a>
-      </div>
-
-      <!-- Card 2: Managed AI Starter (Featured) -->
-      <div class="biz-plan-card biz-plan-card--featured fade-up">
-        <span class="biz-plan-card__tier">Advanced</span>
-        <div class="biz-plan-card__name">Managed AI — Starter</div>
-        <div class="biz-plan-card__pricing">
-          <div class="biz-plan-card__setup">One-time setup: <strong>$1,200</strong></div>
-          <div class="biz-plan-card__monthly">$349<span>/mo</span></div>
-          <div class="biz-plan-card__minimum">+ HST · 3-month minimum</div>
-        </div>
-        <ul class="biz-plan-card__features">
-          <li class="biz-plan-card__feature">One dedicated AI agent, one workflow</li>
-          <li class="biz-plan-card__feature">Dedicated infrastructure — your data stays yours</li>
-          <li class="biz-plan-card__feature">Fully managed by Elder IT end-to-end</li>
-          <li class="biz-plan-card__feature">Agent improves with usage over time</li>
-          <li class="biz-plan-card__feature">Monthly performance check-in included</li>
-        </ul>
-        <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--primary">Inquire Now</a>
-      </div>
-
-      <!-- Card 3: Managed AI Growth -->
-      <div class="biz-plan-card fade-up">
-        <span class="biz-plan-card__tier">Elite</span>
-        <div class="biz-plan-card__name">Managed AI — Growth</div>
-        <div class="biz-plan-card__pricing">
-          <div class="biz-plan-card__setup">Setup: <strong>$1,500</strong> + $750/agent</div>
-          <div class="biz-plan-card__monthly">$549<span>/mo</span></div>
-          <div class="biz-plan-card__minimum">+ HST · 3-month minimum</div>
-        </div>
-        <ul class="biz-plan-card__features">
-          <li class="biz-plan-card__feature">Multiple agents, full automation stack</li>
-          <li class="biz-plan-card__feature">Active development — agents built as you grow</li>
-          <li class="biz-plan-card__feature">Dedicated infrastructure per client</li>
-          <li class="biz-plan-card__feature">Priority support & faster iteration</li>
-          <li class="biz-plan-card__feature">Strategic AI roadmap included</li>
+          <li class="biz-plan-card__feature">1 core automated workflow</li>
+          <li class="biz-plan-card__feature">Plug the one leak costing you the most — e.g., a Lead Response Agent answering inbound messages instantly</li>
+          <li class="biz-plan-card__feature">Complete architecture of a single-purpose agent container</li>
+          <li class="biz-plan-card__feature">Continuous agent health checks &amp; quarterly integrity reviews</li>
+          <li class="biz-plan-card__feature">Priority support for critical workflow interruptions</li>
         </ul>
         <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--navy">Inquire Now</a>
       </div>
 
-      <!-- Card 4: Enterprise -->
+      <!-- Tier 2: Starter Plus -->
       <div class="biz-plan-card fade-up">
-        <span class="biz-plan-card__tier">Enterprise</span>
+        <span class="biz-plan-card__tier">Tier 2</span>
+        <div class="biz-plan-card__name">Starter Plus</div>
+        <div class="biz-plan-card__pricing">
+          <div class="biz-plan-card__setup">One-time setup: <strong>$1,250</strong></div>
+          <div class="biz-plan-card__monthly">$349<span>/mo</span></div>
+          <div class="biz-plan-card__minimum">+ HST · 3-month minimum</div>
+        </div>
+        <ul class="biz-plan-card__features">
+          <li class="biz-plan-card__feature">2 core automated workflows</li>
+          <li class="biz-plan-card__feature">Pair complementary functions — e.g., Lead Response working in tandem with Post-Call Follow-Up</li>
+          <li class="biz-plan-card__feature">End-to-end multi-agent environment, synced to two business objectives</li>
+          <li class="biz-plan-card__feature">Dedicated environment monitoring &amp; quarterly integration updates</li>
+          <li class="biz-plan-card__feature">Fast-track priority engineering support</li>
+        </ul>
+        <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--navy">Inquire Now</a>
+      </div>
+
+      <!-- Tier 3: Growth (Featured) -->
+      <div class="biz-plan-card biz-plan-card--featured fade-up">
+        <span class="biz-plan-card__tier">Tier 3</span>
+        <div class="biz-plan-card__name">Growth</div>
+        <div class="biz-plan-card__pricing">
+          <div class="biz-plan-card__setup">Base setup: <strong>$1,500</strong> (covers 3 builds)</div>
+          <div class="biz-plan-card__monthly">$549<span>/mo</span></div>
+          <div class="biz-plan-card__minimum">+ HST · 3-month minimum · up to 6 automations</div>
+        </div>
+        <ul class="biz-plan-card__features">
+          <li class="biz-plan-card__feature">Up to 6 core automated workflows</li>
+          <li class="biz-plan-card__feature">Automate the full customer lifecycle — Lead Response, Nurture, Service Package, Event Follow-Up</li>
+          <li class="biz-plan-card__feature">Base setup covers 3 builds · additional automations $500 each</li>
+          <li class="biz-plan-card__feature">High-velocity environment auditing &amp; quarterly drift calibrations</li>
+          <li class="biz-plan-card__feature">Continuous optimization of your data perimeter</li>
+        </ul>
+        <div class="auto-calc" data-base="1500" data-included="3" data-cap="6" data-monthly="549">
+          <div class="auto-calc__label">Estimate your setup</div>
+          <div class="auto-calc__row">
+            <button type="button" class="auto-calc__btn" data-dir="minus" aria-label="Fewer automations">−</button>
+            <span class="auto-calc__count">3</span>
+            <span style="font-size:0.8rem;">automations at launch</span>
+            <button type="button" class="auto-calc__btn" data-dir="plus" aria-label="More automations">+</button>
+          </div>
+          <div class="auto-calc__out"></div>
+        </div>
+        <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--primary">Inquire Now</a>
+      </div>
+
+      <!-- Tier 4: Max -->
+      <div class="biz-plan-card fade-up">
+        <span class="biz-plan-card__tier">Tier 4</span>
+        <div class="biz-plan-card__name">Max</div>
+        <div class="biz-plan-card__pricing">
+          <div class="biz-plan-card__setup">Base setup: <strong>$1,750</strong> (covers 4 builds)</div>
+          <div class="biz-plan-card__monthly">$749<span>/mo</span></div>
+          <div class="biz-plan-card__minimum">+ HST · 3-month minimum · up to 10 automations</div>
+        </div>
+        <ul class="biz-plan-card__features">
+          <li class="biz-plan-card__feature">Up to 10 core automated workflows</li>
+          <li class="biz-plan-card__feature">For established SMBs running multiple departments or high-volume service delivery</li>
+          <li class="biz-plan-card__feature">Base setup covers 4 builds · additional automations $500 each</li>
+          <li class="biz-plan-card__feature">Comprehensive infrastructure oversight &amp; prompt-drift adjustments</li>
+          <li class="biz-plan-card__feature">Zero-latency technical response windows</li>
+        </ul>
+        <div class="auto-calc" data-base="1750" data-included="4" data-cap="10" data-monthly="749">
+          <div class="auto-calc__label">Estimate your setup</div>
+          <div class="auto-calc__row">
+            <button type="button" class="auto-calc__btn" data-dir="minus" aria-label="Fewer automations">−</button>
+            <span class="auto-calc__count">4</span>
+            <span style="font-size:0.8rem;">automations at launch</span>
+            <button type="button" class="auto-calc__btn" data-dir="plus" aria-label="More automations">+</button>
+          </div>
+          <div class="auto-calc__out"></div>
+        </div>
+        <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--navy">Inquire Now</a>
+      </div>
+
+      <!-- Tier 5: Custom -->
+      <div class="biz-plan-card fade-up">
+        <span class="biz-plan-card__tier">Tier 5</span>
         <div class="biz-plan-card__name">Custom</div>
         <div class="biz-plan-card__pricing">
           <div class="biz-plan-card__quote">Quote</div>
-          <div class="biz-plan-card__minimum">Multi-workflow · Complex builds</div>
+          <div class="biz-plan-card__minimum">10–100 automations · Scoped per engagement</div>
         </div>
         <ul class="biz-plan-card__features">
-          <li class="biz-plan-card__feature">Multi-workflow, complex integrations</li>
-          <li class="biz-plan-card__feature">Dedicated account management</li>
-          <li class="biz-plan-card__feature">Custom data boundary agreements</li>
-          <li class="biz-plan-card__feature">Scoped per engagement</li>
+          <li class="biz-plan-card__feature">For medium enterprises, larger local corporations, and multi-venture operators</li>
+          <li class="biz-plan-card__feature">Bespoke multi-tenant architecture</li>
+          <li class="biz-plan-card__feature">Complex third-party API integrations</li>
+          <li class="biz-plan-card__feature">Custom data boundary isolation agreements</li>
+          <li class="biz-plan-card__feature">Dedicated account management &amp; lifecycle reviews</li>
         </ul>
         <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--navy">Contact Us</a>
       </div>
 
     </div><!-- /biz-plans-grid -->
 
+    <p style="text-align:center; font-size:0.85rem; color:var(--text-mid); margin-top:26px;" class="fade-up">What counts as one automation? <strong style="color:var(--navy);">One input channel → one processing logic → one target system.</strong> Multi-channel setups (e.g., Instagram DMs + web forms + voicemail) use multiple slots within your plan's capacity — we scope this with you before anything is built.</p>
+
     <!-- Usage / token disclaimer -->
     <div class="usage-note fade-up">
       <div class="usage-note__icon">💡</div>
       <div>
         <div class="usage-note__title">A note on usage costs</div>
-        <p class="usage-note__body">Monthly pricing covers building, managing, and maintaining your AI infrastructure. It does not include AI usage costs — the tokens and credits your agents consume as they run. These are billed separately and depend on your workflow's volume, the same as with any AI service. We'll estimate your expected usage during setup so there are no surprises.</p>
+        <p class="usage-note__body">Monthly membership covers the deployment, monitoring, security, and manual calibration of your AI infrastructure. Token consumption, LLM API calls, and transaction credits run on your actual usage and are metered separately. We estimate your expected usage during setup so there are no surprises.</p>
       </div>
     </div>
 
@@ -2322,7 +2441,7 @@ a { color: inherit; text-decoration: none; }
           </div>
         </div>
       </div>
-      <p class="addons-note">Each agent is a separate build ($750/agent on Growth). Pricing and availability are discussed during your consultation — we scope what fits your workflow before building anything.</p>
+      <p class="addons-note">Growth and Max include 3 and 4 builds in their base setup; additional automations are $500 each, up to your plan's capacity. Everything is scoped with you during consultation — nothing gets built before it fits your workflow.</p>
     </div>
 
     <!-- Differentiator callout -->
@@ -2349,6 +2468,10 @@ a { color: inherit; text-decoration: none; }
         <div class="footer__logo-name">The Elder <span>IT</span></div>
         <p class="footer__tagline">Digital Safety & Awareness for Every Generation.<br />Brantford, Ontario — Serving the GTA, Waterloo, and Niagara.</p>
         <p class="footer__differentiator">"We don't do it for you. We do it with you."</p>
+        <div class="footer__social">
+          <a href="https://x.com/theelderit" target="_blank" rel="noopener" aria-label="The Elder IT on X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+
       </div>
       <div>
         <div class="footer__heading">Navigate</div>
@@ -2549,5 +2672,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+<script src="assets/elder.js" defer></script>
 </body>
 </html>
