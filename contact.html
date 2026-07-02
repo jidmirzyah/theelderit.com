@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#0D1F3C" />
   <title>Book a Free Consultation — The Elder IT — The Elder IT</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D1F3C' rx='6'/><text x='16' y='22' text-anchor='middle' font-size='16' fill='%23C9973A' font-family='serif' font-weight='bold'>E</text></svg>" />
+  <link rel="stylesheet" href="assets/elder.css" />
   <style>
 /* ============================================
    THE ELDER IT — Main Stylesheet
@@ -1578,6 +1579,13 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <div class="booking-form">
+        <div class="topic-chips" role="group" aria-label="Quick topic selection">
+          <button type="button" class="topic-chip" data-topic="Membership plan">Home membership</button>
+          <button type="button" class="topic-chip" data-topic="Business AI Services inquiry">Business &amp; AI</button>
+          <button type="button" class="topic-chip" data-topic="One-time service">One-time service</button>
+          <button type="button" class="topic-chip" data-topic="Scam or fraud concern">Something happened</button>
+          <button type="button" class="topic-chip" data-topic="Community workshop">Community workshop</button>
+        </div>
         <form id="booking-form" action="https://formspree.io/f/xvzjgobn" method="POST">
           <input type="hidden" name="_subject" value="New consultation request — The Elder IT" />
           <div class="form-row">
@@ -1616,6 +1624,7 @@ a { color: inherit; text-decoration: none; }
               <option value="Family safety">Family safety & parental controls</option>
               <option value="Youth online safety">Youth online safety</option>
               <option value="Membership plan">Membership plan information</option>
+              <option value="One-time service">One-time service (setup, recovery, transfer)</option>
               <option value="Business AI Services inquiry">Business AI Services inquiry</option>
               <option value="Community workshop">Community workshop or seminar</option>
               <option value="General inquiry">General inquiry</option>
@@ -1647,6 +1656,10 @@ a { color: inherit; text-decoration: none; }
         <div class="footer__logo-name">The Elder <span>IT</span></div>
         <p class="footer__tagline">Digital Safety & Awareness for Every Generation.<br />Brantford, Ontario — Serving the GTA, Waterloo, and Niagara.</p>
         <p class="footer__differentiator">"We don't do it for you. We do it with you."</p>
+        <div class="footer__social">
+          <a href="https://x.com/theelderit" target="_blank" rel="noopener" aria-label="The Elder IT on X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+
       </div>
       <div>
         <div class="footer__heading">Navigate</div>
@@ -1848,5 +1861,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+<script src="assets/elder.js" defer></script>
 </body>
 </html>
