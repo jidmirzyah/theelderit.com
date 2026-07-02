@@ -2318,7 +2318,8 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <!-- Tier 4: Max -->
-      <div class="biz-plan-card fade-up">
+      <div class="biz-plan-card biz-plan-card--max fade-up">
+        <span class="biz-plan-card__flag">Flagship</span>
         <span class="biz-plan-card__tier">Tier 4</span>
         <div class="biz-plan-card__name">Max</div>
         <div class="biz-plan-card__pricing">
@@ -2347,21 +2348,18 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <!-- Tier 5: Custom -->
-      <div class="biz-plan-card biz-plan-card--custom fade-up">
-        <span class="biz-plan-card__tier">Tier 5</span>
-        <div class="biz-plan-card__name">Custom</div>
-        <div class="biz-plan-card__pricing">
-          <div class="biz-plan-card__quote">Quote</div>
-          <div class="biz-plan-card__minimum">10–100 automations · Scoped per engagement</div>
+      <div class="biz-plan-card--custom fade-up" id="custom-tier">
+        <span class="custom__corner custom__corner--tl" aria-hidden="true"></span>
+        <span class="custom__corner custom__corner--tr" aria-hidden="true"></span>
+        <span class="custom__corner custom__corner--bl" aria-hidden="true"></span>
+        <span class="custom__corner custom__corner--br" aria-hidden="true"></span>
+        <div class="custom__inner">
+          <span class="custom__eyebrow">Tier 5 · Built to Order</span>
+          <h3 class="custom__title">Beyond tiers.</h3>
+          <p class="custom__line">For medium enterprises, franchises, and operators running more than one venture — we don't fit you into a package. We architect around your operation: ten to one hundred automations, engineered inside your own boundary.</p>
+          <div class="custom__specs">Multi-tenant architecture&ensp;·&ensp;Complex API integrations&ensp;·&ensp;Custom data boundary agreements&ensp;·&ensp;Dedicated account management</div>
+          <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--primary">Design My Build →</a>
         </div>
-        <ul class="biz-plan-card__features">
-          <li class="biz-plan-card__feature">Medium enterprises &amp; multi-venture operators</li>
-          <li class="biz-plan-card__feature">Bespoke multi-tenant architecture</li>
-          <li class="biz-plan-card__feature">Complex API integrations</li>
-          <li class="biz-plan-card__feature">Custom data boundary agreements</li>
-          <li class="biz-plan-card__feature">Dedicated account management</li>
-        </ul>
-        <a href="contact.html?topic=Business+AI+Services+inquiry" class="btn btn--navy">Contact Us</a>
       </div>
 
     </div><!-- /biz-plans-grid -->
