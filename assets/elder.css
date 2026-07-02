@@ -1,0 +1,685 @@
+/* ============================================================
+   THE ELDER IT — Enhancement Layer
+   Shared across all pages. Loads after the base inline styles.
+   Concept: "The Lantern" — gold light guiding through the dark.
+   ============================================================ */
+
+/* ── ACCESSIBILITY FOUNDATIONS ── */
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 16px;
+  z-index: 3000;
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: 0 0 8px 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; }
+
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection { background: var(--gold); color: var(--navy); }
+
+/* Custom scrollbar (WebKit + Firefox) */
+html { scrollbar-color: var(--gold) var(--navy); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 100px; border: 2px solid var(--navy); }
+
+/* Larger-text mode — toggled from the nav "Aa" control */
+html.text-lg { font-size: 118%; }
+html.text-lg .nav__logo-tagline { display: none; }
+
+/* ── READING PROGRESS BAR ── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  z-index: 2500;
+  pointer-events: none;
+}
+
+/* ── TEXT SIZE TOGGLE (injected into nav) ── */
+.nav__textsize {
+  border: 1px solid rgba(201,151,58,0.5);
+  background: transparent;
+  color: var(--gold);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, color 0.2s;
+  margin-left: 12px;
+  white-space: nowrap;
+}
+.nav__textsize:hover { background: var(--gold); color: var(--navy); }
+.nav__textsize .big { font-size: 1rem; }
+@media (max-width: 900px) { .nav__textsize { margin-left: auto; margin-right: 12px; } }
+
+/* ── BACK TO TOP — the lantern ── */
+.to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,151,58,0.55);
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 1.25rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s, box-shadow 0.3s;
+  z-index: 2000;
+  box-shadow: 0 6px 20px rgba(13,31,60,0.35);
+}
+.to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.to-top:hover { box-shadow: 0 0 0 6px rgba(201,151,58,0.18), 0 6px 24px rgba(13,31,60,0.4); }
+
+/* ── LANTERN GLOW — pointer-tracked card illumination ── */
+.lantern {
+  position: relative;
+  overflow: hidden;
+}
+.lantern::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(220px circle at var(--lx, 50%) var(--ly, 50%),
+              rgba(201,151,58,0.16), transparent 65%);
+}
+.lantern:hover::after { opacity: 1; }
+
+/* ── STAGGERED REVEALS ── */
+.fade-up { transition-delay: var(--stagger, 0ms); }
+
+/* ── ROTATING SAFETY TIP STRIP (home) ── */
+.tip-strip {
+  background: var(--navy);
+  border-top: 1px solid rgba(201,151,58,0.25);
+  border-bottom: 1px solid rgba(201,151,58,0.25);
+  padding: 18px 0;
+}
+.tip-strip__inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.tip-strip__label {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,151,58,0.45);
+  border-radius: 100px;
+  padding: 5px 12px;
+}
+.tip-strip__text {
+  color: rgba(255,255,255,0.88);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  min-height: 1.5em;
+  flex: 1;
+}
+.tip-strip__text strong { color: var(--gold-light); font-weight: 600; }
+.tip-strip__btn {
+  flex-shrink: 0;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.tip-strip__btn:hover { border-color: var(--gold); color: var(--gold); }
+@media (max-width: 640px) { .tip-strip__label { display: none; } }
+
+/* ── HOW MEMBERSHIP WORKS (home) ── */
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.how-step {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 34px 30px;
+}
+.how-step__num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.how-step__title { font-weight: 600; color: var(--navy); font-size: 1.08rem; margin-bottom: 8px; }
+.how-step__body { font-size: 0.92rem; line-height: 1.7; }
+@media (max-width: 860px) { .how-grid { grid-template-columns: 1fr; } }
+
+/* Pricing teaser chips (home) */
+.teaser-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.teaser-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(201,151,58,0.45);
+  border-radius: 100px;
+  padding: 9px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: rgba(201,151,58,0.06);
+  transition: background 0.2s, transform 0.2s;
+}
+.teaser-chip:hover { background: rgba(201,151,58,0.16); transform: translateY(-2px); }
+.teaser-chip span { color: var(--gold); }
+
+/* ── AUDIENCE SWITCHER (plans) ── */
+.audience-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 5px;
+  background: var(--white);
+  gap: 4px;
+  margin-bottom: 42px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+.audience-switch__btn {
+  border: none;
+  background: transparent;
+  border-radius: 100px;
+  padding: 11px 26px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.audience-switch__btn.active { background: var(--navy); color: var(--gold-light); }
+
+/* Value-metric explainer */
+.value-metric {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 0 0 48px;
+}
+.value-metric__item {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  background: var(--white);
+  padding: 22px 24px;
+}
+.value-metric__label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+}
+.value-metric__text { font-size: 0.92rem; color: var(--text-mid); line-height: 1.65; }
+.value-metric__text strong { color: var(--navy); }
+@media (max-width: 720px) { .value-metric { grid-template-columns: 1fr; } }
+
+/* Onboarding-fee expander inside plan cards */
+.fee-details { margin: 14px 0 4px; }
+.fee-details summary {
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fee-details summary::-webkit-details-marker { display: none; }
+.fee-details summary::after { content: "+"; font-weight: 700; }
+.fee-details[open] summary::after { content: "–"; }
+.fee-details p {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-mid);
+  background: rgba(201,151,58,0.07);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+.plan-card--featured .fee-details p { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); }
+.plan-card--pro .fee-details p { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); }
+
+/* Professional card — color-differentiated business tier in the main layout */
+.plan-card--pro {
+  background: linear-gradient(155deg, var(--navy) 0%, var(--navy-light) 100%);
+  border: 1px solid rgba(201,151,58,0.55);
+}
+.plan-card--pro .plan-card__name,
+.plan-card--pro .plan-card__price { color: var(--gold-light); }
+.plan-card--pro .plan-card__hst { color: rgba(255,255,255,0.65); }
+.plan-card--pro .plan-card__feature { color: rgba(255,255,255,0.85); }
+.plan-card--pro .plan-card__divider { background: rgba(201,151,58,0.35); }
+.plan-card__badge {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold);
+  border-radius: 100px;
+  padding: 5px 12px;
+  margin-bottom: 14px;
+}
+.pro-bridge {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.75);
+  border-top: 1px dashed rgba(201,151,58,0.4);
+  padding-top: 12px;
+}
+.pro-bridge a { color: var(--gold-light); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Residential guardrail note */
+.guardrail-note {
+  margin-top: 26px;
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  text-align: center;
+}
+.guardrail-note a { color: var(--gold); font-weight: 600; }
+
+/* ── TIER FINDER QUIZ (plans) ── */
+.tier-quiz {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px;
+  margin: 56px 0 8px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.tier-quiz::before {
+  content: "";
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,151,58,0.22), transparent 70%);
+  pointer-events: none;
+}
+.tier-quiz__eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 10px;
+}
+.tier-quiz__title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 6px; color: var(--white); }
+.tier-quiz__sub { color: rgba(255,255,255,0.65); font-size: 0.92rem; margin-bottom: 26px; }
+.tier-quiz__question { font-weight: 600; font-size: 1.05rem; margin-bottom: 16px; color: var(--gold-light); min-height: 1.4em; }
+.tier-quiz__options { display: flex; flex-wrap: wrap; gap: 12px; }
+.tier-quiz__opt {
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.05);
+  color: var(--white);
+  border-radius: 100px;
+  padding: 12px 22px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.tier-quiz__opt:hover { border-color: var(--gold); background: rgba(201,151,58,0.14); transform: translateY(-2px); }
+.tier-quiz__progress { margin-top: 22px; font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+.tier-quiz__result { display: none; }
+.tier-quiz.done .tier-quiz__live { display: none; }
+.tier-quiz.done .tier-quiz__result { display: block; }
+.tier-quiz__result-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900; color: var(--gold-light); margin: 4px 0 10px;
+}
+.tier-quiz__result-body { color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.7; max-width: 560px; margin-bottom: 22px; }
+.tier-quiz__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.tier-quiz__restart {
+  background: transparent; border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.8); border-radius: 100px; padding: 12px 24px;
+  font-family: 'Inter', sans-serif; font-size: 0.9rem; cursor: pointer;
+}
+.tier-quiz__restart:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── AUTOMATION CALCULATOR (AI cards) ── */
+.auto-calc {
+  margin: 16px 0 6px;
+  background: rgba(201,151,58,0.07);
+  border: 1px solid rgba(201,151,58,0.25);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.biz-plan-card--featured .auto-calc { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.2); }
+.auto-calc__label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.auto-calc__row { display: flex; align-items: center; gap: 14px; }
+.auto-calc__btn {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: transparent; color: var(--gold);
+  font-size: 1.1rem; font-weight: 700; cursor: pointer; line-height: 1;
+  transition: background 0.2s, color 0.2s;
+}
+.auto-calc__btn:hover:not(:disabled) { background: var(--gold); color: var(--navy); }
+.auto-calc__btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.auto-calc__count { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; min-width: 2ch; text-align: center; }
+.auto-calc__out { margin-top: 10px; font-size: 0.83rem; line-height: 1.55; }
+.auto-calc__out strong { font-weight: 700; }
+
+/* ── SCAM SIMULATION SCROLLY (awareness) ── */
+.scam-sim {
+  background: linear-gradient(180deg, var(--navy) 0%, #0a1830 100%);
+  padding: 96px 0;
+  color: var(--white);
+}
+.scam-sim__grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 64px;
+  align-items: start;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.scam-sim__sticky { position: sticky; top: 110px; }
+.phone {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  background: #10192b;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 34px;
+  padding: 18px 16px 26px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 0 6px rgba(255,255,255,0.03);
+}
+.phone__notch { width: 90px; height: 5px; border-radius: 100px; background: rgba(255,255,255,0.2); margin: 0 auto 14px; }
+.phone__header {
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+.phone__sender { font-weight: 600; font-size: 0.95rem; }
+.phone__number { font-size: 0.72rem; color: rgba(255,255,255,0.45); margin-top: 2px; }
+.phone__thread { display: flex; flex-direction: column; gap: 10px; min-height: 330px; }
+.msg {
+  max-width: 88%;
+  border-radius: 16px;
+  padding: 11px 14px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.msg.show { opacity: 1; transform: translateY(0); }
+.msg--in { background: #1e2c46; border-bottom-left-radius: 4px; align-self: flex-start; }
+.msg--out { background: var(--gold); color: var(--navy); font-weight: 500; border-bottom-right-radius: 4px; align-self: flex-end; }
+.msg--in .fake-link { color: #6ea8ff; text-decoration: underline; word-break: break-all; }
+.msg--alert {
+  align-self: center;
+  background: rgba(201,151,58,0.14);
+  border: 1px solid rgba(201,151,58,0.5);
+  color: var(--gold-light);
+  font-weight: 600;
+  text-align: center;
+  max-width: 100%;
+}
+.scam-sim__steps { display: flex; flex-direction: column; gap: 42vh; padding: 12vh 0 20vh; }
+.scam-step {
+  border-left: 2px solid rgba(201,151,58,0.35);
+  padding-left: 26px;
+  opacity: 0.32;
+  transition: opacity 0.4s ease;
+  max-width: 520px;
+}
+.scam-step.active { opacity: 1; }
+.scam-step__flag {
+  display: inline-block;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--navy);
+  background: var(--gold); border-radius: 100px;
+  padding: 4px 12px; margin-bottom: 12px;
+}
+.scam-step__title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 10px; color: var(--white); }
+.scam-step__body { color: rgba(255,255,255,0.72); font-size: 0.95rem; line-height: 1.75; }
+.scam-sim__intro { text-align: center; max-width: 640px; margin: 0 auto 10px; padding: 0 24px; }
+.scam-sim__intro .section__eyebrow { margin-bottom: 14px; }
+.scam-sim__intro h2 { color: var(--white); margin-bottom: 14px; }
+.scam-sim__intro p { color: rgba(255,255,255,0.68); }
+@media (max-width: 900px) {
+  .scam-sim__grid { grid-template-columns: 1fr; gap: 40px; }
+  .scam-sim__sticky { position: sticky; top: 84px; z-index: 5; }
+  .phone { max-width: 300px; }
+  .phone__thread { min-height: 280px; }
+  .scam-sim__steps { gap: 30vh; }
+}
+
+/* ── SPOT THE RED FLAGS GAME (awareness) ── */
+.flag-game { max-width: 900px; margin: 0 auto; }
+.fake-email {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 14px 40px var(--shadow);
+}
+.fake-email__bar {
+  background: var(--off-white);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex; gap: 8px;
+}
+.fake-email__dot { width: 11px; height: 11px; border-radius: 50%; background: var(--border); }
+.fake-email__head { padding: 20px 26px 14px; border-bottom: 1px solid var(--border); }
+.fake-email__row { font-size: 0.88rem; margin-bottom: 6px; color: var(--text-mid); }
+.fake-email__row strong { color: var(--text-dark); font-weight: 600; }
+.fake-email__body { padding: 24px 26px 30px; font-size: 0.94rem; line-height: 1.8; color: var(--text-dark); }
+.fake-email__body p { margin-bottom: 14px; color: var(--text-dark); }
+.flag-spot {
+  background: none; border: none; padding: 0 2px;
+  font: inherit; color: inherit; cursor: pointer;
+  border-bottom: 2px dotted transparent;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+.flag-spot:hover { background: rgba(201,151,58,0.14); border-bottom-color: var(--gold); }
+.flag-spot.found {
+  background: rgba(201,151,58,0.22);
+  border-bottom: 2px solid var(--gold);
+  font-weight: 600;
+  cursor: default;
+}
+.flag-game__hud {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin: 22px 0 14px; flex-wrap: wrap;
+}
+.flag-game__score { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.flag-game__score span { color: var(--gold); }
+.flag-game__reset {
+  border: 1px solid var(--border); background: var(--white);
+  border-radius: 100px; padding: 10px 22px;
+  font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600;
+  color: var(--text-mid); cursor: pointer; transition: border-color 0.2s, color 0.2s;
+}
+.flag-game__reset:hover { border-color: var(--gold); color: var(--gold); }
+.flag-game__found { display: flex; flex-direction: column; gap: 10px; }
+.flag-game__item {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius); padding: 14px 16px;
+  font-size: 0.88rem; line-height: 1.6; color: var(--text-mid);
+  animation: flagIn 0.4s ease;
+}
+.flag-game__item strong { color: var(--navy); }
+@keyframes flagIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.flag-game__win {
+  display: none;
+  margin-top: 18px;
+  background: var(--navy); color: var(--gold-light);
+  border-radius: var(--radius-lg); padding: 22px 26px;
+  font-weight: 600; text-align: center; line-height: 1.6;
+}
+.flag-game.complete .flag-game__win { display: block; animation: flagIn 0.5s ease; }
+
+/* ── ONCE vs ONGOING STRIP (services) ── */
+.once-vs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  max-width: 980px; margin: 0 auto;
+}
+.once-vs__col {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 30px;
+  background: var(--white);
+}
+.once-vs__col--member { background: var(--navy); border-color: rgba(201,151,58,0.45); }
+.once-vs__tag {
+  display: inline-block; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid rgba(201,151,58,0.5);
+  border-radius: 100px; padding: 4px 12px; margin-bottom: 14px;
+}
+.once-vs__title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.once-vs__col--member .once-vs__title { color: var(--white); }
+.once-vs__body { font-size: 0.92rem; line-height: 1.75; }
+.once-vs__col--member .once-vs__body { color: rgba(255,255,255,0.75); }
+@media (max-width: 800px) { .once-vs { grid-template-columns: 1fr; } }
+
+.service-card__book {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px; font-size: 0.82rem; font-weight: 600; color: var(--gold);
+}
+.service-card__book:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── FAQ SEARCH ── */
+.faq-search { position: relative; max-width: 560px; margin: 0 0 36px; }
+.faq-search input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 15px 22px 15px 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.faq-search input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 4px rgba(201,151,58,0.14); }
+.faq-search svg { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-light); }
+.faq-noresults {
+  display: none;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 30px; text-align: center;
+  color: var(--text-mid); font-size: 0.95rem;
+}
+.faq-noresults a { color: var(--gold); font-weight: 600; }
+
+/* ── CONTACT TOPIC CHIPS ── */
+.topic-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.topic-chip {
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 100px;
+  padding: 10px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.topic-chip:hover { border-color: var(--gold); color: var(--gold); }
+.topic-chip.active { background: var(--navy); border-color: var(--navy); color: var(--gold-light); }
+
+/* ── ENGAGEMENT TIMELINE (about) ── */
+.journey { max-width: 760px; margin: 0 auto; position: relative; }
+.journey::before {
+  content: "";
+  position: absolute; left: 25px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold), rgba(201,151,58,0.15));
+}
+.journey__step { display: flex; gap: 28px; padding: 22px 0; position: relative; }
+.journey__dot {
+  flex-shrink: 0;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--navy); color: var(--gold);
+  display: grid; place-items: center;
+  font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem;
+  border: 1px solid rgba(201,151,58,0.5);
+  z-index: 1;
+}
+.journey__title { font-weight: 600; color: var(--navy); font-size: 1.05rem; margin-bottom: 6px; }
+.journey__body { font-size: 0.92rem; line-height: 1.7; color: var(--text-mid); }
+
+/* ── COMPARISON TABLE (plans, consumer) ── */
+.compare-wrap { overflow-x: auto; margin-top: 52px; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+.compare { width: 100%; border-collapse: collapse; min-width: 660px; background: var(--white); }
+.compare th, .compare td { padding: 15px 18px; text-align: left; font-size: 0.88rem; border-bottom: 1px solid var(--border); }
+.compare thead th {
+  background: var(--navy); color: var(--gold-light);
+  font-family: 'Playfair Display', serif; font-size: 1rem;
+  position: sticky; top: 0;
+}
+.compare thead th:first-child { color: rgba(255,255,255,0.6); font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.compare tbody tr:last-child td { border-bottom: none; }
+.compare tbody td:first-child { font-weight: 600; color: var(--navy); }
+.compare .yes { color: var(--gold); font-weight: 700; }
+.compare .no { color: var(--text-light); }
+
+/* ── FOOTER POLISH ── */
+.footer__social { display: flex; gap: 12px; margin-top: 18px; }
+.footer__social a {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: grid; place-items: center;
+  color: rgba(255,255,255,0.7);
+  transition: border-color 0.2s, color 0.2s;
+}
+.footer__social a:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+  .msg { opacity: 1; transform: none; }
+  .scam-step { opacity: 1; }
+  .fade-up { opacity: 1 !important; transform: none !important; }
+}
