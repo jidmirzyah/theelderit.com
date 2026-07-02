@@ -1546,6 +1546,14 @@ a { color: inherit; text-decoration: none; }
 
 <section class="section">
   <div class="container">
+    <div class="svc-filter" role="group" aria-label="Filter questions by topic" style="margin-bottom:24px;">
+      <button type="button" class="svc-chip active" data-filter="all">All</button>
+      <button type="button" class="svc-chip" data-filter="started">Getting Started</button>
+      <button type="button" class="svc-chip" data-filter="pricing">Pricing</button>
+      <button type="button" class="svc-chip" data-filter="privacy">Privacy</button>
+      <button type="button" class="svc-chip" data-filter="business">Business &amp; AI</button>
+    </div>
+
     <div class="faq-search fade-up">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="search" id="faq-search-input" placeholder="Type a question — e.g., pricing, setup fee, privacy…" aria-label="Search frequently asked questions" />
@@ -1553,62 +1561,62 @@ a { color: inherit; text-decoration: none; }
 
     <div class="faq-list">
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="started">
         <button class="faq-question">What does The Elder IT actually do?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>We educate and support individuals, families, and communities on digital safety — in plain language, at every age. Our sessions cover everything from scam recognition to device setup to parental controls. The goal is always that you walk away knowing more than when you came in.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="started">
         <button class="faq-question">Do you fix computers or sell devices?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>We don't sell hardware, and we don't fix broken computers. For individuals and families, our focus is education, awareness, and guidance — you stay in control of your own devices. For businesses, our Professional and Managed AI plans do include managed infrastructure: audits, monitoring, and AI automation built and maintained by us. If you need to buy something, we'll tell you what to look for so you can make your own informed decision.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="started">
         <button class="faq-question">How do I become a member?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>Book a free 30-minute call — by phone or video. We'll talk about what you need, answer your questions, and figure out if there's a good fit. If there is, we set everything up for you as part of onboarding. You don't fill out forms or create accounts on your own — we do that together.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="started">
         <button class="faq-question">Is the consultation really free?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>Yes. No catch. Every new client relationship starts with a free 30-minute call — by phone or video. There's no obligation to sign up for anything afterward.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="started">
         <button class="faq-question">What areas do you serve?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>In-person services cover the Greater Toronto Area, the Waterloo/Brantford corridor (including London and Cambridge), and the Niagara Region (St. Catharines, Niagara Falls, Thorold). Remote sessions by video call are available anywhere — just ask.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="privacy">
         <button class="faq-question">How do you protect my privacy?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>We store only what's necessary: your name, contact information, and payment details. We never collect or store your passwords or credentials — ever. During sessions, any browsing is done in private/incognito mode. Everything is completed within the session — nothing is retained afterward. Your information is never shared or sold.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="business">
         <button class="faq-question">Do you work with businesses or organizations?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>Yes — and there's a dedicated track for it. The <a href="plans.html#professional" style="color:var(--navy);font-weight:600;">Professional plan</a> ($199/mo) hardens your business footprint and primes it for automation, and our <a href="plans.html#business" style="color:var(--navy);font-weight:600;">Managed AI plans</a> build and run automated agents on your own isolated infrastructure. For community organizations and custom engagements, reach out at <a href="mailto:connect@theelderit.com" style="color:var(--navy);font-weight:600;">connect@theelderit.com</a> and we'll discuss.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="started">
         <button class="faq-question">I already got scammed. Can you still help?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>Yes. Incident guidance is part of what we do. If something has already happened — a scam, a compromised account, a suspicious call — we help you understand what occurred and what your next steps are. No judgment, no shame. It happens to people at every level of technical knowledge.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="pricing">
         <button class="faq-question">How is membership priced?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>Not by headcount. We price on two things: how complex your digital world is (one laptop vs. a smart home with a device in every room) and how much ongoing guidance you want (answers when you ask vs. priority response during a live crisis). That's why our home tiers are called Essential ($60/mo), Collaborative ($100/mo), and Sovereign ($150/mo) — they describe your environment, not your family size. All + HST.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="pricing">
         <button class="faq-question">What is the Onboarding &amp; Setup Fee?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>A one-time fee, equal to one month of your membership, charged only when you join. It covers the foundation work: your full audit, exposure cleanup, and initial hardening. So your first payment is $120 for Essential, $200 for Collaborative, or $300 for Sovereign (+ HST) — and every month after is just your regular membership.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="business">
         <button class="faq-question">Why do business plans have a 3-month minimum?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>Because real value takes a full cycle. Three months gives us time to audit your devices properly, stand up monitoring and security, and test your actual use cases — and gives you time to see the results in your own operations. Anything shorter would be selling you a snapshot, not a service.</p></div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" data-cat="business">
         <button class="faq-question">What don't Managed AI prices include?<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="4" x2="10" y2="16"/><line x1="4" y1="10" x2="16" y2="10"/></svg></button>
         <div class="faq-answer"><p>Usage costs. Your monthly plan covers the deployment, monitoring, security, and calibration of your AI infrastructure. Token consumption, LLM API calls, and transaction credits run on your actual usage and are metered separately — the same as with any AI service. We estimate your expected usage during setup so there are no surprises.</p></div>
       </div>
