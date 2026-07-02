@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#0D1F3C" />
   <title>Threat Awareness — Scams, Fraud & Warning Signs — The Elder IT</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230D1F3C' rx='6'/><text x='16' y='22' text-anchor='middle' font-size='16' fill='%23C9973A' font-family='serif' font-weight='bold'>E</text></svg>" />
+  <link rel="stylesheet" href="assets/elder.css" />
   <style>
 /* ============================================
    THE ELDER IT — Main Stylesheet
@@ -1543,6 +1544,59 @@ a { color: inherit; text-decoration: none; }
   </div>
 </div>
 
+<section class="scam-sim" id="scam-sim" aria-label="Interactive scam demonstration">
+  <div class="scam-sim__intro">
+    <span class="section__eyebrow">Watch It Happen</span>
+    <h2>This is a real scam.<br />Scroll through it.</h2>
+    <p>The messages below are modelled on the CRA text scam circulating across Ontario. As you scroll, watch how it unfolds — and learn the exact moments where it gives itself away.</p>
+  </div>
+  <div class="scam-sim__grid">
+    <div class="scam-sim__sticky">
+      <div class="phone" role="img" aria-label="A simulated text message conversation showing a CRA refund scam">
+        <div class="phone__notch"></div>
+        <div class="phone__header">
+          <div class="phone__sender">CRA-Refund</div>
+          <div class="phone__number">+1 (365) 555-0132 · Unknown sender</div>
+        </div>
+        <div class="phone__thread">
+          <div class="msg msg--in" data-step="0">Canada Revenue Agency: You have a pending refund of <strong>$483.20</strong>. Claim within 24 hours: <span class="fake-link">cra-refund–secure.info/claim</span></div>
+          <div class="msg msg--in" data-step="1">FINAL NOTICE: Unclaimed refunds are cancelled TODAY. Act immediately to avoid forfeiture.</div>
+          <div class="msg msg--out" data-step="2">Is this real?</div>
+          <div class="msg msg--in" data-step="3">Yes. To release your funds, verify your identity: reply with your SIN and online banking login.</div>
+          <div class="msg msg--alert" data-step="4">⚠ STOP. This is the moment people lose everything.</div>
+        </div>
+      </div>
+    </div>
+    <div class="scam-sim__steps">
+      <div class="scam-step">
+        <span class="scam-step__flag">Red flag № 1</span>
+        <div class="scam-step__title">The CRA doesn't text refund links.</div>
+        <p class="scam-step__body">Look closely at that link — it isn't cra.gc.ca. Scammers register lookalike domains that feel official at a glance. The government never sends money links by text. Not once. Not ever.</p>
+      </div>
+      <div class="scam-step">
+        <span class="scam-step__flag">Red flag № 2</span>
+        <div class="scam-step__title">Urgency is the weapon.</div>
+        <p class="scam-step__body">"FINAL NOTICE." "TODAY." "Immediately." Pressure is designed to switch off the part of your brain that asks questions. Real institutions always give you time to think and verify.</p>
+      </div>
+      <div class="scam-step">
+        <span class="scam-step__flag">The hook</span>
+        <div class="scam-step__title">Asking is smart. Asking <em>them</em> isn't.</div>
+        <p class="scam-step__body">Replying "is this real?" tells the scammer your number is live — and that you're engaging. If you want to verify something, contact the organization directly through a number or website you already know.</p>
+      </div>
+      <div class="scam-step">
+        <span class="scam-step__flag">Red flag № 3</span>
+        <div class="scam-step__title">Nobody legitimate asks for your SIN by text.</div>
+        <p class="scam-step__body">Your SIN and banking login are the keys to your identity. No government agency, bank, or company will ever ask for them in a message. A request like this is the scam declaring itself.</p>
+      </div>
+      <div class="scam-step">
+        <span class="scam-step__flag">The defence</span>
+        <div class="scam-step__title">Pause. Verify. Then decide.</div>
+        <p class="scam-step__body">That's the whole skill. Every scam — phone, text, email, AI voice — collapses when you take one breath and verify through a channel you trust. The threats below all follow the same playbook. Now you know how to read it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section section--dark">
   <div class="container">
     <span class="section__eyebrow">What You're Up Against</span>
@@ -1586,6 +1640,37 @@ a { color: inherit; text-decoration: none; }
       <div class="warning-item"><div class="warning-item__number">4</div><div><div class="warning-item__title">Gift Cards or Wire Transfers</div><p class="warning-item__body">No government agency, bank, or legitimate company ever asks for payment via gift cards or wire transfer. Ever. Full stop.</p></div></div>
       <div class="warning-item"><div class="warning-item__number">5</div><div><div class="warning-item__title">Too Good or Too Alarming</div><p class="warning-item__body">Incredible prizes, urgent threats, or emergency family calls designed to panic you into acting fast. Emotion is the weapon — awareness is the defence.</p></div></div>
       <div class="warning-item"><div class="warning-item__number">6</div><div><div class="warning-item__title">Moving to a Private Platform</div><p class="warning-item__body">Someone asking to move from a public chat to WhatsApp, Telegram, or text is a red flag — especially if you don't know them well.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="flag-game-section">
+  <div class="container">
+    <span class="section__eyebrow">Test Yourself</span>
+    <h2 class="section__heading">Spot the red flags.</h2>
+    <p class="section__subheading">Below is a fake email — the kind that lands in Ontario inboxes every day. Tap or click everything that looks suspicious. There are five red flags hiding in plain sight.</p>
+
+    <div class="flag-game" id="flag-game">
+      <div class="fake-email" role="group" aria-label="Simulated phishing email — find the red flags">
+        <div class="fake-email__bar"><span class="fake-email__dot"></span><span class="fake-email__dot"></span><span class="fake-email__dot"></span></div>
+        <div class="fake-email__head">
+          <div class="fake-email__row"><strong>From:</strong> Amazon Security &lt;<button type="button" class="flag-spot" data-flag="Fake sender address" data-why="Look at the domain: amaz0n-support.co uses a zero instead of an 'o' and isn't amazon.ca or amazon.com. Always read the part after the @.">security@amaz0n-support.co</button>&gt;</div>
+          <div class="fake-email__row"><strong>Subject:</strong> <button type="button" class="flag-spot" data-flag="Manufactured urgency" data-why="ALL CAPS, 'URGENT', a suspension threat — pressure exists to stop you from thinking. Real companies don't shout.">URGENT: Your account will be SUSPENDED in 2 hours</button></div>
+        </div>
+        <div class="fake-email__body">
+          <p><button type="button" class="flag-spot" data-flag="Generic greeting" data-why="Amazon knows your name. 'Dear Valued Customer' means a mass-mailed scam that doesn't know who you are.">Dear Valued Customer,</button></p>
+          <p>We detected unusual activity on your account. To avoid permanent suspension, verify your identity immediately by clicking the secure link below:</p>
+          <p><button type="button" class="flag-spot" data-flag="Mismatched link" data-why="The text says amazon.com — but the real destination shown underneath is amaz0n-verify.co. Always check where a link actually goes before clicking.">www.amazon.com/verify<br /><span style="font-size:0.75rem; color:var(--text-light);">actual destination: http://amaz0n-verify.co/a8x2</span></button></p>
+          <p>If verification fails, you may restore access by purchasing <button type="button" class="flag-spot" data-flag="Gift card demand" data-why="The single loudest alarm bell that exists. No legitimate company accepts gift cards as payment or verification. This is always — always — a scam.">two $100 Amazon gift cards</button> and replying with the codes.</p>
+          <p>Thank you,<br />Amazon Security Team</p>
+        </div>
+      </div>
+      <div class="flag-game__hud">
+        <div class="flag-game__score">Found: <span>0 of 5</span></div>
+        <button type="button" class="flag-game__reset">Reset</button>
+      </div>
+      <div class="flag-game__found" aria-live="polite"></div>
+      <div class="flag-game__win">You found all five. That instinct — pausing, reading closely, questioning — is the entire defence. Share this page with someone who needs it.</div>
     </div>
   </div>
 </section>
@@ -1641,6 +1726,10 @@ a { color: inherit; text-decoration: none; }
         <div class="footer__logo-name">The Elder <span>IT</span></div>
         <p class="footer__tagline">Digital Safety & Awareness for Every Generation.<br />Brantford, Ontario — Serving the GTA, Waterloo, and Niagara.</p>
         <p class="footer__differentiator">"We don't do it for you. We do it with you."</p>
+        <div class="footer__social">
+          <a href="https://x.com/theelderit" target="_blank" rel="noopener" aria-label="The Elder IT on X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+
       </div>
       <div>
         <div class="footer__heading">Navigate</div>
@@ -1827,5 +1916,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+<script src="assets/elder.js" defer></script>
 </body>
 </html>
