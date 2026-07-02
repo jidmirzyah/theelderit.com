@@ -1673,6 +1673,69 @@ a { color: inherit; text-decoration: none; }
   </div>
 </section>
 
+<section class="house-section" id="guarded-house">
+  <div class="container">
+    <span class="section__eyebrow">One Home, Every Generation</span>
+    <h2 class="section__heading" style="color:white;">Four windows. Four lives.<br />One lantern over the door.</h2>
+    <p class="section__subheading" style="color:rgba(255,255,255,0.65);">Every lit window is a person — and a threat aimed straight at them. Tap a window to see who's inside, what's hunting them, and how we stand guard.</p>
+
+    <div class="house">
+      <div class="house__scene" aria-hidden="false">
+        <svg class="house__svg" viewBox="0 0 640 460" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <!-- stars -->
+          <circle class="star s1" cx="60" cy="50" r="1.8" /><circle class="star s2" cx="150" cy="90" r="1.4" />
+          <circle class="star s3" cx="250" cy="40" r="1.6" /><circle class="star s4" cx="420" cy="70" r="1.5" />
+          <circle class="star s5" cx="520" cy="45" r="1.8" /><circle class="star s2" cx="590" cy="110" r="1.3" />
+          <circle class="star s3" cx="340" cy="30" r="1.4" /><circle class="star s1" cx="480" cy="120" r="1.2" />
+          <!-- moon -->
+          <circle cx="565" cy="70" r="26" fill="rgba(224,176,90,0.16)" />
+          <circle cx="565" cy="70" r="18" fill="rgba(224,176,90,0.28)" />
+          <!-- ground -->
+          <line x1="20" y1="420" x2="620" y2="420" stroke="rgba(201,151,58,0.4)" stroke-width="2" />
+          <!-- house body -->
+          <rect x="150" y="200" width="340" height="220" fill="rgba(13,31,60,0.6)" stroke="#C9973A" stroke-width="2" />
+          <!-- roof -->
+          <polygon points="130,200 320,90 510,200" fill="rgba(13,31,60,0.85)" stroke="#C9973A" stroke-width="2" />
+          <!-- chimney + smoke -->
+          <rect x="420" y="115" width="26" height="60" fill="rgba(13,31,60,0.85)" stroke="#C9973A" stroke-width="2" />
+          <circle class="smoke k1" cx="433" cy="105" r="5" /><circle class="smoke k2" cx="438" cy="88" r="7" /><circle class="smoke k3" cx="430" cy="68" r="9" />
+          <!-- door + lantern -->
+          <rect x="298" y="340" width="46" height="80" rx="3" fill="rgba(201,151,58,0.15)" stroke="#C9973A" stroke-width="2" />
+          <circle cx="334" cy="382" r="3" fill="#C9973A" />
+          <line x1="278" y1="330" x2="278" y2="344" stroke="#C9973A" stroke-width="2" />
+          <circle class="lantern-glow" cx="278" cy="352" r="8" />
+          <!-- windows (art only — buttons overlay) -->
+          <rect class="win" id="win-art-1" x="185" y="235" width="70" height="62" rx="4" />
+          <rect class="win" id="win-art-2" x="385" y="235" width="70" height="62" rx="4" />
+          <rect class="win" id="win-art-3" x="185" y="332" width="70" height="62" rx="4" />
+          <rect class="win" id="win-art-4" x="385" y="332" width="70" height="62" rx="4" />
+          <line x1="220" y1="235" x2="220" y2="297" class="win-bar" /><line x1="185" y1="266" x2="255" y2="266" class="win-bar" />
+          <line x1="420" y1="235" x2="420" y2="297" class="win-bar" /><line x1="385" y1="266" x2="455" y2="266" class="win-bar" />
+          <line x1="220" y1="332" x2="220" y2="394" class="win-bar" /><line x1="185" y1="363" x2="255" y2="363" class="win-bar" />
+          <line x1="420" y1="332" x2="420" y2="394" class="win-bar" /><line x1="385" y1="363" x2="455" y2="363" class="win-bar" />
+          <!-- attic window -->
+          <circle cx="320" cy="160" r="16" fill="rgba(201,151,58,0.1)" stroke="#C9973A" stroke-width="1.5" />
+        </svg>
+        <button class="house__hotspot" style="left:29%; top:51%;" data-story="0" aria-label="Window one: Nana, 74"></button>
+        <button class="house__hotspot" style="left:60%; top:51%;" data-story="1" aria-label="Window two: Maya, 13"></button>
+        <button class="house__hotspot" style="left:29%; top:72%;" data-story="2" aria-label="Window three: Mom and Dad"></button>
+        <button class="house__hotspot" style="left:60%; top:72%;" data-story="3" aria-label="Window four: the home office"></button>
+      </div>
+
+      <div class="house__story" aria-live="polite">
+        <div class="house__story-card">
+          <span class="house__story-tag"></span>
+          <h3 class="house__story-who"></h3>
+          <p class="house__story-threat"></p>
+          <p class="house__story-guard"></p>
+          <a class="house__story-link btn btn--primary" href="plans.html">See the plans →</a>
+        </div>
+        <p class="house__hint">💡 Tap the other windows — every generation has its own hunter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="mission-banner">
   <div class="container">
     <p class="mission-banner__quote">
